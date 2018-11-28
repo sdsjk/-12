@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- outer shadow of outer circle -->
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/plugin_emm_round_progress_bg_color" />
+            <corners android:topLeftRadius="20dp"
+                     android:topRightRadius="20dp"
+                     android:bottomRightRadius="20dp"
+                     android:bottomLeftRadius="20dp"/>
+        </shape>
+    </item>
+    <!-- outer shadow of outer circle -->
+    <item
+        android:bottom="20dp"
+        android:left="20dp"
+        android:right="20dp"
+        android:top="20dp">
+        <shape android:shape="oval">  <!-- 圆形 -->
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="@color/plugin_emm_round_gradual_progress_outer_circle_outer_shadow_end_color"
+                android:startColor="@color/plugin_emm_round_gradual_progress_outer_circle_outer_shadow_start_color"/>
+        </shape>
+    </item>
+
+    <!-- outer circle -->
+    <item
+        android:bottom="21dp"
+        android:left="21dp"
+        android:right="21dp"
+        android:top="21dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="@color/plugin_emm_round_gradual_progress_outer_circle_end_color"
+                android:startColor="@color/plugin_emm_round_gradual_progress_outer_circle_start_color"
+                />
+        </shape>
+    </item>
+
+    <!-- progress circle bg  start
+    总体对称线性渐变
+    1.两条宽1dp的圆形渐变环
+    2.一条宽1dp的纯色圆环
+    3.一条宽4dp的纯色圆环
+    4.一条宽1dp的纯色圆环
+    5.两条宽1dp的圆形渐变环
+    -->
+    <!--宽1dp的圆形渐变环-->
+    <item
+        android:bottom="27dp"
+        android:left="27dp"
+        android:right="27dp"
+        android:top="27dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="#FFCBCCD3"
+                android:startColor="#FFA2B2C0"
+                />
+        </shape>
+    </item>
+    <!--宽1dp的圆形渐变环-->
+    <item
+        android:bottom="28dp"
+        android:left="28dp"
+        android:right="28dp"
+        android:top="28dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="#FFCBCCD3"
+                android:startColor="#FFB2C2D0"
+                />
+        </shape>
+    </item>
+    <!--宽1dp的纯色圆环-->
+    <item
+        android:bottom="29dp"
+        android:left="29dp"
+        android:right="29dp"
+        android:top="29dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFCBCCD3"/>
+        </shape>
+    </item>
+    <!--条宽4dp的纯色圆环 start-->
+    <item
+        android:bottom="30dp"
+        android:left="30dp"
+        android:right="30dp"
+        android:top="30dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFCDCED3"/>
+        </shape>
+    </item>
+    <item
+        android:bottom="33dp"
+        android:left="33dp"
+        android:right="33dp"
+        android:top="33dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFCDCED3"/>
+        </shape>
+    </item>
+    <!--条宽4dp的纯色圆环 end-->
+
+    <!--宽1dp的纯色圆环-->
+    <item
+        android:bottom="34dp"
+        android:left="34dp"
+        android:right="34dp"
+        android:top="34dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFCBCCD3"/>
+        </shape>
+    </item>
+    <!--宽1dp的圆形渐变环-->
+    <item
+        android:bottom="35dp"
+        android:left="35dp"
+        android:right="35dp"
+        android:top="35dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="90"从下到上渐变-->
+            <gradient
+                android:angle="90"
+                android:endColor="#FFCBCCD3"
+                android:startColor="#FFB2C2D0"
+                />
+        </shape>
+    </item>
+    <!--宽1dp的圆形渐变环-->
+    <item
+        android:bottom="36dp"
+        android:left="36dp"
+        android:right="36dp"
+        android:top="36dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="90"从下到上渐变-->
+            <gradient
+                android:angle="90"
+                android:endColor="#FFCBCCD3"
+                android:startColor="#FFA2B2C0"
+                />
+        </shape>
+    </item>
+    <!-- progress circle bg  end-->
+
+    <!--outer shadow of inner circle-->
+    <item
+        android:bottom="37dp"
+        android:left="37dp"
+        android:right="37dp"
+        android:top="37dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="@color/plugin_emm_round_gradual_progress_inner_circle_outer_shadow_end_color"
+                android:startColor="@color/plugin_emm_round_gradual_progress_inner_circle_outer_shadow_start_color"/>
+        </shape>
+    </item>
+
+    <!--inner circle-->
+    <item
+        android:bottom="38dp"
+        android:left="38dp"
+        android:right="38dp"
+        android:top="38dp">
+        <shape android:shape="oval">
+            <!-- 渐变 angle="270"从上到下渐变-->
+            <gradient
+                android:angle="270"
+                android:endColor="@color/plugin_emm_round_gradual_progress_inner_circle_end_color"
+                android:startColor="@color/plugin_emm_round_gradual_progress_inner_circle_start_color"/>
+        </shape>
+    </item>
+
+</layer-list>

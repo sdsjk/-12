@@ -1,0 +1,418 @@
+/*目标动态*/
+
+.border-bottomm {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/*打卡*/
+.hh {
+    height: 3.6em;
+}
+.mFont {
+    height: 2.375em;
+    font-size: 1.2em;
+    font-weight: bold;
+}/*line-height:2.375em;*/
+.fonts {
+    font-size: 0.875em;
+}
+.fonts1 {
+    font-size: 0.8em;
+}
+
+.hei {
+    height: 1.8em;
+    line-height: 1.8em;
+}
+.greenf {
+    color: #6ec251;
+}
+.blue {
+    color: #1b8eda;
+}
+.redf {
+    color: #e35652;
+}
+.yellow {
+    color: #ffac1b;
+}
+.weidk {
+    line-height: 1.8em;
+    text-align: center;
+}
+.padd {
+    padding: 0.25em;
+}
+.padd1 {
+    padding: 0.25em 1em;
+}
+.jiange {
+    height: 0.5em;
+    background-color: #e5e5e5;
+}
+.bottom-border {
+    border-bottom: 1px solid #e5e5e5;
+}
+.daka1 {
+    background-image: url(img/daka1.png);
+    height: 1.6em;
+    width: 1.6em;
+}
+
+/*工作任务*/
+.fontS {
+    font-size: 1em;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+/*积分获取记录*/
+.jfont-s {
+    font-size: 1em;
+}
+
+/*销售机会主页*/
+.xsjhzy {
+    background-image: url(img/more.png);
+    height: 1em;
+}
+.duihua {
+    background-image: url(img/duihua.png);
+    height: 0.84375em;
+    width: 0.8125em;
+}
+.xsmarB {
+    margin-bottom: 0.5em;
+}
+.duihuacolor {
+    color: #0071bc;
+}
+.paddxsb {
+    padding-bottom: 0.5em;
+}
+.paddxs {
+    padding: 0.5em 0;
+}
+.paddmoney {
+    padding: 1em 0;
+}
+.colorRed {
+    color: #eb606a;
+}
+.paddTop {
+    padding-top: 1em;
+}
+.borderLeft {
+    border-left: 1px solid #e5e5e5;
+}
+.xsmar1 {
+    margin: 0 0 0 2.5em;
+}
+
+.hmmlineH {
+    line-height: 1.7em;
+}
+.marleft {
+    margin-left: 0.3em;
+}
+.uinnxs {
+    padding: 1em 0 1em 1.3em;
+}
+.hmmbor {
+    border: 1px solid #e5e5e5;
+}
+.uinnxs2 {
+    padding: 0.5em;
+}
+
+.dashbor {
+    border-bottom: 1px dashed #e5e5e5;
+}
+.divdaxiao {
+    margin: 0.5em
+}
+
+.xsfont-c1 {
+    color: #b0b0b0;
+}
+.namecolor {
+    color: #696969;
+}
+.font36 {
+    font-size: 1.125em;
+}
+.font34 {
+    font-size: 1.0625em;
+}
+.font30 {
+    font-size: 0.9375em;
+}
+.font28 {
+    font-size: 0.875em;
+}
+.font24 {
+    font-size: 0.75em;
+}
+.font26 {
+    font-size: 0.8125em;
+}
+.font20 {
+    font-size: 0.825em;
+}
+
+.xsmarL {
+    margin-left: 0.8125em;
+}
+.xsmarR {
+    margin-right: 0.8125em;
+}
+
+
+/*创建推荐*/
+
+.logopadd {
+    padding: 3.625em 4.9375em 0;
+}
+.underpadd {
+    padding: 1em 0em .8em 0em;
+}
+.tubiaopadd {
+    padding: 0 1.09375em;
+}
+.twmar {
+    margin-top: 0.3125em;
+    color: #777777;
+}
+.kphead {/*height:2.4375em;*/
+    border-bottom: 1px solid #e5e5e5;
+}
+.tipset2 {
+    background-image: url(img/kpjiantou.png);
+    height: 0.6875em;
+    width: 1.092em;
+}
+.kppaddtb {
+    padding: 0.5em 0;
+}
+.kpmar {
+    padding: 0.8125em 0;
+}
+.kpmar1 {
+    padding: 0.5em 0;
+}
+.xssxline {
+    line-height: 1.75em;
+}
+.xssxmarT {
+    margin-top: 0.75em;
+    padding-bottom: 0.45em;
+}
+.xssxmarB {
+    margin-bottom: 0.5625em;
+    padding-top: 0.45em;
+}
+.jiacu {
+    font-weight: bold;
+}
+.font1-4 {
+    font-size: 1.4em;
+}
+.font1-8 {
+    font-size: 1.8em;
+}
+.pkcolor1 {
+    color: #00b0c8;
+}
+.pkcolor2 {
+    color: #d48a65;
+}
+.pkcolor3 {
+    color: #d6b297;
+}
+.pkcolor4 {
+    color: #f07d8a;
+}
+.pkcolor5 {
+    color: #7f8443;
+}
+.pkcolor6 {
+    color: #e35652;
+}
+.pkcolor7 {
+    color: #6ec251;
+}
+.kpgz1 {
+    background-image: url(img/kpgz1.png);
+    width:1.6em;
+    height:1.6em;
+}
+.kpgz2 {
+    background-image: url(img/kpgz2.png);
+    width:1.6em;
+    height:1.6em;
+}
+.kppadB {
+    padding-bottom: 0.5em;
+}
+.kpuser {
+    background-image: url(img/kpuser.png);
+    width: 1.25em;
+    height: 1.25em;
+}
+.kpjia {
+    background-image: url(img/kpjia.png);
+    width: 1em;
+    height: 1em;
+}
+.calender {
+    background-image: url(img/calender.png);
+    width: 1.25em;
+    height: 1.3125em;
+}
+.kpCIS1 {
+    background-image: url(img/kpCIS1.png);
+    width: 3em;
+    height: 3em;
+}
+.kpCIS2 {
+    background-image: url(img/kpCIS2.png);
+    width: 3em;
+    height: 3em;
+}
+.kpCIS3 {
+    background-image: url(img/kpCIS3.png);
+    width: 3em;
+    height: 3em;
+}
+.kpcolor {
+    color: #a1a1a1;
+}
+
+.kpimg {
+    background-image: url(img/kpimg.png);
+    width: 3.75em;
+    height: 3.75em;
+    position: relative;
+    top: 0.6em;
+}
+.kpimg1 {
+    background-image: url(img/kpimg1.png);
+    width: 3.9375em;
+    height: 3.9375em;
+}
+.kppadl {
+    padding-left: 0.5em;
+}
+.kpuinn1 {
+    padding: 0.2em 0.5em;
+}
+.kpuinn2 {
+    padding: 1em 1em;
+}
+.kpuinn3 {
+    padding: 0.7em 1em;
+}
+.uinn8 {
+    padding: 0.5em 1em 0 1em;
+}
+.uinn9 {
+    padding: 0 1em;
+}
+
+
+.addkp {
+    background-image: url(img/add-act.png);
+    height: 1.2em;
+    width: 2em;
+}
+
+/*index*/
+
+
+.c1 {
+    color: #ffffff;
+}
+.c4 {
+    color: #525ba4;
+}
+.c5 {
+    color: #999999;
+}
+
+.pr {
+    position: relative;
+}
+.pa {
+    position: absolute;
+}
+.border {
+    width: 5.13em;
+    height: 5.13em;
+    border: 0.32em solid rgba(212,212,212,0.3);
+    box-sizing: border-box;
+    border-radius: 5.13em;
+    left: 1em
+}
+.background {
+    height: 6em;
+    width: 6.0em;
+    -webkit-background-size: 100% 100%;
+    background-position: center;
+}
+
+
+/*设置placeholder的颜色*/
+.phc::-webkit-input-placeholder {
+    color: rgba(127,127,127,0.8)
+}
+/*安全中心同设置样式*/
+.shezhi_in {
+    padding: 1.125em 0.625em 1.125em 0.3125em;
+}
+.icon-shezhir {
+    background-image: url(img/xiaoshoujt.png);
+    height: 0.81252em;
+}
+.utlv_21 {
+    color: #434343;
+}
+.bg-c2 {
+    background-color: #fff;
+}
+.gs_h2 {
+    font-size: 1.2em;
+    padding-bottom: 0.3125em;
+}
+.rw-mar-r{
+    margin-right:0.8em;
+}
+.rw-uinn{
+    padding:0.15em .5em;
+}
+.rw-situation1{
+    color:#ff5858;
+    border:1px solid #e5e5e5;
+}
+.rw-situation2{
+    color:#2b61aa;
+    border:1px solid #e5e5e5;
+}
+.rw-situation3{
+    color:#ffa800;
+    border:1px solid #e5e5e5;
+}
+/*表格*/
+
+.zcolor2 {
+    color: #d0d0d0;
+}
+.zpadd {
+    padding: 0.75em 0.875em;
+    font-size: 0.9375em;
+}
+.zfonts {
+    font-size: 1em;
+}

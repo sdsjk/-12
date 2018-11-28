@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <style>
+            .feedback_uinn{
+                padding: 0.75em;
+            }
+            .feedback_title_uinn{
+                padding-bottom: 0.75em;
+            }
+            .txt_color_list{
+              color:#cecece;
+            }
+            .feedbackImgbg{
+                background-color: #8c8c8c;
+                z-index: 1;
+            }
+            .uploadImgBg{
+                background-color:#8c8c8c;                
+            }
+            .delBtn{
+                width: 1em;
+                height:1em;
+                z-index:100;
+            }
+            .percentage{
+                position: absolute;
+                top:50%;
+                left:50%;
+                margin-left: -0.75em;
+                margin-top: -0.75em;
+            }
+            .failIcon{
+                background-image: url('../css/img/huihuaunload.png');
+            }
+            .delIcon{
+                background-image: url('../css/img/chahao.png');
+            }
+            .failIcon_position{
+                position: absolute;
+                top:50%;
+                left:50%;
+                margin-left:-0.75em;
+                margin-top: -0.75em; 
+            }
+        </style>
+    </head>
+    <body class="um-vp bg-wh " ontouchstart>
+        <div class="ub ub-ver feedback_uinn boder ubb">
+            <div class="ub feedback_title_uinn">
+                <div class="umh1 umw1 ub-img" style="background-image: url('../css/img/t_icon.png');"></div>
+                <h4>意见反馈</h4>
+            </div>
+            <div class=" uinput ub ub-f1 ub-ver  boder ubb ">
+                <textarea placeholder="请输入10-200个字符"  id="liuyneir" type="text" Maxlength="200" warp="hard" class="ub-f1 inputSize textH" oninput="OnTextarea()"></textarea>
+                <p class="tx-r txt_color_list" id="contentNum"></p>
+            </div>
+            <div class="ub umar-t">
+                 <div class='ub' id="imgShow">
+                 </div>
+                <div class="umh6 umw4 uba boder ub-img" id="addImg" style="background-image: url('../css/img/add_icon2.png')"></div>               
+            </div>
+        </div>
+        <div id="submit" class="umar-t">
+            <div class="tx-c bc-head bc-text-head uc-a fontSize1" style="width: 80%;padding: 0.7em 0;margin: 0.5em auto;">提交反馈</div>
+        </div>
+
+    </body>
+    <script src="../js/appcan.js"></script>
+    <script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/personPublic.js"></script>
+    <script src="../assets/views/feedBack_content.js"></script>
+    </body>
+    <script>
+        var STR_PHOTOS = tools.getString("STR_PHOTOS"),
+            STR_MENU = tools.getString("STR_MENU"),
+            BTN_CANCEL = tools.getString("BTN_CANCEL"),
+            STR_TAKE_PICTURES = tools.getString("STR_TAKE_PICTURES");
+        var isClick = true;
+        appcan.ready(function() {
+            //添加面包屑记录
+            var jsonObj = {leaveBreadcrumb:'意见反馈提交页面'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            appcan.locStorage.remove("ISEDITOR");
+            appcan.button("#addImg", "btn-act", function () {
+                addNum = 0;
+                var isEditor = appcan.getLocVal('ISEDITOR');
+        
+                if(isEditor){
+                        appcan.window.openToast('请先完成图片编辑再操作！',2000,5);
+                return;
+            }
+                var element = document.getElementsByClassName('feedbackImgbg');
+                $('.delBtn').addClass('uhide');
+                $('.uploadImg').on('click',function(e){
+                    e.preventDefault();
+                });                
+                uexWindow.cbActionSheet = function (a, b, data) {
+                    switch (parseInt(data)) {
+                        case 0:
+                            getCam();
+                            break;
+                        case 1:
+                            selPic();
+                            break;                    
+                }
+            };
+                var str = [STR_TAKE_PICTURES, STR_PHOTOS];
+                if(element.length<3){
+                    uexWindow.actionSheet(STR_MENU, BTN_CANCEL, str);
+                    }else{
+                    appcan.window.alert({
+                            title:'提示',
+                            content:'只允许上传3张图片',
+                            buttons:['确定'],
+                            callback:function (err, data, dataType, optId) {
+                                if(!err){
+                    }
+                    
+                }
+                    });
+            }
+                
+            });
+            appcan.button('#submit','btn-act',function(){
+                    var isEditor = appcan.getLocVal('ISEDITOR');
+                    
+                    if(isEditor){
+                        appcan.window.openToast('请先完成图片编辑再提交！',2000,5);
+                        return;
+            }
+                    appcan.locStorage.remove("ISEDITOR");
+                    if(!isClick) return;
+                    isClick = false;
+                    $('.delBtn').addClass('uhide');
+                    $('.uploadImg').on('click',function(e){
+                        e.preventDefault();
+                    });                    
+                    feedBackSubit();
+            });
+            $(document).on('longTap','.uploadImg',function(e){
+                    $('.delBtn').removeClass('uhide');
+                    appcan.button('.uploadImg','btn-atc',function(){
+                            addNum = 0;                                                                           
+                            $(this).remove();
+                            uploadArr.splice(uploadArr.length-1,1);
+                    });
+                    appcan.window.evaluateScript("feedBack","$('#nav-right div').removeClass('uhide')");
+                    appcan.setLocVal('ISEDITOR',1);
+            });
+            appcan.window.subscribe('IMAGE-EDITOR-UHIDE',function(){
+                $('.delBtn').addClass('uhide');
+                $('.uploadImg').on('click',function(e){
+                        e.preventDefault();
+                });
+            });
+        });   
+       
+ </script>
+</html>

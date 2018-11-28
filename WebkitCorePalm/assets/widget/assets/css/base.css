@@ -1,0 +1,73 @@
+.todo{
+    background-image: url("images/todo.png")
+}
+.todo1{
+    background-image: url("images/todo1.png")
+}
+.remindIcon{
+    background-image: url("images/remind.png")
+}
+.headColor{
+    color: white;
+    /*background-color: #ff3333 !important;*/
+    background-color: #FC363B !important;
+}
+.head-btn {
+    min-height: 2em;
+    min-width: 4em;
+}
+
+.baseColor2{
+    color: #2b61aa;
+}
+.baseColor{
+    color: #434343;
+}
+.baseColor1{
+    color: #9c9c9c;
+}
+.baseColor3{
+    color: #c4c4c4;
+}
+.baseBottom{
+    border-bottom: 1px solid #e5e5e5;
+}
+.baseBorderColor{
+    border-color: #e5e5e5;
+}
+.bg-wh{
+    background-color: white;
+}
+.bg {
+    background-color: #ecf3f7;
+}
+.imgIconbg{
+    border: .2em solid white;
+    border-radius: .2em;
+}
+.redcircle{
+    border: 1px solid white;
+    margin: -.8125em;
+    -webkit-border-radius: 1.625em;
+    border-radius: 1.625em;
+}
+.badge{
+    border:1px solid white;
+    width:auto !important;
+    min-width:1.2em !important;
+    height:1.6em!important;
+    border-radius:1.6em!important;
+    -webkit-border-radius: 1.6em!important;
+    padding: 0 .2em;
+
+}
+.fontSize9375{
+    font-size: .9375em;
+}
+.fontSize9375{
+    font-size: .9375em;
+}
+/* 消息列表返回到主页面图标 */
+   .icon-diy26{
+     background-image: url('images/backHome.png') !important;
+    };

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <meta charset="utf-8">
+         <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../assets/css/base.css">
+        <link rel="stylesheet" href="../css/zd-style.css">
+        <title></title>
+        <style>
+            html, body {
+                height: auto;
+                width: 100%;
+                margin: 0 auto;
+                background-color: #FFFFFF;
+                
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+               background-color: #FFFFFF;
+               overflow-x: hidden;
+            }
+            .row{
+                width: 100%;
+                display: flex;
+                justify-content: space-between; 
+                align-items: center;
+                border-bottom: 1px #CCCCCC solid;
+                padding: 0.5em;
+            }
+            .left{
+                width: 97%;
+            }
+            .right{
+                 width:3%;
+                padding-right:1em;
+                 text-align: right;
+                 vertical-align: middle;
+             }
+            .titlecontent{
+                /*background-color: yellow;*/
+                position: relative;
+                word-break:keep-all;           /* 不换行 */
+                white-space:nowrap;          /* 不换行 */
+                overflow:hidden;   /*省略号*/
+                width:60%;
+                padding-right:0.5em;
+                color:black;
+               float:left;
+               font-size: 1.2em;
+                display: flex;
+                display: -webkit-flex;
+                align-items: center;
+            }
+            .creattime{
+                 float:right;
+                 width:31.75%;
+                 vertical-align: bottom;
+                 font-size: 0.8em;
+                 color: gray;
+                 text-align: right;
+            }
+            .content{
+                width:100%;
+                color: gray;
+                margin-top:0.5em;
+                 font-size: 0.8em;
+                text-overflow: ellipsis;
+                word-break:keep-all;           /* 不换行 */
+                white-space:nowrap;          /* 不换行 */
+                overflow:hidden;   /*省略号*/
+            }
+             .time {
+                text-align:left;
+                vertical-align:top;
+                color: gray;
+                font-size: 0.75em;
+                margin-right:0.5em;
+            }
+         .icon-arrow{
+               display:inline-block;
+                background: url('../assets/css/images/arrow_right.png') no-repeat;
+                background-size:100% 100%;
+                width:1em; 
+                height:1em;
+              
+            };
+            #headerArea {
+                box-sizing: border-box;
+            }
+            #noRead,#read {
+                position: relative;
+                display: inline-block;
+                width: 50%;
+                text-align: center;
+                /*background: green;*/
+            }
+            #noRead section,#read section{
+                position: relative;
+                display: inline-block;
+                /*background: pink;*/
+                width: 60%;
+            }
+            .readChecked {
+                border-bottom: 2px solid #FC363B;
+            }
+            .nothingMessage {
+                text-align: center;
+                margin-top:0.75em;
+            }
+            .messageData{
+                display: inline-block;
+                display: flex;
+                display: -webkit-flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top:1.25em;
+                right: 18.5%;
+                width: 1.375em;
+                height: 1.375em;
+                border-radius: 50%;
+                background-color: #FC0D1B;
+                color: #fff;
+                font-size: 0.55em;
+            }
+            .newMessage {
+                /*position: absolute;*/
+                display: inline-block;
+                width: 0.35em;
+                height: 0.35em;
+                border-radius: 50%;
+                background-color: #FC0D1B;
+            }
+        </style>
+    </head>
+    <body class="um-vp">
+        <div id="nullid" style="height: 100%;display: none;background-color: #FFFFFF">
+            <div class="ub ub-pc ub-ac" style="vertical-align:middle;height: 100%">
+                          近三天暂无消息通知！
+            </div>
+        </div>
+        <div class="container" id="content">
+               <script id="test" type="text/html">
+                    <div id="headerArea" style="border-bottom: 2px solid #f2f2f2;width: 100%;display: flex;display: -webkit-flex;line-height:3em;">
+                        <div id="noRead" >
+                            <section class="readChecked">
+                                <span>未阅</span>
+                                {{if noReadListLength.length > 0}}
+                                    <span class="messageData">{{noReadListTotal.length}}</span>
+                                {{/if}}
+                            </section>
+                        </div>
+                        <div id="read" >
+                            <section>已阅</section>
+                        </div>
+                    </div>
+                    <div id="noReadContent" class="">
+                        {{if noReadListLength.length === 0}}
+                            <div class="nothingMessage">暂无未阅消息...</div>
+                        {{/if}}
+                        {{each noReadListLength value i}}
+                            {{if value.read === false}}
+                                <div id="{{value.objectId}}" class="row"  onclick="openInfo('{{value.title}}','{{value.content}}','{{value.detailCreated}}','{{value.format}}','{{value.formatContent}}','{{value.appId}}','{{value.objectId}}')">
+                      <div class="left">
+                            <div class="content">
+                                            <div class="titlecontent">
+                                                <span class="newMessage"></span>
+                                                <span style="margin-left:0.375em;">{{value.title}}</span>
+                                            </div> 
+                            <div class="creattime">{{value.createdAt}}</div> 
+                            </div>
+                                        <div class="content">{{value.content}}</div>                                                  
+                                    </div>
+                                    <div class="right" ></div> 
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                    <div id="readContent" class="uhide">
+                        {{if readListLength.length === 0}}
+                            <div class="nothingMessage">暂无已阅消息...</div>
+                        {{/if}}
+                        {{each readListLength value i}}
+                            {{if value.read === true}}
+                                <div id="{{value.objectId}}" class="row"  onclick="openInfo('{{value.title}}','{{value.content}}','{{value.detailCreated}}','{{value.format}}','{{value.formatContent}}','{{value.appId}}')">
+                                    <div class="left">
+                            <div class="content">
+                                            <div class="titlecontent">
+                                                <span>{{value.title}}</span>
+                            </div>                                                  
+                                            <div class="creattime">{{value.createdAt}}</div> 
+                        </div>
+                                        <div class="content">{{value.content}}</div>                                                  
+                    </div> 
+                                    <div class="right" ></div>
+                 </div>
+                            {{/if}}
+                 {{/each}} 
+               </script>
+                <div id="nomore" style="display: none;text-align:center; padding: 1em 0;">暂无消息列表...</div>
+                
+        </div>
+        <div class="potion ub ub-ac ub-pc  uhide" style="background: rgba(40,40,40,.7);" id="maskLayer">             
+        </div>
+        <div class="ub ub-ver  uinn_14 bg_2 uc-a NotificationMessage uhide" style="width: 60%;" id="NotificationMessage">
+                  <div class="umw3 umh5 ub-img message_icon" style="background-image: url('../css/img/tz_icon.png')"></div>
+                  <div class="ub-f1" id="messageContent">
+                          <div >
+                              <h2>通知</h2>
+                              <p class="uinn_9 ubb bc-border ulev-4 creatTime" style="color:#6D6D6D"></p>
+                          </div> 
+                          <div class="umar-t ub ub-ver ub-f1 content_msg ulev-1" >
+                              
+                          </div>
+                  </div>
+                  <div class="umw3 umh5 ub-img colse_icon" style="background-image: url('../css/img/colse.png')" id="colse"></div>
+        </div>
+    </body>
+    <script src="../js/appcan.js"></script>
+    <script src="../js/appcan.control.js"></script>
+    <script src="../js/language.js"></script>
+    <script type="text/javascript" src="../js/crypto-js.js"></script>
+    <script type="text/javascript" src="../js/bluebird.min.js"></script>
+     <script src="../js/template-web.js"></script>
+      <script src="../js/common.js"></script>
+      <script src="../js/dateUtil.js"></script>
+    <script>
+        var myList = [];
+         var readList = [];
+         var noReadList = [];
+         var init = true;
+         var pageNum=1;
+         var userId;
+         var isReload = false;
+         var isNoRead = true;
+         var isRead = false;
+         var lastNoReadMessageItem,lastReadMessageItem;
+         var pageNoReadNum = 1,pageReadNum = 1;
+         var bodyHeight = $('body').height();
+       appcan.ready(function () {
+            //添加面包屑记录
+            var jsonObj = {leaveBreadcrumb:'我的消息页面'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+             initMessageList();    
+             // 开启页面弹动效果
+         // 隐藏滚动条
+         appcan.window.setWindowScrollbarVisible(0);
+          // 下拉刷新操作
+        appcan.window.openToast("正在获取数据,请稍后...");
+            window.setTimeout(function(){
+                appcan.frame.setBounce([0,1], null, null, function (type) {
+            // 为0时是下拉刷新
+            if (parseInt(type) == 0) {                        
+                        pageNoReadNum = 1;
+                        pageReadNum = 1;
+                        pageNum = 1;
+                        appcan.window.openToast("正在获取数据,请稍后...");
+                        initMessageList();
+                    }else if(parseInt(type) == 1){                        
+                        setTimeout(function(){                            
+                            if(isNoRead && !isRead){
+                                // 在未阅界面
+                                pageNoReadNum ++;
+                                pageNum = pageNoReadNum;
+                            }else if(isRead && !isNoRead){
+                                // 已阅
+                                pageReadNum ++;
+                                pageNum = pageReadNum;
+                            };
+                            initMessageList();
+                        },500)
+                    }
+                }, '#ecf3f7'); 
+            },500)
+         
+         //关闭消息详情弹窗
+         
+          $('#colse').click(function(event){
+              $('#maskLayer').addClass('uhide');
+              $('#NotificationMessage').addClass('uhide');
+               event.stopPropagation();
+               if(isAndroid){                     
+                    appcan.frame.setBounce([0,1], null, null, function (type) {
+                        // 为0时是下拉刷新
+                        if (parseInt(type) == 0) {                            
+                            pageNoReadNum = 1;
+                            pageReadNum = 1;
+                            pageNum = 1;
+                            appcan.window.openToast("正在获取数据,请稍后...");
+                            initMessageList();
+                        }else if(parseInt(type) == 1){                            
+                            setTimeout(function(){                                
+                                if(isNoRead && !isRead){
+                                    // 在未阅界面
+                                    pageNoReadNum ++;
+                                    pageNum = pageNoReadNum;
+                                }else if(isRead && !isNoRead){
+                                    // 已阅
+                                    pageReadNum ++;
+                                    pageNum = pageReadNum;
+                                };
+                                initMessageList();
+                            },500)
+                        }
+                    }, '#ecf3f7');
+               };
+               if(isReload){
+                   initMessageList();
+               }
+          });
+          
+          
+      });
+       function initMessageList(){
+            // 用户信息   
+            var user = appcan.getLocVal("EPortal-UserInfo");
+            // 用户信息转为json对象
+            var userdata = JSON.parse(user);
+            // 用户ID
+            userId = userdata.userId;
+            var time = new Date();
+            var hh = time.getHours(); //获取当前小时数(0-23)
+            var mm = time.getMinutes(); //获取当前分钟数(0-59)
+            var ss = time.getSeconds(); //获取当前秒数(0-59)
+            var smsm = time.getMilliseconds(); //获取当前毫秒数(0-999)
+            var nowT = setXDate(time, 0, 0, 0);
+            var threeT = setXDate(time, 0, 0, -3);
+            var lastTime = threeT + ' '+ hh+ ':' + mm + ':'+ ss + ':' + smsm;
+            var biz = {
+                pageSize : 10000,
+              pageNum :1,
+              userId:userId,
+              updatedAt:lastTime
+            };
+            // 工程名称 接口名称 请求类型 调用接口传递参数 用户ID 页面名称 发起请求应用ID
+            allMasIsCrypto("messageCenter","qry","GET",JSON.stringify(biz),userId,"掌上深航",config.appId).then(function(data){
+                 appcan.window.closeToast();
+
+               var successData = data.data;                
+               if(data.status == '0'&& data.message == 'ok' && successData.count == 0) {
+                   appcan.window.resetBounceView(0);
+                   appcan.window.closeToast();
+                   $('#nullid').show();
+               }else if(data.status !== '0'&& data.message !== 'ok'){
+                   appcan.window.alert("获取接口数据异常");
+                   $('#nullid').show();
+               }else if(data.status == '0'&& data.message == 'ok' && successData.count != 0){
+                   appcan.window.resetBounceView(0);
+                    appcan.frame.resetBounce(1);
+                    var noReadContentHeight = $("#noReadContent").height();
+                    var readContentHeight = $("#readContent").height();
+                   if (pageNum == 1) {
+                            myList = [];
+                        readList = [];
+                        noReadList = [];
+                            //清空数据
+                            if (!init) {
+                                appcan.window.resetBounceView(0);
+                                appcan.window.resetBounceView(1);
+                            }
+                          } else {
+                            appcan.window.resetBounceView(1);
+                        }
+                   var res = successData.results;
+                   if (res && res.length > 0) {
+                        var dataObjList = [];
+                        var objData = {};
+                        var readListLength = [];
+                        var noReadListLength = [];
+                        var noReadListTotal = [];
+                        for (var i = 0; i <res.length; i++) {
+                            //通知标题
+                            var title = res[i].title;
+                            //创建时间
+                            var createdAt = res[i].createdAt.split('T')[0];
+                       
+                              //通知时间
+                           var tTime = new Date(res[i].createdAt);
+                           var yyear = tTime.getFullYear();
+                           var mmonth = tTime.getMonth()+1 < 10 ? '0'+(tTime.getMonth()+1) : tTime.getMonth()+1;
+                           var dday = tTime.getDate() < 10 ? '0'+tTime.getDate() : tTime.getDate();
+                           var hhour = tTime.getHours() < 10 ? '0'+tTime.getHours() : tTime.getHours();
+                           var mmin = tTime.getMinutes() < 10 ? '0'+tTime.getMinutes() : tTime.getMinutes();
+                           var ssec = tTime.getSeconds() < 10 ? '0'+tTime.getSeconds() : tTime.getSeconds();
+                           var sTime = yyear+'-'+mmonth+'-'+dday+' '+hhour+':'+mmin+':'+ssec;
+                           //创建时间 精确到秒
+                             createdAt=sTime;
+                             //最后通知时间
+                           var detailCreated = sTime;
+                           
+                            //通知Id
+                            var objectId = res[i].objectId;
+                            //内容
+                            var content = res[i].content;
+							if(content.indexOf('\r\n')>0){
+								content = content.replace(/\r\n/g,'');
+							}
+                            var pushObj = res[i].pushObj;
+                            
+                            if(pushObj){
+                                //是否格式化
+                                var format = res[i].pushObj.behavior.application.param.format || '';                                
+                                //格式化内容
+                                var formatContent = res[i].pushObj.behavior.application.param.formatContent || '';   
+                                var widget = res[i].pushObj.behavior.application.action.widget;
+                                 	
+                                 if(widget){
+									var appId = widget.appId;
+									
+								 }else{
+									var appId = '';
+								 }								 
+                            }
+                            /*
+                                区分已阅未阅数据
+                                read为true表示已阅，为false表示未阅
+                            */
+                            var read = res[i].read;                            
+                           //对象数据
+                            objData = {
+                                title : title,
+                                createdAt : createdAt,
+                                objectId : objectId,
+                                content: content,
+                                detailCreated: detailCreated,
+                                format:format,
+                                formatContent:formatContent,
+                                read:read,
+								appId:appId
+                            };
+                            dataObjList.push(objData);
+                            if(read){
+                                readListLength.push(objData);
+                            }else {
+                                noReadListLength.push(objData);
+                                noReadListTotal.push(objData);
+                            };                            
+                        }
+                       myList = myList.concat(dataObjList);
+                       var data = {
+                            list : myList,
+                            readListLength:readListLength,
+                            noReadListLength:noReadListLength,
+                            noReadListTotal:noReadListTotal
+                       };                        
+                        if(pageNum === 1){
+                            // 不管是已阅还是未阅界面，第一次只展示10条                            
+                                // 在未阅界面
+                                data.noReadListLength = noReadListLength.length > 10 ? noReadListLength.slice(0,10) : noReadListLength.slice(0);                            
+                                // 已阅
+                                data.readListLength = readListLength.length > 10 ? readListLength.slice(0,10) : readListLength.slice(0);                           
+                        }else if(pageNum > 1){
+                            // 刷新时要区分是已阅还是未阅界面
+                            if(isNoRead && !isRead){
+                                // 在未阅界面
+                                data.noReadListLength = noReadListLength.length > (pageNum * 10) ? noReadListLength.slice(0,pageNum * 10) : noReadListLength.slice(0);
+                                // 设置已阅为初始的10条
+                                data.readListLength = lastReadMessageItem;
+                                if((pageNoReadNum * 10) - noReadListLength.length >= 10){
+                                    pageNoReadNum = pageNoReadNum - 1;
+                                    appcan.window.openToast('暂无更多未阅消息',1000,5);
+                                }
+                            }else if(isRead && !isNoRead){
+                                // 已阅
+                                data.readListLength = readListLength.length > (pageNum * 10) ? readListLength.slice(0,(pageNum * 10)) : readListLength.slice(0);
+                                // 设置未阅为初始的10条
+                                data.noReadListLength = lastNoReadMessageItem;
+                                if((pageReadNum * 10) - readListLength.length >= 10){
+                                    pageReadNum = pageReadNum - 1;
+                                    appcan.window.openToast('暂无更多已阅消息',1000,5);
+                                }
+                            };
+                        };                        
+                       //渲染模板
+                       var html = template('test', data);
+                       document.getElementById('content').innerHTML = html;
+                        lastNoReadMessageItem = data.noReadListLength;
+                        lastReadMessageItem = data.readListLength;
+                       if (init) {
+                                appcan.window.closeToast();
+                                init = false;
+                        };
+                        if(pageNum === 1){
+                            if(isNoRead && !isRead){
+                                // 在未阅界面
+                                $("#noReadContent").removeClass("uhide");
+                                $("#readContent").addClass("uhide");
+                                $("#noRead section").addClass("readChecked");
+                                $("#read section").removeClass("readChecked");
+                            }else if(isRead && !isNoRead){
+                                // 已阅
+                                $("#noReadContent").addClass("uhide");
+                                $("#readContent").removeClass("uhide");
+                                $("#noRead section").removeClass("readChecked");
+                                $("#read section").addClass("readChecked");
+                            };
+                        }else if(pageNum > 1){
+                            if(isNoRead && !isRead){
+                                // 在未阅界面
+                                $("#noReadContent").removeClass("uhide");
+                                $("#readContent").addClass("uhide");
+                                $("#noRead section").addClass("readChecked");
+                                $("#read section").removeClass("readChecked");
+                                //  - $("#headerArea")[0].scrollHeight
+                                $('body').scrollTop(noReadContentHeight - 20);
+                            }else if(isRead && !isNoRead){
+                                // 已阅
+                                $("#noReadContent").addClass("uhide");
+                                $("#readContent").removeClass("uhide");
+                                $("#noRead section").removeClass("readChecked");
+                                $("#read section").addClass("readChecked");
+                                //  - $("#headerArea")[0].scrollHeight
+                                $('body').scrollTop(readContentHeight - 20);
+                            };
+                         }
+                        }else if(pageNum === 1 && red.length === 0){
+                        // 数据为空时
+                        $('#nullid').show();   
+                    }
+                };
+            },function(error){
+                 if (init) {
+                        appcan.window.closeToast();
+                        init = false;
+                        httpLock = false;
+                };
+                appcan.window.openToast('获取数据失败,请重新获取!',2000,5,0);
+            }).catch(function(e){                
+          });
+       }
+        function openInfo(k,a,b,c,d,e,objectId){ 
+            isReload = false;		           
+		   
+           if(e && e == 'aaamu10023'){
+		         
+				var data = {
+					   appId:e,
+					   animId:'10',
+					   funcName:'',
+					   info:'',
+					   animDuration:200
+				    };
+				 // 调用已阅未阅接口
+			   transformStatus(objectId);			   
+				uexWidget.startWidget(data,function(error){
+					
+					if(error){
+						appcan.window.openToast('请先安装我的邮箱应用！',2000,5);
+					}
+				});
+		   }else{		   
+				
+			   var top = document.body.scrollTop; 
+			   var msgHeight = $('.container').height();
+			   var bodyHeight = $('body').height();
+			   $('#maskLayer').removeClass('uhide');
+			   $('#NotificationMessage').removeClass('uhide'); 
+			   if(msgHeight < bodyHeight){
+				   document.getElementById('maskLayer').style.height = bodyHeight+"px";
+			   }else{
+				   document.getElementById('maskLayer').style.height = msgHeight+"px";
+			   }
+			   
+			   
+			   var tkTop = bodyHeight/2+top;
+			   
+			   $('#NotificationMessage').css('top',tkTop+"px");
+			   $('#maskLayer,#NotificationMessage').bind('touchmove',function(e){
+				   e.preventDefault();
+			   });
+			   if(isAndroid){
+				   appcan.window.disableBounce();
+			   }
+			   
+				 
+			   if(c == 'true'){
+				   var content = d;
+			   }else {
+				   var content = a;
+			   }
+			   $('.creatTime').html(b);
+			   $('.content_msg').html(content);
+			   // 调用已阅未阅接口
+			   transformStatus(objectId);
+			}
+        }
+        $(document).on("tap",'#noRead',function(event){
+            var target = event.target;
+            isNoRead = true;
+            isRead = false;            
+            var subElement = target.children[0];  // undefined
+            if(target.classList.contains('readChecked')){               
+                return;
+            }
+            if(subElement !== undefined){
+                if(subElement.classList.contains('readChecked')){
+                    return;
+                }
+            }
+            // alert('1');
+            $("#noReadContent").removeClass("uhide");
+            $("#readContent").addClass("uhide");
+            $("#noRead section").addClass("readChecked");
+            $("#read section").removeClass("readChecked");
+        });
+        $(document).on("tap","#read",function(event){
+            isReload = false;
+            isNoRead = false;
+            isRead = true;
+            var target = event.target;            
+            var subElement = target.children[0];  // undefined
+            if(target.classList.contains('readChecked')){                
+                return;
+            }
+            if(subElement !== undefined){
+                if(subElement.classList.contains('readChecked')){
+                    return;
+                }
+            }
+          
+            // alert(2);
+            $("#noReadContent").addClass("uhide");
+            $("#readContent").removeClass("uhide");
+            $("#noRead section").removeClass("readChecked");
+            $("#read section").addClass("readChecked");
+        });
+        // 未阅消息转变状态
+        function transformStatus(objectId){
+            // 点击已阅消息时，不做未阅已阅处理
+            if(!objectId){
+                return;
+            };
+            var biz = {
+                readUserId:userId,
+                objectId:objectId
+            };
+            allMasIsCrypto("messageCenter","read","GET",JSON.stringify(biz),userId,"掌上深航",config.appId).then(function(data){
+                // alert(userId + ',' + objectId);
+                // alert(data.message);    {status:0,message:"ok",data:{}}
+                if(data.status == 0 && data.message == "ok"){
+                    // alert('未阅变成已阅成功');
+                    // initMessageList();
+                    isReload = true;
+                    appcan.window.publish("CHANGE_NO_READ_MESSAGE_ITEM","");
+                }else {
+                    // 未阅转已阅接口调用失败
+                };
+            },function(e){
+                // alert(error); 网络异常or服务器异常
+                // appcan.window.openToast("网络或服务器异常，处理未阅消息失败！");
+            }).catch(function(err){
+                // alert(err);
+            });
+        }
+
+    </script>
+</html>

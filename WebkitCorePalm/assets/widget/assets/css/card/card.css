@@ -1,0 +1,391 @@
+.crad-topBor {
+    border-top: 1px solid #ecf3f7;
+}
+
+.card-allPadd {
+    padding: .6125em 1em;
+}
+
+.card-allPadd2 {
+    padding: .6125em 0 .6125em 1em;
+}
+
+.card-tbPadd {
+    padding-top: .8em;
+    padding-bottom: .8em;
+}
+
+.card-glHeight {
+    height: .8125em;
+    padding-right: .52em;
+    width: 1em;
+}
+
+.card-glHeight2 {
+    height: 1em;
+    padding-right: 0.52em;
+    width: 1em;
+}
+
+/*卡片的高度*/
+.card-h {
+    min-height: 7em;
+}
+
+.card-h1 {
+    height: 2.5em;
+}
+
+.tab_l1 {
+    height: 2.5em;
+}
+
+.card-w {
+    /* width:4.75em;*/
+    width: 6.09375em;
+}
+
+/*头部logo的大小*/
+.sheet-wh {
+    width: 1em;
+    height: 0.625em;
+}
+
+.all-wh {
+    width: 1.0625em;
+    height: 1.0625em;
+}
+
+.load-wh {
+    width: 4.73em;
+    height: 1.28125em;
+}
+
+/*以下为删除--刷新--置顶--下箭头调起actionsheet的logo*/
+.delete-img {
+    background-image: url('img/del.png') !important;
+}
+
+.refresh-img {
+    background-image: url('img/refresh.png');
+}
+
+.top-img {
+    background-image: url('img/setTop.png');
+}
+
+.downS-img {
+    background-image: url('img/downSheet.png');
+}
+
+.loading-img {
+    background-image: url('img/loading.png');
+}
+
+.fail-img {
+    background-image: url('img/fail.png');
+}
+
+/*右侧删除按钮*/
+.delete-img-right {
+    background-image: url('img/delr.png') !important;
+}
+
+/*头部字体的大小*/
+.head-fontSize {
+    /*font-size: 0.9375em;
+    line-height: 0.9375em;*/
+}
+
+/*外边距*/
+.card-pad {
+    padding: 0.25em 0.25em 0em 0.25em;
+}
+
+.card-pad2 {
+    padding: .25em;
+}
+
+.card-pad0 {
+    padding-top: 0.25em;
+}
+
+.card-pad1 {
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+}
+
+.card-mar {
+    margin-right: 0.78125em;
+}
+
+.card-mar1 {
+    margin-top: 0.625em;
+}
+
+.card-mar2 {
+    margin-bottom: 0.625em;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.border-color {
+    border-color: #fafafa;
+}
+
+.overhidden {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.juedui {
+    position: absolute;
+}
+
+.xiangdui {
+    position: relative;
+}
+
+.right {
+    right: 0;
+}
+
+.right1 {
+    right: 0.625em;
+}
+
+.opacity {
+    opacity: 0.5;
+}
+
+.ub-img-r1 {
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.f-bbc {
+    border-bottom: 2px solid #7bb9d7;
+}
+
+/*mem卡片*/
+.memrec {
+    background-image: url('img/memrec.png');
+}
+
+.memsend {
+    background-image: url('img/memsend.png');
+}
+
+.memnew {
+    background-image: url('img/memnew.png');
+}
+
+.memrub {
+    background-image: url('img/memrub.png');
+}
+
+.memrel {
+    background-image: url('img/memrel.png');
+}
+
+.memimg {
+    width: 1.6875em;
+    height: 1.6875em;
+}
+
+.uinnmem {
+    padding: .8em;
+}
+
+.uinnmem1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.memloginc {
+    background-color: #f2f5f7;
+}
+
+.memloginbtn {
+    border-color: #69c0ea;
+    color: #69c0ea;
+}
+
+/*快捷入口*/
+.daka {
+    background-image: url(../icons/EMOAIcons/punchCard.png)
+}
+
+.rule {
+    background-image: url(../icons/EMOAIcons/rules.png)
+}
+
+.shenpi {
+    background-image: url(../icons/EMOAIcons/workOrder.png)
+}
+
+.richeng {
+    background-image: url(../icons/EMOAIcons/schedule.png)
+}
+
+.notice {
+    background-image: url(../icons/EMOAIcons/announcement.png)
+}
+
+.plan {
+    background-image: url(../icons/EMOAIcons/workPlan.png)
+}
+
+.borderColor {
+    border-color: #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.borl {
+    border-left: 1px solid #dadada;
+}
+
+.textnoC {
+    color: #cccccc;
+}
+
+.card-padtb {
+    padding: 0.8125em 0;
+}
+
+.uinn9 {
+    padding: 0 1em;
+}
+
+.kpcolor {
+    color: #a1a1a1;
+}
+
+.card-right {
+    background-image: url(img/right.png);
+    height: 1em;
+    width: 0.78125em;
+}
+
+.kpgz1 {
+    background-image: url(../icons/CardIcons/iReceived.png);
+    width: 4.2em;
+    height: 4.2em;
+}
+
+.kpgz2 {
+    background-image: url(../icons/CardIcons/iSent.png);
+    width: 4.2em;
+    height: 4.2em;
+}
+
+.borderLeft {
+    border-left: 1px solid #e5e5e5;
+}
+
+.addSelete {
+    width: 1em;
+    height: 1em;
+    background-image: url(img/addSelete.png);
+}
+
+.addInit {
+    width: 1em;
+    height: 1em;
+    background-image: url(img/addInit.png);
+}
+
+/*上方提示栏*/
+.tips-wrapper {
+    padding: 1em 1.5em 0.5em 1.5em;
+}
+
+.tips {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    box-sizing: content-box;
+    background-color: #E8F5FF;
+    border-radius: 50px;
+    height: 3em;
+}
+
+/*卡片区域*/
+.card-sec {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    background-color: #fff;
+    padding: 0.2em;
+    background-color: #FFFFFF;
+}
+.card-item-baccolor{
+   background-color: #EEEEEE;
+}
+/*卡片项*/
+.card-item {
+    /*position: relative;*/
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 23%;   
+    box-sizing: border-box;  /*设置为padding和margin都在width和height里面*/ 
+    padding: 0.5em 0.55em;
+    margin: 2% 1%;
+}
+
+.card-item .card-remove-img {
+    position: absolute;
+    top:0;
+    right:0;
+    width:1.1em;
+    min-height: 1.1em;
+    min-width: 1.1em;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-image: url('../../../css/img/remove_icon.png');
+}
+/*卡片图标*/
+.card-img {
+    width: 2.5em;
+    height: 2.5em;
+    background-size: 100% auto; /*设置背景图片的大小*/
+    -webkit-background-size:100% auto;
+    background-position: center;
+    background-repeat: no-repeat; /*设置背景图片不平铺*/
+    padding-bottom: 0.5em;
+    /*background-image: url('./img/memrec.png');*/
+
+}
+
+.card-title {
+    font-size: 0.815em;
+}
+
+/*背景虚化样式*/
+.ghost {
+    opacity: 0;
+}
+
+.opacity-0-5 {
+    opacity: 0.5;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body class="um-vp bc-wh" ontouchstart>
+        <div class="ub ub-f1 ub-ver t-c fontSize2 uof">
+            <div class="ub ub-f1 top-padd6"></div>
+            <div class="ub ub-f1 ub-ver ubt ubr ubl  ubbColor">
+                <div class="ub ub-f1 ubb ubbColor1 fontSizeSty bg-gray1">
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c paddLeft" style="width:30%" data-lan="STR_USER_BEHAVIOR">
+                用户行为
+            </div>
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c" style="width:20%" data-lan="STR_SCORE">积分</div>
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c" style="width:20%" data-lan="STR_EXPERIENCE">经验</div>
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c paddRight" style="width:30%" data-lan="STR_UPPER_LIMIT">上限
+            </div>
+        </div>
+             
+                <div class="ub ub-f1 ub-ver" id="list">
+                </div>
+            </div>
+        </div>
+        <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+            <div class="ub ub-ver ub-ac ub-pc">
+                <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+        <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                    暂无数据
+                </div>
+            </div>
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+		<script src="../js/language.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/pointRules.js"></script>
+        <script src="../assets/models/pointRules.js"></script>
+        <script src="../assets/views/pointRules_content.js"></script>
+    </body>
+    <script>
+        var arrData = {"status":"000","msg":{"list":[{"scoreRulesTtl":"打卡","ruleScore":1,"gainType":1,"gainTimes":1,"empiricValue":10,"durationType":0,"remark":"仅奖励一次，签到或签退仅奖励一次","scoreRulesKey":"J151197476ba5253","durationDays":1.7976931348623157e+308,"status":1,"objectId":"565d5be43c794d1cb10e5be6","userId":"admin","updatedAt":"2016-01-11T07:37:16.495Z"},{"scoreRulesTtl":"写月报","ruleScore":1,"gainType":1,"gainTimes":1,"empiricValue":10,"durationType":0,"remark":"仅奖励一次","scoreRulesKey":"J151196de7230332","durationDays":1.7976931348623157e+308,"status":1,"objectId":"565d5be43c794d1cb10e5be5","userId":"admin","updatedAt":"2015-12-02T02:03:55.745Z"},{"scoreRulesTtl":"写周报","ruleScore":1,"gainType":1,"gainTimes":1,"empiricValue":10,"durationType":0,"remark":"仅奖励一次","scoreRulesKey":"J151196d91f04656","durationDays":1.7976931348623157e+308,"status":1,"objectId":"565d5be43c794d1cb10e5be4","userId":"admin","updatedAt":"2015-11-19T10:24:14.356Z"},{"scoreRulesTtl":"完善个人信息","ruleScore":1,"gainType":1,"gainTimes":1,"empiricValue":10,"durationType":0,"remark":"完善个人信息，获得积分和经验值\n仅奖励一次","scoreRulesKey":"J151196b38500381","durationDays":1.7976931348623157e+308,"status":1,"objectId":"565d5be33c794d1cb10e5be3","userId":"admin","updatedAt":"2015-11-26T01:42:14.590Z"},{"scoreRulesTtl":"登录系统","ruleScore":1,"gainType":2,"gainTimes":1,"empiricValue":10,"durationType":0,"durationDays":30,"remark":null,"scoreRulesKey":"J1511968debd5870","status":1,"objectId":"565d5be33c794d1cb10e5be2","userId":"admin","updatedAt":"2016-01-05T02:56:02.178Z"}],"total":5,"count":1}};
+        appcan.ready(function() {
+            pointRulesListViewInstance.load();
+            
+        })
+    </script>
+</html>

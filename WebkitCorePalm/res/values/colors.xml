@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>	
+    <!--appstoremgr use-->
+    <color name="plugin_appstoremgr_translucent">#7f000000</color>
+    <color name="plugin_appstoremgr_light_gray">#A6C2DE</color>
+    <color name="plugin_appstoremgr_main_color">#C30013</color>
+    <!--appstoremgr tile  use-->
+    <color name="plugin_appstoremgr_sub_app_download_btn_text_color">#686868</color>
+    <color name="plugin_appstoremgr_sub_app_list_view_bg_color">#EDEDF3</color>
+    <color name="plugin_appstoremgr_tile_view_stroke_color">#00EDEDF3</color>
+    <color name="plugin_appstoremgr_circle_progress_round_color">#FFD1D1D1</color>
+    <color name="plugin_appstoremgr_download_main_color">#FF007AFF</color>
+    <color name="plugin_appstoremgr_download_installed_color">#FF686868</color>
+	
+
+	<!-- 微信 -->
+  <color name="plugin_uexweixin_transparent_background">#50000000</color>  
+
+	<color name="plugin_uexscanner_possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+	<color name="plugin_uexscanner_result_view">#b0000000</color>
+	<color name="plugin_uexscanner_status_text">#ffffffff</color>
+	<color name="plugin_uexscanner_viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+	<color name="plugin_uexscanner_viewfinder_mask">#60000000</color>
+
+	 
+	<!-- uexPDFReader -->
+	<color name="plugin_uexpdfreader_toolbar">#C0000000</color>
+	<color name="plugin_uexpdfreader_button_pressed">#FF2572AC</color>
+	<color name="plugin_uexpdfreader_button_normal">#00000000</color>
+	<color name="plugin_uexpdfreader_seek_progress">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_seek_thumb">#2572AC</color>
+	<color name="plugin_uexpdfreader_page_indicator">#C0202020</color>
+	<color name="plugin_uexpdfreader_text_normal">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_text_pressed">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_text_border_normal">#000000</color>
+	<color name="plugin_uexpdfreader_text_border_pressed">#2572AC</color>
+	<color name="plugin_uexpdfreader_text_border_focused">#000000</color>
+	<color name="plugin_uexpdfreader_busy_indicator">#C0202020</color>
+	
+	
+
+	<color name="plugin_uex_image_gray_3">#333333</color>
+	<color name="plugin_uex_image_gray_4">#2E3334</color>
+	<color name="plugin_uex_image_green_common">#15C7CB</color>
+	<color name="plugin_uex_image_green_1">#45C01A</color>
+	<color name="plugin_uex_image_green_2">#86D8FF</color>
+	<color name="plugin_uex_image_gray_9">#d9d9d9</color>
+	<color name="plugin_uex_image_black_1">#e0111222</color>
+	<color name="plugin_uex_image_crop_highlight">#f3f3f3</color>
+
+    <color name="crop__button_bar">#f3f3f3</color>
+    <color name="crop__button_text">#666666</color>
+    <color name="crop__selector_pressed">#1a000000</color>
+    <color name="crop__selector_focused">#77000000</color>
+
+    <!-- EMM use -->
+    <color name="plugin_uexemm_dialog_left_btn_normal_color">#DDE5E5E5</color>
+    <color name="plugin_uexemm_dialog_left_btn_press_color">#99E5E5E5</color>
+    <color name="plugin_uexemm_dialog_right_btn_normal_color">#DD3966B9</color>
+    <color name="plugin_uexemm_dialog_right_btn_press_color">#993966B9</color>
+    <color name="plugin_uexemm_load_app_progress_bar_bg_color">#A2A2A2</color>
+    <color name="plugin_emm_circle_progress_round_color">#FF6EBBF7</color>
+    <color name="plugin_emm_round_progress_bg_color">#FFFFFFFF</color>
+    <color name="plugin_emm_round_gradual_progress_circle_bg_color">#D4D4D4</color>
+    <color name="plugin_emm_roll_progress_round_bg_color">#DDF0FE</color>
+    <color name="plugin_emm_circle_progress_text_color">#FF6EBBF7</color>
+    <color name="plugin_emm_round_gradual_progress_annulus_color">#FF54C3FF</color>
+    <color name="plugin_emm_round_gradual_progress_outer_circle_start_color">#FFD1D2D5</color>
+    <color name="plugin_emm_round_gradual_progress_outer_circle_end_color">#FFF6F6F6</color>
+    <color name="plugin_emm_round_gradual_progress_outer_circle_outer_shadow_start_color">#FFCACBCD</color>
+    <color name="plugin_emm_round_gradual_progress_outer_circle_outer_shadow_end_color">#FFFFFFFF</color>
+    <color name="plugin_emm_round_gradual_progress_inner_circle_start_color">#FFFFFFFF</color>
+    <color name="plugin_emm_round_gradual_progress_inner_circle_end_color">#FFCCCED2</color>
+    <color name="plugin_emm_round_gradual_progress_text_color">#FFADADAD</color>
+    <color name="plugin_emm_round_gradual_progress_inner_circle_outer_shadow_start_color">#FFFAFAFA</color>
+    <color name="plugin_emm_round_gradual_progress_inner_circle_outer_shadow_end_color">#FFC7C9CB</color>
+
+	 <!-- plugin_uexCalendarView -->
+    <color name="plugin_uexCalendarView_cv_focusedMonthDateColor">#FFFFFFFF</color>
+    <color name="plugin_uexCalendarView_cv_unfocusedMonthDateColor">#66FFFFFF</color>
+    <color name="plugin_uexCalendarView_cv_weekNumberColor">#33FFFFFF</color>
+    <color name="plugin_uexCalendarView_cv_weekSeparatorLineColor">#19FFFFFF</color>
+    <color name="plugin_uexCalendarView_cv_light_gray_color">#999999</color>
+
+	<color name="start_bg_color">#000000</color>
+	<color name="red">#FFFF0000</color>
+	<color name="orange">#FFFF9900</color>
+	<color name="gray">#FF717171</color>
+	<color name="white">#FFFFFFFF</color>
+	<color name="transparent">#00000000</color>
+	<color name="half_transparent">#30000000</color>
+	<color name="black">#000000</color>
+	<color name="pink">#FFFF00FF</color>
+	<color name="browser_title_stroke_color">#FF9A9A9A</color>
+	<color name="blue">#2162BD</color>
+	<color name="menu_press">#FF00599F</color>
+	<color name="dialog_bg">#1B252F</color>
+	
+	<!-- Widgetone use-->
+	<color name="widget_dialog_title_line_color">#666666</color>
+	<color name="widget_bg_color">#333333</color>
+	<color name="activity_window_background_color">#60000000</color>
+</resources>

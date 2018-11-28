@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../css/own-common.css">
+    <style>
+        .detail_padding{
+            padding: 1em 0.7em 0 0.5em;
+        }
+        .umar-b1{
+            margin-bottom: 1.2em;
+        }
+        .txt_color_list{
+            color:#cecece;
+        }
+        .content{
+            /*word-wrap: break-word; 
+            word-break: normal;*/
+           /*word-break:break-all;*/
+        }
+    </style>
+</head>
+<body class="um-vp bg" ontouchstart>
+  <div class="ub ub-ver detail_padding" id="problemsDatil">
+    <div class="umar-b1 ubb bc-border">
+        <h4 style="padding-bottom:.4em" class="title"></h4>
+        <!-- <p class="txt_color_list time"></p> -->
+    </div>
+    <div>
+        <div class="umar-b1">
+            <!-- <div>答：</div> -->
+            <div class="content " style="width: 100%;font-size: 0.9375em;"></div>
+        </div>
+        <div class="swiper-container" >
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-1.png" style="width:96%"/></div>
+            <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-2.png" style="width:96%"/></div>
+            <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-1.png" style="width:96%"/></div> -->
+          </div>
+        </div>
+    </div>
+  </div>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/global.js"></script>
+<script  src="../lib/swiper/js/swiper.min.js"></script>
+<script  src="../lib/swiper/js/swiper.animate.min.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        
+        problemsDetView();
+        var swiper = new Swiper('.swiper-container',{
+            freeMode: true,
+            freeModeMomentumRatio : 5,
+            slidesPerView :1.5,
+        });
+    })
+    function problemsDetView(){
+        var json = appcan.getLocVal('PROBLEMSLIST-JSON') || localStorage.getItem('PROBLEMSLIST-JSON');
+        
+        var json = JSON.parse(json);
+        var content = json.content;
+        $('.title').html(json.issueName);
+        $('.time').html(json.createdAt);
+        $('.content').html(content);
+    }
+</script>
+</html>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/wqb-style.css">
+</head>
+<body class="um-vp bg-c2 fontS">
+<div class="zbpadd3">
+    <div class="ub zpadd border-bottom">
+        <div class="ub ub-f1 zcolor2 uinput zfonts">
+            <input data-lan="STR_ENTER_OLD_PWD" placeholder="请输入原密码" class="ub-f1 padd0 phc" id="oPwd" type="password"/>
+        </div>
+    </div>
+    <div class="ub zpadd border-bottom">
+        <div class="ub ub-f1 zcolor2 uinput zfonts">
+            <input data-lan="STR_PWD_RULE_NEW" placeholder="请输入6-18位英文、数字" class="ub-f1 padd0 phc" id="nPwd"
+                   type="password"/>
+        </div>
+    </div>
+    <div class="ub zpadd border-bottom">
+        <div class="ub ub-f1 zcolor2 uinput zfonts">
+            <input data-lan="STR_ENTER_NEW_PWD_AGAIN" placeholder="请再次输入新密码" class="ub-f1 padd0 phc" id="nPwd2"
+                   type="password"/>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        appcan.initBounce();
+        appcan.window.subscribe("passwordReset", function () {
+            modify();
+        })
+    });
+
+    function modify() {
+        var oPwd = $("#oPwd").val();
+        if (!isDefine(oPwd)) {
+            var STR_ENTER_OLD_PWD = tools.getString("STR_ENTER_OLD_PWD");
+            appcan.window.openToast(STR_ENTER_OLD_PWD, 1500, 5);
+            $("#oPwd")[0].focus();
+            return;
+        }
+        var nPwd = $("#nPwd").val();
+        if (!isDefine(nPwd)) {
+            var STR_ENTER_NEW_PWD = tools.getString("STR_ENTER_NEW_PWD");
+            appcan.window.openToast(STR_ENTER_NEW_PWD, 1500, 5);
+            $("#nPwd")[0].focus();
+            return;
+        }
+        if (!/^\w{6,18}$/.test(nPwd)) {
+            var STR_PWD_RULE = tools.getString("STR_PWD_RULE");
+            appcan.window.openToast(STR_PWD_RULE, 1500, 5);
+            $("#nPwd")[0].focus();
+            return;
+        }
+        if (oPwd == nPwd) {
+            var STR_PWD_OLD_NEW_EQUAL = tools.getString("STR_PWD_OLD_NEW_EQUAL");
+            appcan.window.openToast(STR_PWD_OLD_NEW_EQUAL, 1500, 5);
+            return;
+        }
+        var nPwd1 = $("#nPwd2").val();
+        if (!isDefine(nPwd1)) {
+            var STR_ENTER_NEW_PWD_AGAIN = tools.getString("STR_ENTER_NEW_PWD_AGAIN");
+            appcan.window.openToast(STR_ENTER_NEW_PWD_AGAIN, 1500, 5);
+            $("#nPwd2")[0].focus();
+            return;
+        }
+        if (nPwd != nPwd1) {
+            var STR_PWD_NEW_NEW_INEQUAL = tools.getString("STR_PWD_NEW_NEW_INEQUAL");
+            appcan.window.openToast(STR_PWD_NEW_NEW_INEQUAL, 1500, 5);
+            return;
+        }
+
+        var uname = appcan.getLocVal("loginName");
+        try {
+            uexEMM.cbChangePassword = function (a, b, js) {
+                appcan.window.closeToast();
+                var obj = JSON.parse(js);
+                if (obj) {
+                    if (obj.status == 'ok') {
+                        var STR_CHANGE_PWD_SUCCESS = tools.getString("STR_CHANGE_PWD_SUCCESS");
+                        appcan.window.openToast(STR_CHANGE_PWD_SUCCESS, 1500, 5);
+                        appcan.setLocVal("loginPass", nPwd);
+                        setTimeout(function () {
+                            appcan.window.publish("closedenglumm", "")
+                        }, 500);
+                    } else {
+                        appcan.window.openToast(obj.info, 1500, 5);
+                    }
+                }
+            }
+            uexEMM.changePassword(JSON.stringify({
+                "loginName": uname,
+                "loginPass": oPwd,
+                "loginPass1": nPwd,
+                "loginPass2": nPwd1
+            }))
+        } catch (e) {
+
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzmubiao.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body class="um-vp bg" ontouchstart>
+<div class="ub ub-ver uof">
+    <div class="ub bot-padd5 top-padd bder-color uba" id="zibumen" style="width:100%;overflow-x:auto;margin-right:0.5em;">
+           <!--STR_ALL-->
+        <div class="bg-wh rig-padd4 uc-a jj_marg1 jj_marg4 uba tx-color1 bder-color1" id="allbm" data-lan="STR_ALL">深航集团
+        </div>
+    </div>
+    <div id="list">
+        <!--部门列表-->
+        <div class="ub ub-ver bg-wh" id="dptList">
+            <ul></ul>
+        </div>
+        <div id="dev"></div>
+        <!--个人列表-->
+        <div class="ub ub-ver bg-wh" id="perList">
+            <ul></ul>
+        </div>
+    </div>
+</div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+<script src="assets/global.js"></script>
+<script src="assets/services/contacts.js"></script>
+<script src="assets/models/contacts.js"></script>
+<script src="assets/views/contactDpt_content.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        var userId = appcan.getLocVal('userId');
+        appcan.window.subscribe("EMCONTACT_DPT_BACK", function (result) {
+            var dptel = $("#zibumen").children().last();
+			// 当点击返回时是最后一层 深航集团的时候 触发通道特定事件(关闭当前子应用)
+            if (dptel.html() == STR_ALL) {
+                appcan.window.publish("EMCONTACT_CLOSE", "")
+                return;
+            }
+            // 如果不是最后一层 获取当前层的上一层标签
+            dptel = dptel.prev();
+            var pdtId = dptel.data("dpt");
+            if (pdtId) {
+                // 移除下一个上面展示的部门
+                dptel.next().remove();
+                // 重新加载当前部门
+                contactDptListViewInstance.load(dptel.html(), pdtId);
+            } else {
+                // 移除所有子标签 重新加载深航集团
+                $("#allbm").siblings().remove();
+                contactDptListViewInstance.load();
+            }
+        });
+         var personOrgName = appcan.getLocVal('personOrgName') || localStorage.getItem("personOrgName");       
+         var personOrgName1 = personOrgName.split('/');         
+         var departmentId = appcan.getLocVal("departmentId") || localStorage.getItem("departmentId");        
+         var departmentId1 = departmentId.split('/');    
+        var count = 0;
+        var clickDptName = appcan.getLocVal('clickDptName') || localStorage.getItem("clickDptName");        
+        var clickDptId = appcan.getLocVal('clickDptId') || localStorage.getItem("clickDptId");        
+        if(clickDptName === '深航集团' && clickDptId === '0'){
+            contactDptListViewInstance.load();
+        }else{
+          //点击时当前及以前的部门名称
+           var arrName = [];
+           //点击时当前及以前的部门Id
+           var arrId=[];
+              for(var i = 0; i <personOrgName1.length; i ++){
+                  
+                    if(personOrgName1[i]==clickDptName){
+                           //点击当前部门所在的位置
+                            var a=i;
+                            for(var j =0;j<a+1;j++){
+                                arrName.push(personOrgName1[j]);
+                              
+                            };
+                          break;  
+                     }
+                  
+               }
+                for(var k= 0; k<departmentId1.length; k++){
+                  
+                    if(departmentId1[k]==clickDptId){
+                            for(var h =0;h<k+1;h++){
+                                arrId.push(departmentId1[h]); 
+                            };
+                          break;  
+                     }
+                  
+               }
+               contactDptListViewInstance.load(clickDptName,clickDptId,arrName,arrId);
+           
+        };
+        appcan.window.subscribe('personAllDepartment',function(){
+                if(document.body.scrollTop != 0){
+                   document.body.scrollTop = 0;
+                 };
+        });
+        var STR_ALL = tools.getString("STR_ALL");  // 深航集团
+        // 下拉刷新
+        appcan.frame.setBounce(0, null, null, function (type) {
+            if (parseInt(type) == 0) {
+                $('#allbm').siblings().remove();
+                contactDptListViewInstance.load(null, null, 1);
+            }
+        }, '#ecf3f7')      
+       
+    })
+    // 点击深航集团时移除后面的所有子标签 并重新加载页面
+    appcan.button("#allbm", "btn-act", function () {
+        $(this).siblings().remove();
+        contactDptListViewInstance.load();
+    })
+
+</script>
+</html>

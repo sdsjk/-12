@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+    <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="assets/css/base.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+      <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+             <div id="header" class="ub uh headColor bc-head ub-ver">
+                <div class="ub ub-f1 ">
+                        <div class="ub head-btn ub-ac paddLeft11" id="nav-left">
+                            <div class="ub ub-img tagimg tagwh "></div>
+                        </div>
+                        <div class="ub ub-f1 ub-pc ub-ac ut ut-s">
+                <div class="fontSize1 " id="bmName" data-lan="STR_CONTACTS_COMPANY_DEPARTMENT">公司部门</div>
+                        </div>
+                        <div class="ub head-btn fontSize ub-ac ub-pe paddRight5" id="nav-right">
+                            <div class=""></div>
+                        </div>
+                    </div>
+             </div>
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l bc-bg">
+            </div>
+            <!--content结束-->
+            <div id="footer" class="uf ub ubt bder-color ub-ac" style="background-color: #FFF;height: 3.125em;">
+                <div class="ub-f1 uinn-fsp ub ft-sz1 ub-ac" id="people" style="width:100%;overflow-x:auto;">
+                </div>
+                <div class="ft-sz2 tx-color3 uba bder-color2 ub" style="margin: 0.625em">
+                    <div class="all-padd" id="number" data-lan="STR_SUBMIT_NUMBER">提交(0)</div>
+                 </div>
+            </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+    </body>
+    <script>
+    var STR_SUBMIT = tools.getString("STR_SUBMIT");
+    var STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON = tools.getString("STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON");
+    var arr = [];//最后的人员数组。
+    var group_id;
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            appcan.frame.open("content", "contactDptCheckBox_content.html?IMAdd=1", 0, titHeight);
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+            group_id = appcan.getLocVal("qunId");
+            appcan.window.subscribe("EMCONTACT_CLOSE", function(result) {
+                closeEmcontact();
+            });
+            appcan.window.subscribe("gsbumenfuxuan", function (result) {
+                var data = [];
+                result = JSON.parse(result);
+                var toXzPageadd = appcan.getLocVal("_toXzPage");
+                if (toXzPageadd) {
+                    var topage = JSON.parse(toXzPageadd);
+                    if (topage.length != 0) {
+                        for (var j in result ) {
+                            for(var i = 0,len = topage.length; i < len; i++){
+                                if (topage[i].userId == result[j].userId) {
+                                    break;
+                                } 
+                            }
+
+                        }
+                        if(i == len){
+                            topage.push(result[j]);
+                        }else{
+                            topage.splice(i, 1);
+                        }
+                        data = topage;
+                    }else{
+                       data = result;
+                    }
+                } else {
+                    data = result;
+                }
+                appcan.setLocVal("_toXzPage", JSON.stringify(data));
+            $("#number").html(STR_SUBMIT + '(' + data.length + ')');
+                var $ppl = $("#people");
+                $ppl.empty();
+                arr = data;
+                for(var i = 0;i<data.length;i++){
+                    var name = data[i].fullName;
+                    if($.trim($ppl.html()) == '') {
+                        $ppl.append('<div class="lef-padd2 peopl" data-name="'+name+'" data-index="'+i+'">'+name+'</div>');    
+                    }else{
+                        $ppl.append('<div class="lef-padd2 peopl" data-name="'+name+'" data-index="'+i+'">、'+name+'</div>');
+                    }
+                }
+                $("#people").scrollLeft($("#people")[0].scrollWidth);
+                appcan.button(".peopl", "btn-act", function() {
+                    var index = parseInt(this.getAttribute('data-index'));
+                    data[index] = null;
+                    appcan.window.publish("DELETE_PERSON",$(this).data("name"));
+                    $(this).remove();
+                    arr = [];
+                    _.each(data,function(item){
+                        if(item) {
+                            arr.push(item);
+                        }
+                    });
+                    appcan.setLocVal("_toXzPage",arr);
+                $("#number").html(STR_SUBMIT + '(' + arr.length + ')');
+                })
+            });
+            //监听返回键
+            uexWindow.onKeyPressed = function(keyCode) {
+                if (keyCode == '0') {
+                    appcan.window.publish("EMCONTACT_DPT_BACK","");
+                }
+            }
+            uexWindow.setReportKey('0', '1');
+        });
+        function setMember(result){
+               var data = [];
+               if(result)
+                result = JSON.parse(result);
+                else{
+                    result = [];
+                }
+                var toXzPageadd = appcan.getLocVal("_toXzPage");
+                if (toXzPageadd) {
+                    var topage = JSON.parse(toXzPageadd);
+                    if (topage.length != 0) {
+                        for (var j in result ) {
+                            for(var i = 0,len = topage.length; i < len; i++){
+                                if (topage[i].userId == result[j].userId) {
+                                    break;
+                                } 
+                            }
+                            if(i == len){
+                                topage.push(result[j]);
+                            }else{
+                                topage.splice(i, 1);
+                            }
+
+                        }
+                        
+                        data = topage;
+                    }else{
+                       data = result;
+                    }
+                } else {
+                    data = result;
+                }
+                appcan.setLocVal("_toXzPage",JSON.stringify(data));
+        $("#number").html(STR_SUBMIT + '(' + data.length + ')');
+                var $ppl = $("#people");
+                $ppl.empty();
+                arr = data;
+                for(var i = 0;i<data.length;i++){
+                    var name = data[i].fullName;
+                    if($.trim($ppl.html()) == '') {
+                        $ppl.append('<div class="lef-padd2 peopl" data-name="'+name+'" data-index="'+i+'">'+name+'</div>');    
+                    }else{
+                        $ppl.append('<div class="lef-padd2 peopl" data-name="'+name+'" data-index="'+i+'">、'+name+'</div>');
+                    }
+                }
+                $("#people").scrollLeft($("#people")[0].scrollWidth);
+                appcan.button(".peopl", "btn-act", function() {
+                    var index = parseInt(this.getAttribute('data-index'));
+                    data[index] = null;
+                     appcan.window.publish("DELETE_PERSON",$(this).data("name"));
+                    $(this).remove();
+                    arr = [];
+                    _.each(data,function(item){
+                        if(item) {
+                            arr.push(item);
+                        }
+                    });
+                    appcan.setLocVal("_toXzPage",arr);
+                   
+            $("#number").html(STR_SUBMIT + '(' + arr.length + ')');
+                })
+            }
+         appcan.button("#nav-left", "btn-act", function() {
+             appcan.window.publish("EMCONTACT_DPT_BACK","");
+        })
+        function closeEmcontact(){
+            uexWidget.finishWidget("","EMCONTACT","0");
+            appcan.locStorage.remove('_toXzPage');
+        }
+        appcan.button("#number", "btn-act", function() {
+                if(arr.length==0){
+            appcan.window.openToast(STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON, 1500, 5);
+                   return;
+                }else{
+                    var peoArr = [];
+                    var nameArr = [];
+                   for(var i=0;i<arr.length;i++){
+                       var userId = (arr[i].userId).toLowerCase();
+                       var fullName = arr[i].fullName;
+                       peoArr.push(userId);
+                       nameArr.push(fullName);
+                   } 
+                   var groupDes = nameArr.join().substring(0,6)+"...";
+                   appcan.setLocVal("groupDes",groupDes);
+                   appcan.setLocVal("peoArr",peoArr);
+                   var param2 = {
+                        groupName:group_id, 
+                        dataList:peoArr,       
+                        reason:""           
+                        };
+                    var params2 = JSON.stringify(param2);
+                    //邀请选中的人
+                    
+                    uexIM.inviteToChatGroup(params2);
+                }
+                appcan.locStorage.remove('_toXzPage');
+                appcan.window.publish("TWO_GETGROUPMEMBER","TWO_GETGROUPMEMBER"); 
+               uexWidget.finishWidget("","EMCONTACT","0");
+            
+        })
+       
+    </script>
+</html>

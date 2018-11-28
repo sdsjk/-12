@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/gzxiangqing.css">
+        <link rel="stylesheet" href="assets/css/card/card.css">
+        <link rel="stylesheet" href="css/own-common.css">
+        <link rel="stylesheet" href="lib/swiper/css/swiper.min.css" />
+        <link rel="stylesheet" href="assets/css/fenlei.css">
+        <style>
+            .yincang {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                word-wrap: break-word;
+                word-break: break-word;
+
+            }
+            .yuandian {
+                height: 0.4em;
+                width: 0.4em;
+                border-radius: 0.2em;
+                /*margin-right:0.1em;*/
+                background-color:#FB363B;
+            }
+            .showdis {
+                display: none;
+            }
+            #myApplication span:nth-of-type(1){
+                color: #3c3c3c;
+                font-weight: bold;
+                font-family: PingFangSC-Semibold, sans-serif;
+            }
+            .ut-s2 {
+                text-overflow: clip;
+                overflow: hidden;
+                white-space: nowrap !important;
+                outline: 0 !important
+            }
+        </style>
+    </head>
+    <body class="um-vp bg " ontouchstart>
+        <div class="loadingManage"></div>
+        <div class="ub ub-ver uof-x uhide"  id="applist">
+            <div id="header">
+                <div style="height: 0.75em;background: #ecf3f7;width: 100%"></div>
+                <div class="myapp">
+                    <div class="left-myapp"></div>
+                    <div id="myApplication" style="margin-left:0.5em;">
+                        <span>我的应用</span>
+                        <span class="dragSorting" style="font-size:0.75em;color:#c0c0c0;font-family:PingFangSC-Regular, sans-serif;">(长按拖动调整顺序)</span>
+                        <span class="longTapAdd uhide" style="font-size:0.75em;color:#c0c0c0;font-family:PingFangSC-Regular, sans-serif;">(长按应用添加)</span>
+                    </div>
+                </div>
+               <!--模板文件,放在卡片区域内部-->
+               <template id="card-item-tpl">
+                    <!--卡片-->
+                    <div class="card-item" >
+                        <i class="card-remove-img uhide"></i>
+                        <div class="card-img" ></div>
+                        <span class="card-title color-grey-dark text-overflow ut-s2 tx-c" style="width: 100%;"></span>
+                    </div>
+                </template>
+                <!--我的应用-->
+                <section id="card-sec" class="card-sec"></section>
+                <div style="height: 0.75em;background: #ecf3f7;width: 100%"></div>
+                <div id="nav-bar" class="ub ub-con ub-f1">
+                    <div class="swiper-wrapper"></div>
+                </div>
+             </div>
+             <!--分类应用-->
+            <div id="tabs-container" class="swiper-container" style="background: #FFFFFF;">
+                <div class="swiper-wrapper"></div>
+            </div>
+         </div>
+        <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+            <div class="ub ub-ver ub-ac ub-pc">
+                <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+                <div class="Nodatafont zt-color10" data-lan="STR_NODATA">暂无数据</div>
+            </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/language.js"></script>
+        <script src="js/appcan.optionList.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/global.js"></script>
+        <script src="assets/services/appManage.js"></script>
+        <script src="assets/models/appManage.js"></script>
+        <script src="assets/views/appManage_content.js"></script>
+        <script src="js/Sortable.js"></script>
+        <script src="js/store.js"></script>
+        <script  src="lib/swiper/js/swiper.min.js"></script>
+        <script  src="lib/swiper/js/swiper.animate.min.js"></script>
+
+    </body>
+    <script>
+        //滑动点击事件变量
+        var isSwiperClick=false;
+        var longKeyTabState = false,sortable,el,
+        //应用列表参数
+        appList=[],submitAppCenterList=[],getAppCenterList=[],appListCenter=[],listDataObj = {},
+        //swiper对象
+        tabSwiper,navBarSwiper,cardsArray = [],
+        myApplicationObj = {
+            name:'myApplicationVarible',
+            greatAppArr:[],
+            storageNewArr:[],
+            checkImage:function(src){
+                    return src ? 'background-image: url('+src+')' : '';
+            },
+            handleMyApplicationData:function(arr,cardid){
+                for(var j = 0;j < arr.length; j ++){
+                    var appID = 'my' +arr[j].appId;
+                    if(appID == cardid){
+
+                        arr.splice(j,1);
+                        break;
+                    };
+                };
+                return arr;
+            },
+            initSortable:function(){
+                el = document.getElementById('card-sec');
+                sortable = Sortable.create(el, {
+                    ghostClass: 'ghost',
+                    sort: true,
+                    animation: 350,
+                   
+                    onEnd: function (evt) {
+
+                        var removedCards = cardsArray.splice(evt.oldIndex, 1);//从数组中删除之前位置的元素，返回值为删除的那个元素
+                        cardsArray.splice(evt.newIndex, 0, removedCards[0]);//再在新的位置添加刚刚删除的元素
+                        var removedMyApp=(myApplicationObj.greatAppArr).splice(evt.oldIndex, 1);
+                        (myApplicationObj.greatAppArr).splice(evt.newIndex, 0, removedMyApp[0]);//再在新的位置添加刚刚删除的元素
+
+                        appcan.locStorage.val('TILES_WORK_ENTRANCE', cardsArray);
+                    }
+                });
+            },
+            addCard2:function(cardsArray){
+                try {
+
+                    var cardSecHtml = '';
+                    if(!cardsArray instanceof Array) return;
+                    cardsArray.forEach(function (card, index) {
+                        //取得dom
+                        var cardItemTpl = document.querySelector('#card-item-tpl');
+                        var cardItem = cardItemTpl.content.querySelector('div');
+                        var cardImg = cardItemTpl.content.querySelector('div').querySelector('div');
+                        var cardTitle = cardItemTpl.content.querySelector('span');
+                        var cardDel = cardItemTpl.content.querySelector('i');
+                        /*添加数据*/
+                        cardTitle.textContent = card.tilesList.param.cardName;//添加标题
+                        //动态设置样式
+                        if(!card.tilesList.param.style) {
+                            cardImg.style.cssText = '';
+                        }else {
+                            cardImg.style.cssText = card.tilesList.param.style;
+                        };
+                        
+                        if (!card.tilesList.param.img) {//这里要判断，icon是否为空，使用本地的图片:使用方法是将card.tilesList.param.cardId作为$cardImg的类
+                           
+                            cardImg.style.backgroundImage = 'url(css/img/appOA.png)';
+
+                            cardImg.removeAttribute('data-original');
+                        } else {
+                           
+                            cardImg.setAttribute('data-original', card.tilesList.param.img);
+                            cardImg.style.backgroundImage = 'url(' + card.tilesList.param.img + ')';//使用网络上的图片
+                        };
+
+                        if(longKeyTabState){
+                            cardDel.classList.remove(cardDel.classList.item(1));
+                        };
+                        //添加id属性值
+                        cardItem.setAttribute('id',"my"+card.tilesList.param.cardId);
+                        cardSecHtml += cardItemTpl.innerHTML;//这里不直接添加dom，而是将所有item的dom放在html里，一块添加，避免了每次都要刷新整个dom树的资源浪费
+                        cardImg.classList.remove(cardImg.classList.item(1));//因为是template模板文件，所以类名会保存，需要手动移除第二个类名
+                        cardItem.classList.remove(cardItem.classList.item(1));//因为是template模板文件，所以类名会保存，需要手动移除第二个类名
+                    });
+                    $('#card-sec').append(cardSecHtml);
+                    $('#tabs-container').css('margin-top',$('#header').height());
+                    $('.card-item').addClass('card-item-baccolor');
+                    //离线缓存
+                    $("#card-sec").find('[data-original]').each(function () {
+                        var $el = $(this);
+                        var url = $el.attr('data-original');
+                        if (url) {
+                            lazyLoadImage(url, $el);
+                        }
+                    });
+                } catch (e) {
+                    
+                }
+            }
+        },
+        isFirstInstall, /*Boolean*/timeOutEvent=0,paramTrackTimerPageEnd;
+        appcan.ready(function() {
+            
+            //添加面包屑记录
+            var jsonObj = {leaveBreadcrumb:'应用中心页面'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            // 页面加载结束时间参数
+            paramTrackTimerPageEnd = FunParamTrackTimerEnd("页面加载","应用中心","","pageLoadRequestDuration","false");
+            GetAppList();
+            // 长按取消消息通道
+            appcan.window.subscribe("APP_WORK_LONGTAB_CANCEL", function() {
+                longKeyTabState = false;
+                $('.add-right').addClass('uhide');
+                $('.remove-left').addClass('uhide');
+                $('.card-remove-img').addClass('uhide');
+                $('.card-item').removeClass('card-item-baccolor');
+                $('.scroll-bar').removeClass('list-item-baccolor');
+                appcan.frame.setBounce([0], null, null, function (type) {
+                    if (type == 0) {//下拉刷新
+                        appManageViewInstance.load();
+                    } else {
+                        appcan.frame.resetBounce(type);
+                    };
+                });
+                // 最终提交的缓存数据
+                submitAppCenterList=myApplicationObj.greatAppArr;
+                if(submitAppCenterList.length == 0){
+                    $('.longTapAdd').removeClass('uhide');
+                    $('.dragSorting').addClass('uhide');
+                }else {
+                    $('.longTapAdd').addClass('uhide');
+                    $('.dragSorting').removeClass('uhide');
+                };
+                // 存储给首页应用配置参数
+                appcan.locStorage.setVal('submitAppCenterList',JSON.stringify(submitAppCenterList));
+                //提交EMM后台
+                submitAppList(submitAppCenterList);
+                sortable.destroy();
+            });
+            //删除应用消息通道
+            appcan.window.subscribe("APP_WORK_DEL", function (appId) {
+                $('#'+appId).addClass('uhide');
+            });
+            appcan.window.subscribe("APP_WORK_ADD", function (appId) {
+                $('#'+appId).removeClass('uhide');
+                $("div.lazy").lazyload({
+                    cache: true
+                });
+            });
+            //分类应用点击事件
+            if(!isAndroid){
+                 $(document).on("click",".scroll-bar",function(e){
+                    clickAppCenter(e);
+                 });
+    
+            }else{
+                 $(document).on("singleTap",".scroll-bar",function(e){
+                      if(!isSwiperClick){
+                            clickAppCenter(e);
+                       }
+                  });
+            }
+			// 双击事件双击删除分类应用列表
+			$(document).on("doubleTap",".scroll-bar",function(e){
+				if(!isSwiperClick){
+				   doubleClickAppCenter(e);
+				}
+			});
+			// 我的应用长按事件
+			$(document).on("longTap",".card-item",function(e){
+				myApplicationObj.initSortable();
+				$('.dragSorting').removeClass('uhide');
+				$('.longTapAdd').addClass('uhide');
+				e.stopPropagation();
+				var longappid= e.target.id;
+				if(!longappid){
+					longappid = e.target.parentElement.id;
+				};
+				longKeyTabState = true;
+				// 取消刷新弹动
+				appcan.window.disableBounce();
+				// 长按我的应用关联分类应用
+				longTapscrollbar(longappid);
+				$('.card-item').addClass('card-item-baccolor');
+				$('.scroll-bar').addClass('list-item-baccolor');
+				var eitem= document.getElementsByClassName('card-remove-img');
+				for(var i = 0,leng=eitem.length; i< leng; i ++){
+					(function(i){
+						appcan.window.publish("APP_WORK_LONGTAB", '');
+						eitem[i].classList.remove('uhide');
+					}(i));
+				};
+			});
+			// 分类应用列表应用长按事件
+			$(document).on("longTap",".scroll-bar",function(e){
+				if(isSwiperClick){
+					return;
+				}
+				myApplicationObj.initSortable();
+				$('.dragSorting').removeClass('uhide');
+				$('.longTapAdd').addClass('uhide');
+				e.stopPropagation();
+				var longappid= e.target.id;
+				if(!longappid){
+					longappid= e.target.parentElement.id;
+				};
+				longKeyTabState = true;
+				// 取消刷新弹动
+				appcan.window.disableBounce();
+				//长按分类应用 关联我的应用列表
+				longTapCardItem(longappid);
+				$('.card-item').addClass('card-item-baccolor');
+				$('.scroll-bar').addClass('list-item-baccolor');
+				//打开子应用方法 如果长按不进入子应用
+				CoverAppList();
+				var el= document.getElementsByClassName('add-right');
+				var count = 0;
+				for(var i = 0,leng=el.length; i < leng; i ++){
+					(function(i){
+						//判断是否存在我的应用 存在展示移除图标 不存在展示添加图标
+						for(var h in myApplicationObj.greatAppArr){
+							if(el[i].getAttribute("addid") == myApplicationObj.greatAppArr[h].appId){
+								el[i].classList.add("remove-app-img");
+							}else{
+								el[i].classList.add("add-app-img");
+							};
+						};
+						appcan.window.publish("APP_WORK_LONGTAB", '');
+						el[i].classList.remove('uhide');
+					}(i));
+				}
+				// 接收点击完成的消息
+				appcan.window.subscribe("versionID",function(versionID) {
+					//更新工作桌面应用状态
+					UpdateVersion();
+				});
+				//长按工作桌面应用隐藏所有圆点
+				$('.version-right').addClass('uhide');
+			});
+        });
+        // 获取EMM后台的我的应用数据
+        function GetAppList(){
+		    //面包屑记录
+		    var jsonObj = {leaveBreadcrumb:'获取我的应用数据方法'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            // 数据处理结束时间参数
+            var paramTrackTimerHandleDataEnd = FunParamTrackTimerEnd("数据处理","应用中心","","","false");
+            //用户信息
+            var userInfodata = JSON.parse(appcan.getLocVal("EPortal-UserInfo"));
+            var personEmmId=userInfodata.userId;
+            var SoftToken = appcan.getLocVal("emmSoftToken");
+            // 神策插件记录接口请求开始时间
+            uexSensorsAnalytics.trackTimerBegin(JSON.stringify(paramTrackTimerStart));
+            var paramTrackTimerEnd = FunParamTrackTimerEnd("接口请求","应用中心","getUserHomeConfig");
+            appcan.request.ajax({
+                url:config.server_emm+'userHomeConfig/getUserHomeConfig?personId='+personEmmId,
+                type : 'GET',
+                dataType : 'json',
+                data: {},
+                success:function(data){
+				    //面包屑记录
+		            var jsonObj = {leaveBreadcrumb:'获取我的应用数据方法成功'};
+                    uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+                    // 神策插件记录接口请求结束时间
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerEnd));
+                    // 神策插件记录处理开始时间
+                    uexSensorsAnalytics.trackTimerBegin(JSON.stringify(paramTrackTimerStart));
+                    if(data.length > 0){
+                        var getapp = data[0].configValue;
+                        getAppCenterList = JSON.parse(getapp);
+                    };
+                    isFirstInstall = appcan.getLocVal('ISFIRSTINATALL') || true;
+                    appcan.setLocVal('ISFIRSTINATALL',false);
+                    // 获取应用列表的分类;
+                    var   cacheAppCenterList=JSON.parse(appcan.getLocVal('CACHE_APPS_CENTER_LIST'));					
+                    if(!cacheAppCenterList || cacheAppCenterList.status=="fail"){
+                        appList=JSON.parse(appcan.getLocVal('CACHE_APPS_LIST'));
+                    }else{
+                        appList = JSON.parse(appcan.getLocVal('CACHE_APPS_CENTER_LIST')).info;
+                    }
+                    appList = SortCenterAppList(appList);
+                    // 分类应用下部门
+                    appListCenter = appList;
+                    // 新循环swiper标签
+                    navBarSwiper = new Swiper('#nav-bar', {
+                        freeMode: true,
+                        slidesPerView: 'auto',
+                        observer: true,
+                        onTap:function(swiper,event) {
+                            if(navBarSwiper.clickedIndex != undefined && navBarSwiper.clickedIndex != 'undefined'){
+                                tabSwiper.slideTo(navBarSwiper.clickedIndex);
+                                $("#nav-bar .swiper-wrapper div").removeClass('selected1');
+                                $("#nav-bar .swiper-wrapper div.bac").eq(navBarSwiper.clickedIndex).addClass('selected1');
+                            }
+                        }
+                    });
+					//面包屑记录
+		            var jsonObj = {leaveBreadcrumb:'分类应用数据的处理-开始'};
+                    uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+                    tabSwiper = new Swiper('#tabs-container',{
+
+                        freeMode : false,
+                        observer:true,
+                        touchMoveStopPropagation : true,
+                        longSwipesRatio:0.1,
+                        followFinger:true,
+                        observeParents: true,
+                        onSlideChangeStart : function(swiper) {  // 回调函数，swiper从当前slide开始过渡到另一个slide时执行
+                            var H = $("#tabs-container .swiper-slide ul").eq(swiper.activeIndex).height();
+                            $("#tabs-container .swiper-slide").css('height', H + 'px');
+                            $("#tabs-container .swiper-wrapper").css('height', H + 'px');
+                        },
+                        onTouchMove:function(swiper, event){
+                            isSwiperClick=true;
+                        },
+                        onTouchStart:function(swiper, event){
+                            isSwiperClick=false;
+                         },
+                        onTouchEnd:function(swiper, event){  // 回调函数，当释放slider时执行。
+                            if(!longKeyTabState){
+                                 appcan.frame.setBounce([0], null, null, function (type) {
+                                   if (type == 0) {//下拉刷新
+                                        try{
+                                            appManageViewInstance.load();
+                                        }catch(e){                                            
+                                        }
+                                    } else {
+                                        appcan.frame.resetBounce(type);
+                                    }
+                                 });
+                            }
+                        },
+                        onSliderMove:function(swiper, event){  // 回调函数，手指触碰Swiper并拖动slide时执行。
+                            // 取消刷新弹动
+                            appcan.window.disableBounce();
+
+                        },
+                        onSlideNextStart:function(swiper){   // 回调函数，滑块释放时如果触发slider向前(右、下)切换则执行
+
+
+                            navBarSwiper.slideTo(tabSwiper.activeIndex);
+                            $("#nav-bar .swiper-wrapper div").removeClass('selected1');
+                            $("#nav-bar .swiper-wrapper div.bac").eq(tabSwiper.activeIndex).addClass('selected1');
+                        },
+                        onSlidePrevStart:function(swiper){   // 回调函数，滑块释放时如果触发slider向后(左、上)切换则执行
+
+                            navBarSwiper.slideTo(tabSwiper.activeIndex);
+                            $("#nav-bar .swiper-wrapper div").removeClass('selected1');
+                            $("#nav-bar .swiper-wrapper div.bac").eq(tabSwiper.activeIndex).addClass('selected1');
+                        }
+                    });
+                    if(getAppCenterList.length > 0){
+                            myApplicationObj.greatAppArr = getAppCenterList;
+                    };
+                    // 神策插件方法页面开始加载参数
+                    var pageLoadStart = {
+                        event:"pageLoadRequestDuration"
+                    };
+                    // 神策插件记录页面加载开始时间
+                    uexSensorsAnalytics.trackTimerBegin(JSON.stringify(pageLoadStart));
+                    // 动态加载应用列表标题
+                    var html = "",resultBigArr = [],haveArr = [];
+                    for (var k = 0; k < appList.length; k++) {
+                        var swiperHtml = '',everyoneArr = [],everyoneObj = {};
+                        if (k == 0) {
+                            if(appList[k].showType === "ub"){
+                            swiperHtml = '<div class="swiper-slide bac selected1 '+appList[k].showType+'">'+appList[k].appTypeName+'</div>'
+                            }
+                        } else {
+                            if(appList[k].showType === "ub"){
+                                swiperHtml = '<div class="swiper-slide bac  '+appList[k].showType+'">'+appList[k].appTypeName+'</div>'
+                                }
+                        };
+                        navBarSwiper.appendSlide(swiperHtml);
+                        if(resultBigArr.length > 0){
+                                if(haveArr.indexOf(appList[k].appTypeName) > -1){
+                                    var currentIndex = haveArr.indexOf(appList[k].appTypeName);
+                                    resultBigArr[currentIndex][haveArr[currentIndex]].push(appList[k]);
+                                }else {
+                                    if(appList[k].appTypeName!="应用隐藏"){
+                                        haveArr.push(appList[k].appTypeName);
+                                        everyoneArr.push(appList[k]);
+                                        everyoneObj[appList[k].appTypeName] = everyoneArr;
+                                        resultBigArr.push(everyoneObj);
+                                    }
+
+                                };
+                        } else {
+                            haveArr.push(appList[k].appTypeName);
+                            everyoneArr.push(appList[k]);
+                            everyoneObj[appList[k].appTypeName] = everyoneArr;
+                            resultBigArr.push(everyoneObj);
+                        };
+                        // 加载各分类应用列表
+                        // 首次从精品应用列表获取我的应用
+                        if(getAppCenterList.length == 0){
+                                // 添加精品应用卡片
+                                if(appList[k].greatApp && appList[k].tag != "置顶应用"){
+                                    myApplicationObj.greatAppArr.push(appList[k]);
+                                };
+                        };
+                    };
+                    var totalHtml = '';
+                    for(var m in resultBigArr){
+
+                        for(var n in resultBigArr[m]){
+                            var tabHtml = '<div class="swiper-slide"><ul class="umar-t ub-fh ul-h set-height" style="padding-bottom:1.5em;" >';
+                            for(var o = 0; o < resultBigArr[m][n].length; o ++){
+                                tabHtml +=   '<li class="li-item ub-f1 yincang" >'
+                                            + '<div class="uinn5 ub ub-ver ub-f1 ub-ac ub-pc scroll-bar " id="'+resultBigArr[m][n][o].appId+'">'
+                                                + '<div class="ub-img4 li-img lazy" data-original="'+resultBigArr[m][n][o].iconLoc+'" style="'+myApplicationObj.checkImage(resultBigArr[m][n][o].iconLoc)+'">'
+                                                + '<div class="yuandian-right yuandian uhide version-right" style="margin-left:1em;"   version="'+resultBigArr[m][n][o].appId+'"></div>'
+                                                +'</div>'
+                                                + '<p class="ub-f1 ulev-26 p-padt ut-s2 name tx-c" style="width:100%">'+resultBigArr[m][n][o].name+'</p>'
+                                                + '<div class="uabs-r uhide add-right" addid="'+resultBigArr[m][n][o].appId+'">'
+                                                    + '<div class=" " ></div>'
+                                                + '</div>'
+                                            + '</div>'
+                                        + '</li>';
+                            };
+                            tabHtml =tabHtml + '</ul></div>';
+                        };
+                        totalHtml += tabHtml;
+                    };
+                    tabSwiper.appendSlide(totalHtml);
+                    setTimeout(function(){
+                            $('.loadingManage').addClass('uhide');
+                    },500);
+                    $("#tabs-container").find('[data-original]').each(function () {
+                        var $el = $(this);
+                        var url = $el.attr('data-original');
+                        if (url) {
+                            lazyLoadImage(url, $el);
+                        };
+                    });
+                    // 版本更新提示
+                    if(!longKeyTabState){
+                        UpdateVersion();
+                    };
+                    // 我的应用列表全部展示
+
+                    if(myApplicationObj.greatAppArr.length > 7){
+                        myApplicationObj.greatAppArr.length = 7;
+                    };
+                    for(var r = 0; r < myApplicationObj.greatAppArr.length; r ++){
+                        var tilesListobj = {
+                            "tilesList":{
+                                "tilesId":myApplicationObj.greatAppArr[r].appId,
+                                "icon":myApplicationObj.greatAppArr[r].iconLoc,
+                                "param":{
+                                    "cardId":myApplicationObj.greatAppArr[r].appId,
+                                    "cardName":myApplicationObj.greatAppArr[r].name,
+                                    "img":myApplicationObj.greatAppArr[r].iconLoc,
+                                    "isMyApplication":myApplicationObj.greatAppArr[r].greatApp,
+                                }
+                            } ,'initData':myApplicationObj.greatAppArr[r]
+                        };
+
+                        cardsArray.push(tilesListobj);
+                    };
+                    /*获取卡片数据*/
+                    
+                    /*添加卡片*/
+                    addCard(cardsArray);
+                    // 神策插件记录数据处理结束时间
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerHandleDataEnd));
+                    // 加载我的应用标题
+                    $('#applist').removeClass('uhide');
+                    // 初始化拖拽
+                    $('#tabs-container').css('margin-top',$('#header').height());
+					//面包屑记录
+		            var jsonObj = {leaveBreadcrumb:'分类应用数据的处理-结束'};
+                    uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+
+                    // 神策插件记录页面加载完毕时间
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerPageEnd));
+                },
+                error:function(err){
+                    // 神策插件记录接口请求完毕时间
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerEnd));                    
+                    
+                }
+            });
+        }
+        // 提交给EMM后台的我的应用数据方法
+        function submitAppList(submitAppCenterList){
+		    //面包屑记录
+		    var jsonObj = {leaveBreadcrumb:'保存我的应用数据方法-开始'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            // 神策插件记录接口请求开始时间
+            uexSensorsAnalytics.trackTimerBegin(JSON.stringify(paramTrackTimerStart));
+            // 神策插件记录接口请求结束参数
+            var portParamTrackTimerEnd = FunParamTrackTimerEnd("接口请求","应用中心","saveUserHomeConfig");
+            // 定义传给接口的对象jsonObj
+            var id = "";
+            var createdAt = "";
+            // 用户信息
+            var user = appcan.getLocVal("EPortal-UserInfo");
+            //用户信息转为json对象
+            var userdata = JSON.parse(user);
+            //用户ID
+            var personId=userdata.userId;
+            var personName=userdata.userName;
+            var configType="appCenter";
+            var configValue=submitAppCenterList;
+            var softToken = "";
+            var jsonObj = {
+                id:id,
+                createdAt:createdAt,
+                personId:personId,
+                personName:personName,
+                configType:configType,
+                configValue:configValue,
+                softToken:softToken
+            };
+            var url = config.server_emm+'userHomeConfig/saveUserHomeConfig';
+            appcan.request.post(url,{jsonObj:{
+                    "id":id,
+                    "createdAt": createdAt,
+                    "personId":personId,
+                    "personName":personName,
+                    "configType":configType,
+                    "configValue":configValue,
+                    "softToken":softToken
+            }},function(data, status, xhr){
+			    //面包屑记录
+		        var jsonObj = {leaveBreadcrumb:'保存我的应用数据方法-结束'};
+                uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+                var data = JSON.parse(data);
+                // 神策插件记录接口请求结束时间
+                uexSensorsAnalytics.trackTimerEnd(JSON.stringify(portParamTrackTimerEnd));
+                if(data.status === "ok"){
+                }else if(data.status === "fail"){
+                };
+            });
+        }
+        /**
+         * 添加卡片
+         * @param cardsArray
+         */
+        function addCard(cardsArray) {
+            try {
+                
+                var cardSecHtml = '';
+                if(!cardsArray) return;
+                cardsArray.forEach(function (card, index) {
+                    // 取得dom
+                    var cardItemTpl = document.querySelector('#card-item-tpl');
+                    var cardItem = cardItemTpl.content.querySelector('div');
+                    var cardImg = cardItemTpl.content.querySelector('div').querySelector('div');
+                    var cardTitle = cardItemTpl.content.querySelector('span');
+                    var cardDel = cardItemTpl.content.querySelector('i');
+                    /*添加数据*/
+                    cardTitle.textContent = card.tilesList.param.cardName;//添加标题
+                    //动态设置样式
+                    if(!card.tilesList.param.style) {
+                        cardImg.style.cssText = '';
+                    }else {
+                        cardImg.style.cssText = card.tilesList.param.style;
+                    };
+                    
+                    if (!card.tilesList.param.img) {//这里要判断，icon是否为空，使用本地的图片:使用方法是将card.tilesList.param.cardId作为$cardImg的类
+                       
+                        cardImg.style.backgroundImage = 'url(css/img/appOA.png)';
+
+                        cardImg.removeAttribute('data-original');
+                    } else {
+                        
+                        cardImg.setAttribute('data-original', card.tilesList.param.img);
+                        cardImg.style.backgroundImage = 'url(' + card.tilesList.param.img + ')';//使用网络上的图片
+                    };
+                    if(longKeyTabState){
+                        cardDel.classList.remove(cardDel.classList.item(1));
+                    };
+                    //添加id属性值
+                    cardItem.setAttribute('id',"my"+card.tilesList.param.cardId);
+                    cardSecHtml += cardItemTpl.innerHTML;//这里不直接添加dom，而是将所有item的dom放在html里，一块添加，避免了每次都要刷新整个dom树的资源浪费
+                    cardImg.classList.remove(cardImg.classList.item(1));//因为是template模板文件，所以类名会保存，需要手动移除第二个类名
+                    cardItem.classList.remove(cardItem.classList.item(1));//因为是template模板文件，所以类名会保存，需要手动移除第二个类名
+                });
+                document.getElementById('card-sec').innerHTML = cardSecHtml;
+                //离线缓存
+                $("#card-sec").find('[data-original]').each(function () {
+                    var $el = $(this);
+                    var url = $el.attr('data-original');
+                    if (url) {
+                        lazyLoadImage(url, $el);
+                    }
+                });
+            }catch (e) {
+                
+            }
+        }
+        /**
+         *懒加载图片
+         */
+        function lazyLoadImage(url, dom, sus) {
+            if (window.lazyICache) {
+                window.lazyICache.run({url: url, success: (sus ? sus : ''), dom: dom});
+            };
+        }
+        // 分类应用列表
+        function SortCenterAppList(list){
+            var arrRet = [],appTypeMap = {};
+            for(var i in list){
+                var objApp = list[i];
+                var id = objApp.appType;
+                var name = objApp.appTypeName;
+                appTypeMap[id] = name;
+            };
+            try {
+                var objTemp = {};
+                for(var i in list){
+                    var obj = list[i];
+                    obj.showType = 'uhide';
+                    obj.appTypeId = '';
+                    if(!objTemp[obj.appTypeName]) {
+                        objTemp[obj.appTypeName]=[];
+                        obj.appTypeId = obj.appType;
+                       if(obj.appTypeName!='应用隐藏') obj.showType = 'ub';
+                        obj.appTypeName = appTypeMap[obj.appType];
+                    }
+                    objTemp[obj.appTypeName].push(obj);
+
+                    if(!listDataObj[obj.appType]) listDataObj[obj.appType]={};
+                        listDataObj[obj.appType][obj.appId] = 0;
+                }
+                for(var ii in objTemp){
+                    if(objTemp[ii]) arrRet = arrRet.concat(objTemp[ii]);
+                }
+            }catch(e){
+                arrRet = list;
+            }
+            return arrRet;
+        }
+        //我的应用点击事件
+        $(document).on("singleTap",".card-item",function(e){
+            e.stopPropagation();
+            var cardid= e.target.id;
+            if(!cardid){
+                cardid= e.target.parentElement.id;
+            };
+            // 遍历应用列表信息
+            var el= document.getElementsByClassName('add-right');
+            for(var s  in appList){
+                // 单个应用信息
+                var appData = appList[s];
+                var dataId = "my" + appData.appId;
+                if(dataId == cardid){
+                    if(longKeyTabState){
+                         //最低保留一个应用
+                         if((myApplicationObj.greatAppArr).length==1){
+                                appcan.window.openToast('请至少保留一个应用！',1000,'middle',0);
+                                        window.setTimeout(function(){
+                                            appcan.window.closeToast();
+                                   },1000);
+                              return;
+                         }
+                         // 删掉我的应用 移除标签
+                        $('#'+dataId).remove();
+                        myApplicationObj.greatAppArr = myApplicationObj.handleMyApplicationData(myApplicationObj.greatAppArr,cardid);
+                        $('#tabs-container').css('margin-top',$('#header').height());
+                        //移除分类应用删除图标，添加新增图标
+                        var count = 0;
+                        for(var i = 0,leng = el.length; i < leng; i ++){
+                            (function(i){
+                                var fid = "my" + el[i].getAttribute("addid");
+                                    if(fid == cardid){
+                                        // 分类应用图标变为添加
+                                        el[i].classList.remove("remove-app-img");
+                                    }
+                            }(i));
+                        }
+                    };
+                    // 打开子应用方法
+                    CoverAppList(appData);
+                };
+            };
+        });
+
+        
+        //应用点击
+       function clickAppCenter(e){
+	        //面包屑记录
+		    var jsonObj = {leaveBreadcrumb:'应用点击逻辑处理方法-开始'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+           var userId = appcan.getLocVal('userId');
+             e.stopPropagation();
+            var id= e.target.id;
+            if(!id){
+                id= e.target.parentElement.id;
+            };
+            // 遍历应用列表信息
+            var el= document.getElementsByClassName('add-right');
+            for(var m in appList){
+                //单个应用信息
+                var appData = appList[m];
+                var appid = appData.appId;
+                var appname = appData.name;
+                var appTypename = appData.appTypeName;
+                // 当前点击应用id
+                if(appData.appId == id){
+                    if(longKeyTabState){
+                        var count = 0;
+                        for(var i = 0,leng=el.length; i < leng; i ++){
+                            (function(i){
+                                if(el[i].getAttribute("addid") == appData.appId){
+
+                                      //最低保留一个应用
+                                    if(el[i].classList.contains('remove-app-img')){
+                                        if((myApplicationObj.greatAppArr).length==1){
+                                                appcan.window.openToast('请至少保留一个应用！',1000,'middle',0);
+                                                        window.setTimeout(function(){
+                                                            appcan.window.closeToast();
+                                                   },1000);
+                                              return;
+                                         }
+                                        // 点击的是删除
+                                        //开启神策埋点事件追踪
+                                        var param = {
+                                                    event: 'lightApp',
+                                                    propertieDict: {
+                                                        userId:userId,
+                                                        lightAppId:appid,
+                                                        lightAppName:appname,
+                                                        lightAppType:appTypename,
+                                                        operator:'MyappAdd'                               
+                                                    }
+                                        };
+                                        uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+                                        el[i].classList.remove("remove-app-img");
+                                        var dataId = "my" + appData.appId;  //我的应用移除应用
+                                        // 删掉我的应用 移除标签
+                                        $('#'+dataId).remove();
+                                        myApplicationObj.greatAppArr = myApplicationObj.handleMyApplicationData(myApplicationObj.greatAppArr,dataId);
+                                        $('#tabs-container').css('margin-top',$('#header').height());
+                                    } else { // 点击的是增加
+                                        if(myApplicationObj.greatAppArr.length == 7){
+                                            appcan.window.openToast('我的应用最多添加7个！',1000,'middle',0);
+                                            window.setTimeout(function(){
+                                                appcan.window.closeToast();
+                                            },1000)
+                                            return;
+                                        };
+                                       try{ 
+                                        //开启神策埋点事件追踪
+                                        var param = {
+                                                    event: 'lightApp',
+                                                    propertieDict: {
+                                                        userId:userId,
+                                                        lightAppId:appid,
+                                                        lightAppName:appname,
+                                                        lightAppType:appTypename,
+                                                        operator:'MyappDel'                               
+                                                    }
+                                        };
+                                        uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+                                       }catch(e){
+                                           
+                                       }
+                                        var dataId = "my" + appData.appId;  //我的应用移除应用
+                                        // 隐藏我的应用图标属性
+                                        $('#'+dataId).removeClass('uhide');
+                                        el[i].classList.add("remove-app-img");
+                                        myApplicationObj.greatAppArr.push(appData);
+                                        $('#tabs-container').css('margin-top',$('#header').height());
+                                        var cardsArray2 = [],
+                                        titleListobj2 = {
+                                            "tilesList":{
+                                                "tilesId":appData.appId,
+                                                "icon":appData.iconLoc,
+                                                "param":{
+                                                    "cardId":appData.appId,
+                                                    "cardName":appData.name,
+                                                    "img":appData.iconLoc,
+                                                    "isMyApplication":appData.greatApp
+                                                }
+                                            } ,'initData':appData
+                                        };
+                                        cardsArray2.push(titleListobj2);
+                                        myApplicationObj.addCard2(cardsArray2);
+                                    };
+                                };
+                            }(i));
+                        };
+                    };
+					//面包屑记录
+		            var jsonObj = {leaveBreadcrumb:'应用点击逻辑处理方法-结束'};
+                    uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+                    //打开子应用方法
+                    CoverAppList(appData);
+                };
+            };
+       }
+        // 判断是否进入子应用
+        function CoverAppList(appData){
+            if(longKeyTabState){
+                return;
+            };
+            //进入子应用
+            appcan.window.publish("START_WGT", JSON.stringify(appData));
+        }
+
+        //双击删除事件
+         function doubleClickAppCenter(e){
+              e.stopPropagation();
+			var userId = appcan.getLocVal('userId');
+            var doubleid= e.target.id;
+            if(!doubleid){
+                doubleid= e.target.parentElement.id;
+            };
+            //遍历应用列表信息
+            for(var n in appList){
+                //单个应用信息
+                var data = appList[n],
+                //应用名称
+                appName = data.name,
+                appId = data.appId;
+                var appTypeName = data.appTypeName;
+                if(data.appId == doubleid){
+                    // 弹出确认是否删除
+                    appcan.window.confirm("提示",'您确定清除当前应用的缓存吗？',['确定','取消'],function(err,data2){
+                        if(!err){
+                            if(data2 == 0){   // 确定
+                                if(uexAppStoreMgr.deleteMyApps){
+                                    var appinfo = [];
+                                    appinfo.push(data);
+                                    //调用删除插件删除子应用;
+                                    uexAppStoreMgr.deleteMyApps(JSON.stringify(appinfo));
+                                };
+                                //删除应用的回调方法
+                                uexAppStoreMgr.cbDeleteMyApps = function (opId, dataType, data) {
+                                    if(data == 1){
+                                        //开启神策埋点事件追踪
+                                        var param = {
+                                                    event: 'lightApp',
+                                                    propertieDict: {
+                                                        userId:userId,
+                                                        lightAppId:appId,
+                                                        lightAppName:appName,
+                                                        lightAppType:appTypeName,
+                                                        operator:'delete'                               
+                                                    }
+                                        };
+                                        uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+                                        appcan.locStorage.remove('isAppInstall-'+appId);
+                                    }
+                                };
+                            } else if(data2 == 1) {
+                                // 取消不做任何操作
+                            }
+                        }
+                    });
+                    return;
+                }
+            }
+         }
+
+        // 长按分类应用 关联我的应用列表
+        function longTapCardItem(appid){
+            longKeyTabState = true;
+            $('.card-item').addClass('card-item-baccolor');
+            var eitem= document.getElementsByClassName('card-remove-img');
+            for(var i = 0,leng=eitem.length; i< leng; i ++){
+                (function(i){
+                    appcan.window.publish("APP_WORK_LONGTAB", '');
+                    eitem[i].classList.remove('uhide');
+                }(i));
+            }
+        }
+        
+        // 长按我的应用关联分类应用
+        function longTapscrollbar(appid){
+            longKeyTabState = true;
+            var longappid= appid,
+            el= document.getElementsByClassName('add-right');
+            var count = 0;
+            for(var i = 0,leng=el.length; i < leng; i ++){
+                (function(i){
+                        // 判断是否存在我的应用 存在展示移除图标 不存在展示添加图标
+                    for(var h in myApplicationObj.greatAppArr){
+                        if(el[i].getAttribute("addid") == myApplicationObj.greatAppArr[h].appId){
+
+                            el[i].classList.add("remove-app-img");
+                        }else{
+                            el[i].classList.add("add-app-img");
+                        }
+                    }
+                    appcan.window.publish("APP_WORK_LONGTAB", '');
+                    el[i].classList.remove('uhide');
+                }(i));
+            };
+            //接收点击完成的消息
+            appcan.window.subscribe("versionID",function(versionID) {
+                // 更新工作桌面应用状态
+                UpdateVersion();
+            });
+            // 长按工作桌面应用隐藏所有圆点
+            $('.version-right').addClass('uhide');
+        }
+
+        //版本更新提示
+        function  UpdateVersion(){
+		    //面包屑记录
+		    var jsonObj = {leaveBreadcrumb:'版本更新提示方法-开始'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            var AppListNewVersion = JSON.parse(appcan.getLocVal('CACHE_APPS_CENTER_LIST'));			
+            if(AppListNewVersion){
+                 var AppListNewVersionInfo = AppListNewVersion.info;
+                 // 所有版本号
+                 var countVersion = 0,
+                 versionr = document.getElementsByClassName('version-right');
+                 for(var t in AppListNewVersionInfo){
+                    // 最大版本号
+                    var maxVersion = AppListNewVersionInfo[t].maxVersion,
+                    // 当前版本号
+                    curVersion=AppListNewVersionInfo[t].curVersion,
+                    // 应用id
+                    VersionAppId=AppListNewVersionInfo[t].appId,
+                    // 应用已安装版本
+                    installVersion=AppListNewVersionInfo[t].installVersion,
+                    appCategoryName=AppListNewVersionInfo[t].appCategoryName;
+                    for (var i = 0,leng=versionr.length; i<leng; i++) {
+                        (function(i) {
+                            if(versionr[i].getAttribute("version") == VersionAppId) {
+                                countVersion++;
+                                if(installVersion){
+                                    if(installVersion != curVersion && installVersion < curVersion){
+                                        versionr[i].classList.remove('uhide');
+                                    }else{
+                                        versionr[i].classList.add('uhide');
+                                    };
+                                } else {
+                                    versionr[i].classList.add('uhide');
+                                }
+                            }
+                        }(i));
+                    };
+                };
+            };
+			//面包屑记录
+		    var jsonObj = {leaveBreadcrumb:'版本更新提示方法-结束'};
+            uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+        }
+    </script>
+</html>

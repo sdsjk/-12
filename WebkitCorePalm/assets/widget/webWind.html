@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="assets/css/base.css">
+        <style>
+            .home{
+                background-image: url('css/img/nav_btn_home_pre.png');
+            }
+        </style>
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="ub uh headColor bc-head ub-ver">
+                    <!--公用的头部开始-->
+                    <div class="ub ub-f1 ">
+                        <div class="ub head-btn ub-ac paddLeft11" id="nav-left">
+                            <div class="ub ub-img tagimg tagwh "></div>
+                        </div>
+                        <div class="ub ub-f1 ub-pc ub-ac ut">
+                            <div class="fontSize1 ub-f1 tx-c ut-s" id="title">　</div>
+                        </div>
+                        <div class="ub head-btn fontSize ub-ac ub-pe paddRight5" id="nav-right">
+                            <div class="umw2 umh4 ub-img home"></div>
+                        </div>
+                    </div>
+                    <!--公用的头部结束-->
+            </div>
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+    </body>
+    <script>
+        var cardParam = '';
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            var emmToken = JSON.parse(appcan.getLocVal('emmToken'));
+            var eipInfo = emmToken.info.returnInfo;            
+            var eipToken = eipInfo.eipToken;
+            var loginName = eipInfo.loginName;
+            var loginPass = eipInfo.loginPass;
+            cardParam = appcan.getLocVal("CARD_PARAM");
+            var conEle = $('#content');
+            cardParam = JSON.parse(cardParam);
+            var url = cardParam.url;
+                url = url+'?token='+eipToken+'&userid='+loginName+'&pwd='+loginPass;
+            $("#title").html(cardParam.name);
+            appcan.window.openPopover(cardParam.name,'0',url,'',0, titHeight,conEle.offset().width,conEle.offset().height,parseInt(conEle.css("font-size")),512,0,cardParam.extraInfo)
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize(cardParam.name, 0, titHeight);
+            }
+            var rt = setTimeout(function(){
+                flg =1;
+                clearTimeout(rt);
+            },8000);
+            //监听物理返回键
+            uexWindow.onKeyPressed = function(keyCode){
+                backpage();
+            }
+            uexWindow.setReportKey('0', '1');
+        appcan.button("#nav-left", "btn-act", function() {
+            backpage();
+        })
+            
+            appcan.button('#nav-right', 'btn-act',function(){
+                back(); 
+            }); 
+        });
+        //控制返回
+        var flg = 0;
+        function backpage(){
+            if(flg == 0){
+                back();
+                return;
+            }
+            uexWindow.evaluatePopoverScript('',cardParam.name,'uexWindow.cbPageBack = function (inOpId,inDataType,inData){if(inData == 1){uexWindow.evaluateScript("","0","back()");}};uexWindow.pageBack();');
+        }
+        
+        //退出当前页面
+        function back(){
+            appcan.window.close(-1);
+        }
+    </script>
+</html>

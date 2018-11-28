@@ -1,0 +1,153 @@
+/*卡片的高度*/
+.card-h {
+    min-height: 7em;
+}
+.card-h1{
+    height: 2.5em;
+}
+.tab_l1{
+    height: 2.5em;
+}
+.card-w{
+   /* width:4.75em;*/
+    width: 6.09375em;
+}
+/*头部logo的大小*/
+.sheet-wh{
+    width: 1em;
+    height: 0.625em;
+}
+.all-wh{
+    width: 1.0625em;
+    height: 1.0625em;
+}
+.load-wh{
+    width: 4.73em;
+    height: 1.28125em;
+}
+/*以下为删除--刷新--置顶--下箭头调起actionsheet的logo*/
+.delete-img{
+    background-image: url('img/del.png')!important;
+}
+.refresh-img{
+    background-image: url('img/refresh.png');
+}
+.top-img{
+    background-image: url('img/setTop.png');
+}
+.downS-img{
+    background-image: url('img/downSheet.png');
+}
+.loading-img{
+    background-image: url('img/loading.png');
+}
+.fail-img{
+    background-image: url('img/fail.png');
+}
+/*右侧删除按钮*/
+.delete-img-right{
+    background-image: url('img/delr.png')!important;
+}
+/*头部字体的大小*/
+.head-fontSize{
+    /*font-size: 0.9375em;
+    line-height: 0.9375em;*/
+}
+/*外边距*/
+.card-pad{
+    padding: 0.25em 0.25em 0em 0.25em;
+}
+.card-pad2{
+    padding:.25em;
+}
+.card-pad0{
+    padding-top: 0.25em;
+}
+.card-pad1{
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+}
+.card-mar{
+    margin-right: 0.78125em;
+}
+.card-mar1{
+    margin-top: 0.625em;
+}
+.card-mar2{
+    margin-bottom: 0.625em;
+}
+.bg-white{
+    background-color: #fff;
+}
+.border-color{
+    border-color: #fafafa;
+}
+.overhidden{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis; 
+}
+.juedui {
+    position: absolute;
+}
+.xiangdui {
+    position: relative;
+}
+.right{
+    right: 0;
+}
+.right1{
+    right: 0.625em;
+}
+.opacity{
+    opacity: 0.5;
+}
+.ub-img-r1{
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.f-bbc {
+  border-bottom: 2px solid #7bb9d7;
+}
+
+/*mem卡片*/
+.memrec{
+    background-image: url('img/memrec.png');
+}
+.memsend{
+    background-image: url('img/memsend.png');
+}
+.memnew{
+    background-image: url('img/memnew.png');
+}
+.memrub{
+    background-image: url('img/memrub.png');
+}
+.memrel{
+    background-image: url('img/memrel.png');
+}
+.memimg{
+    width:1.6875em;
+    height:1.6875em;
+}
+.uinnmem{
+    padding: .8em;
+}
+.uinnmem1{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.memloginc{
+    background-color: #f2f5f7;
+}
+.memloginbtn{
+    border-color: #69c0ea;
+    color: #69c0ea;
+}
+
+
+.uinn10{
+    padding: 1.25em .5em;
+}

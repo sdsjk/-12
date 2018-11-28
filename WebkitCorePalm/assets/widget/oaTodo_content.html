@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wqb-style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzxiangqing.css">
+    <link rel="stylesheet" href="css/card/card.css">
+</head>
+<body class="um-vp bg" ontouchstart>
+
+<div class="up">
+    <ul class="uinn5 tx-c bc-border" style="color:red" id="todoNote">
+    </ul>
+    <ul class="uinn5" id="todoList">
+        
+    </ul>
+    <script id="tmplTodo" type="text/template">
+         <li class="ub ub-ac ubb bc-border" id="<%=data.listId%>">
+            <div class="ub-f1 uinn10 ulev-30">
+                <p class="line-h5 ut-s"><%=data.title%></p>
+            </div>
+            <p class="sc-text ulev-4"><%=data.time%></p>
+        </li>
+    </script>
+</div>
+<div class="up ub ub-ver ub-ac ub-pc uhide" id="notes">
+    <div class="ub-img4 img-notes"></div>
+    <p class="tx-c c1-notes">恭喜您</p>
+    <p class="tx-c c2-notes">您所有待办已处理完成!</p>
+    <div class="umh5">&nbsp;</div>
+</div>
+
+
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script type="text/javascript" src="js/bluebird.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/appcan.tab1.js"></script>
+<script src="js/md5.js"></script>
+<script>
+    
+    appcan.ready(function () {
+          
+        appcan.frame.setBounce(0,null,null,function(){
+            var loginInfo = appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+            if(loginInfo) {
+                var flag = checkLoginStatus(loginInfo);
+                if(!flag) getTodoList();
+            }else xmasOALogin();
+        },'rgba(0,0,0,0)');
+        
+        //自动下拉刷新效果
+        uexWindow.topBounceViewRefresh();
+        //xmasOA登录事件
+        appcan.window.subscribe("EPortal-XOA-LOGIN-RET", function(data){
+            if(todoListObj.RET) return;
+            todoListObj.RET = 1;
+            var flag = checkLoginStatus(data);
+            if(!flag && isAndroid) getTodoList();
+        });
+        
+        appcan.window.subscribe("EPORTAL_XOA_LOGIN", function(data){
+            todoListObj.RET = 0;
+            xmasOALogin();
+        });
+        
+        appcan.window.subscribe("EPortal-XOATodo-Refresh", function(data){
+            var flag = checkLoginStatus();
+            if(!flag) getTodoList();
+        });    
+    });
+    
+    //接口数据交互
+    var sessionid = '';
+    var todoListObj = {};
+    function getTodoList(){
+        var token = appcan.getLocVal("emmAccessToken");
+        //传入账户信息
+        var uid = appcan.getLocVal("loginName");
+        var pwd = '';
+         try{
+             pwd = appcan.getLocVal("emm_orgPwd");
+         }catch(e){}
+        var form ={
+            uid:uid,
+            pwd:pwd
+        }        
+        allMasIsCrypto("szair","oaTodo","POST",JSON.stringify(form),"","掌上深航",config.appId).then(function(data){
+           
+            
+            appcan.frame.resetBounce(0);
+            var obj = data;
+            if(obj && obj.result=='yes'){
+                sessionid = obj.sessionid;
+                todoListObj.RET = 1;
+                
+                var eTodoNote = $('#todoNote');
+                if(obj.dateMap.total>0){
+                    showView(obj.dateMap.taskList);
+                    eTodoNote.html(obj.dateMap.note);
+                    eTodoNote.addClass('ubb');
+                    $('#notes').addClass('uhide');
+                }else{
+                    $('#todoList').html('');
+                    eTodoNote.removeClass('ubb');
+                    eTodoNote.html('');
+                    $('#notes').removeClass('uhide');
+                }
+                
+                appcan.window.publish("E_XMPP_TODOCC", obj.dateMap.total);
+            }else{
+                sessionid = '';
+                if(!todoListObj.hasList)
+                    appcan.window.openToast('努力加载中!','4000','5','0');
+                else {
+                    todoListObj.RET = 0;
+                }
+                
+               if(obj.code=='4003' && obj.name=='SessionNotFound'){
+                    xmasOALogin();
+                }
+                
+            }
+        },function(err){
+        }).catch(function(err){
+        });        
+    }
+    
+    //页面拼装展示
+    function showView(arr){
+	    var userId = appcan.getLocVal('userId');
+        var tmpHtml = $('#tmplTodo').html(); //获取模板html字符串
+        var listVeiwTmpl = appcan.view.template(tmpHtml);  //生成模板
+        var $con = $('#todoList');
+        $con.html('');
+        //按时间排序
+        for(var i=0; i<arr.length;i++){
+            var obj = arr[i];
+            obj.listId = hex_md5(obj.detailUrl);;
+            var ele = $(listVeiwTmpl({
+                data : obj,
+            }));
+            $con.append(ele);
+            todoListObj[obj.listId] = obj;
+            todoListObj.hasList = 1;
+            
+            //绑定点击事件，进行页面跳转
+            appcan.button("#"+obj.listId, "btn-act", function() {
+                //开启神策埋点事件追踪
+                     var param = {
+                                event: 'platformClick',
+                                propertieDict: {
+                                    userId:userId,
+                                    module:'待办模块',
+                                    funcName:'待办列表项详情',
+                                    buttonName:'待办列表项'                               
+                                }
+                      };
+                      uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+                var id = this.id;
+                var dataObj = todoListObj[id];
+			 if(dataObj.functionName == "BPM"){
+                  var flag = checkLoginStatus();
+                  var useId = JSON.parse(appcan.getLocVal("EPortal-UserInfo")).userId;
+                  detailUrl=dataObj.detailUrl.replace(/\/bpm/,"/todobpm/")+"&userId="+useId+"&loginStates="+flag;
+                  appcan.window.open("BPM",detailUrl,10,'');
+              }else if(dataObj.functionName == "EASHRJXKH"){
+			      var jsonStr = {};
+				  var easDetailUrl=unescape(dataObj.detailUrl);
+				  jsonStr = {manage:0,easDetailUrl:easDetailUrl};
+                  appcan.window.publish('PERFORMANCE-START',JSON.stringify(jsonStr));
+              }else{
+	                uexWidget.cbStartWidget = function (opId, dataType, data) {
+	                };
+                
+	                var widgetParam = {
+	                    bizSystem: dataObj.bizSystem, 
+	                    functionName:dataObj.functionName, 
+	                    actInstID: dataObj.actInstID,
+	                    detailUrl: dataObj.detailUrl, 
+	                    sessionid: sessionid
+	                };
+	                var appId = 'aaamu10002';
+	                var appKey = 'af9a4706-6f20-42ec-a9ad-58b601c653cb';
+                
+	                if(dataObj.bizSystem == 'OIE'){
+	                    appId = 'aaamu10052';
+	                    appKey = 'b7ede2cf-cf3c-4f1a-b9df-ab926440117a';
+	                }
+	                dataObj.sessionid = sessionid;
+	                var str = JSON.stringify(dataObj);
+	                appcan.window.publish("EPORTAL_TODO_START", str);
+	                appcan.setLocVal("EPORTAL_TODO_PARAM", str); //缓存待办参数
+				}
+            });
+        }
+    }
+    
+    function bubbleSort(arr2) {
+        var len = arr2.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1 - i; j++) {
+                if (arr2[j].time<arr2[j+1].time 
+                    || (arr2[j].time==arr2[j+1].time && arr2[j].title<arr2[j+1].title)) {        //相邻元素两两对比
+                    var temp = arr2[j+1];        //元素交换
+                    arr2[j+1] = arr2[j];
+                    arr2[j] = temp;
+                }
+            }
+        }
+        return arr2;
+    }
+    
+    //检查账号是否过期失效
+    function checkLoginStatus(str){
+        var loginInfo = str || appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+       
+        var ret = 0; 
+        if(loginInfo) {
+            var obj = JSON.parse(loginInfo);
+            if(obj.result!='yes' || loginInfo.indexOf('OA密码过期')>=0){
+                ret = 1;
+                $('#todoList').html('');
+                var eTodoNote = $('#todoNote');
+                eTodoNote.removeClass('ubb');
+                eTodoNote.html('');
+                var eNotes = $('#notes');
+                eNotes.html('<p class="tx-c" style="font-weight:bold">'+obj.message+'</p>');
+                eNotes.removeClass('uhide');
+            }
+        }
+        return ret;
+    }
+</script>
+</body>
+</html>

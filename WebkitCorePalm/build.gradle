@@ -1,0 +1,224 @@
+project.ext.preDexLibs = !project.hasProperty('disablePreDex')
+println('PREDEX ' + (project.ext.preDexLibs ? 'ENABLED' : 'DISABLED'))
+
+project.plugins.whenPluginAdded { plugin ->
+    if ("com.android.build.gradle.AppPlugin".equals(plugin.class.name)) {
+        project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+    } else if ("com.android.build.gradle.LibraryPlugin".equals(plugin.class.name)) {
+        project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+    }
+}
+
+buildscript {
+
+    def mavenUrl=System.getenv("GRADLE_M2_HOME");
+    if(mavenUrl==null){
+        mavenUrl="/usr/share/gradle/m2repository"
+    }
+
+    repositories {
+      maven {
+            url mavenUrl
+      }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+    }
+}
+
+
+// Log timings per task.
+class TimingsListener implements TaskExecutionListener, BuildListener {
+    private Clock clock
+    private timings = []
+
+    @Override
+    void beforeExecute(Task task) {
+        clock = new org.gradle.util.Clock()
+    }
+
+    @Override
+    void afterExecute(Task task, TaskState taskState) {
+        def ms = clock.timeInMs
+        timings.add([ms, task.path])
+        task.project.logger.warn "${task.path} took ${ms}ms"
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println "Task timings:"
+        for (timing in timings) {
+            if (timing[0] >= 50) {
+                printf "%7sms  %s\n", timing
+            }
+        }
+    }
+
+    @Override
+    void buildStarted(Gradle gradle) {}
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {}
+
+    @Override
+    void projectsLoaded(Gradle gradle) {}
+
+    @Override
+    void settingsEvaluated(Settings settings) {}
+}
+
+gradle.addListener new TimingsListener()
+
+
+apply plugin: 'com.android.application'
+
+//apply from : "rewriterPlugin.gradle"
+buildscript {
+//    project.ext.set("rewriterPluginName", "");
+//    project.ext.set("rewriterGradlePluginDir", "");
+    project.ext{
+        rewriterPluginName = "";
+        rewriterGradlePluginDir = "";
+    }
+    try{
+        String currentPath = "." + File.separator;
+        File currentFile = new File(currentPath).getAbsoluteFile();//当前所在目录地址
+        println("rewriter---currentFile: " + currentFile.getPath());
+        File parentDir = currentFile.getParentFile().getParentFile();//上上级目录地址
+        String parentPath = parentDir.getAbsolutePath();
+        String randomName = parentDir.getName();//获取随机名称
+        File pluginsDir = new File(parentPath + File.separator +randomName);
+        String pluginsPath = pluginsDir.getAbsolutePath();
+        println("rewriter---pluginsPath: " + pluginsPath);
+        String[] params = new String[4];//{"find", pluginsPath, "-name", "class.rewriter.jar"}
+        params[0] = "find";
+        params[1] = pluginsPath;
+        params[2] = "-name";
+        params[3] = "class.rewriter.jar";
+        Process p = Runtime.getRuntime().exec(params);
+        InputStream is = p.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String line = null;
+        int count = 0;
+        while((line = reader.readLine())!= null){
+            println("rewriter---execResult: " + line);
+            File rewriterJar = new File(line);
+            File rewriterDir = rewriterJar.getParentFile();
+            if("rewriter".equals(rewriterDir.getName())){
+                count++;
+                if(count > 1){ 
+                    println("rewriter---found more than one rewriter plugin, will only use the last one!");
+                }
+                //目录结构正确，获取插件名称
+                String rewriterGradlePluginDir = rewriterDir.getAbsolutePath();
+                project.ext.set("rewriterGradlePluginDir", rewriterGradlePluginDir);
+                String rewriterPluginName = rewriterDir.getParentFile().getName();
+                project.ext.set("rewriterPluginName", rewriterPluginName);
+                println("find rewriter plugin : " + rewriterPluginName);
+            }
+        }
+        int status0 = p.waitFor();
+        println("rewriter---p.waitFor(): " + status0);
+        //配置rewriter插件依赖的gradle插件库
+        String rewriterPluginName = project.rewriterPluginName;
+        String rewriterGradlePluginDir = project.rewriterGradlePluginDir;
+        dependencies {
+            if (rewriterPluginName != "" && rewriterGradlePluginDir != "") {
+                println("rewriter depenencies: " + rewriterGradlePluginDir);
+                classpath fileTree(dir: rewriterGradlePluginDir, include: '*.jar');
+            }
+        }
+    }catch(Exception e){
+        println("rewriter--exception: " + e.getMessage());
+    }
+
+}
+
+try{
+    //应用相应的gradle plugin
+    String rewriterPluginName = project.rewriterPluginName;
+    String rewriterGradlePluginDir = project.rewriterGradlePluginDir;
+    if("uexNBSAppAgent".equals(rewriterPluginName)){
+        apply plugin: 'newlens'
+        println("apply plugin: newlens success")
+    }else if("uexOneAPM".equals(rewriterPluginName)){
+        apply plugin: 'oneapm'
+        println("apply plugin: oneapm success")
+    }else{
+        println("no rewriter plugin or not supported plugin: " + rewriterPluginName);
+    }
+}catch(Exception e){
+    println("rewriter--exception: " + e.getMessage());
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+//依赖libs下的所有的aar
+fileTree(dir: 'libs', include: '**/*.aar')
+        .each { File file ->
+    dependencies.add("compile", [name: file.name.lastIndexOf('.').with { it != -1 ? file.name[0..<it] : file.name }, ext: 'aar'])
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/ASL2.0'
+        pickFirst 'assets/lineDashTexture.png'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs=['libs']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+    lintOptions {
+          checkReleaseBuilds false
+          // Or, if you prefer, you can continue to check for errors in release builds,
+          // but continue the build even when errors are found:
+          abortOnError false
+    }
+    aaptOptions {
+        cruncherEnabled = false //不检查PNG的合法性
+    }
+    dexOptions {
+        javaMaxHeapSize "2048M"
+    }
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 14 //
+        multiDexEnabled true
+    }
+}

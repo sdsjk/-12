@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/tabstyle.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../assets/css/base.css">
+    </head>
+    <body class="um-vp" ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-wh" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="ub  headColor bc-head ub-ver">
+                    <!--公用的头部开始-->
+                    <div class="ub ub-f1 uh">
+                        <div class="ub head-btn ub-ac paddLeft11" id="nav-left">
+                            <div class="ub ub-img tagimg tagwh "></div>
+                        </div>
+                        <div class="ub ub-f1 ub-pc ub-ac ut">
+                <div class="fontSize1" data-lan="TIT_POINT">我的积分</div>
+                           <!-- <div class="ub ub-img tagimgB tagwh1 paddLeft1"></div>-->
+                        </div>
+                        <div class="ub head-btn fontSize ub-ac ub-pe paddRight5" id="nav-right">
+                            <div class=""> </div>
+                        </div>
+                    </div>
+                    <!--公用的头部结束-->
+                   <div class="ub ub-f1 ub-ver ubb ubbColor paddLeft paddRight bc-wh t-c">
+                       <div class="ub ub-f1 top-padd5 bot-padd7">
+                            <div class="ub ub-img1 ub-pc ub-ac headwh1 urel lazy" id="imgurl">
+                            </div>
+                            <div class="ub ub-f1 ub-ver paddLeft11">
+                                <div class="ub ub-f1 fontSize3 t-c ub-ac t-c paddB4">
+                        <div class="paddRight6 " data-lan="TIT_POINT">我的积分</div>
+                                    <div id="score">0</div>
+                                </div>
+                                <div class="ub ub-f1 uba uc-a ubbColor4 jdHight">
+                                    <div class="ub uc-a bc-ff" style="width:0%;" id="scaleVal"></div>
+                                </div>
+                                <div class="ub ub-f1 ub-ac fontSize6 textColor19 paddT4">
+                                    <div class="ub ub-f1" id="gradesName"></div>
+                                    <div class="ub ub-pe ">
+                                        <div id="grade">Lv.0</div>
+                                        <div class="ub paddLeft" id="score1">0</div>&nbsp;/&nbsp;
+                                        <div id="upperEmpiric">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+                   <div class="ub ub-f1 ubb ubbColor bc-f5">
+                        <div class="ub ub-f1 paddTB5"></div>
+                   </div>
+                   <div id="tabview" class="uf bc-wh ubb borderColor"></div>
+            </div>
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l bc-wh">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+        <script src="../js/appcan.tab2.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/myPoint.js"></script>
+        <script src="../assets/models/myPoint.js"></script>
+        <script src="../assets/views/myPoint.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            myPointViewInstance.load();
+            var titHeight = $('#header').offset().height;
+            appcan.frame.open({
+            id : "content",
+            url : [{
+                "inPageName" : "interalRecord",
+                "inUrl" : "pointRecord_content.html",
+            }, {
+                "inPageName" : "integralRules",
+                "inUrl" : 'pointRules_content.html',
+            }, {
+                "inPageName" : "titleName",
+                "inUrl" : 'pointGrade_content.html',
+            }],
+            top : titHeight,
+            left : 0,
+            index : 0,
+            change : function(err, res) {
+                 //手势滑动的时候触发
+                tabview.moveTo(res.multiPopSelectedIndex);
+            }
+        });
+            
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+            var user = appcan.getLocVal("EMM_USER_INFO");
+            user = JSON.parse(user);
+            var fullName = user.loginUser.entity.fullName;
+            var lastNameStr = '';
+            var lastName = fullName.substring((fullName.length)-1,fullName.length);
+            var lastNameSP = shouPin.getCamelChars(lastName);
+            lastNameStr = '<div style="font-size:1.5em;text-align:center;color:#ffffff;">'+lastName+'</div>';
+            $('div.lazy').css("background-color",generateColor(lastNameSP));
+            $('div.lazy').html(lastNameStr);
+        });
+        var tabview = appcan.tab({
+            selector : "#tabview",
+            hasIcon : false,
+            hasAnim : true,
+            hasLabel : true,
+            hasBadge : false,
+            data : [{
+            label: '<div class="ulev-1" data-lan="STR_POINT_RECORD">积分记录</div>',
+            "icon": "fa-qq"
+        }, {
+            label: '<div class="ulev-1" data-lan="STR_POINT_RULE">积分规则</div>',
+            "icon": "fa-weixin",
+            badge: 1
+        }, {
+            label: '<div class="ulev-1" data-lan="STR_PERSON_TITLE">头衔称号</div>',
+                "icon" : "fa-weixin",
+                badge : 1
+            }]
+        });
+        tabview.on("click", function(obj, index) {
+            appcan.window.selectMultiPopover("content", index);
+            //设置多页面浮动窗口跳转到的子页面窗口的索引
+        })
+        
+        appcan.button("#nav-left","btn-act",function(){
+            appcan.window.close(-1);
+        })
+ </script>
+</html>

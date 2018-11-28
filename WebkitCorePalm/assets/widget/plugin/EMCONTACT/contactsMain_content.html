@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/gzmubiao.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/my.css">
+    </head>
+<body class="um-vp bg" ontouchstart>
+        <div class="ub ub-ver" id="userInfo">
+            <!--头部背景开始-->
+            <div class="ub ub-ver high-1 ub-fh ub-img1 bc-head xiangdui ">
+            <!--头像-->
+            <div class=" ub ub-f1 ub-ver ub-fh">
+              <div class="ub  ub-pc top-padd2 bot-padd3 ">
+                  <div class="uba-0 radius2">
+                      <div id="gerenxinxi" class="ubtouxiang  ub  ub-ac ub-pc  ub-img1 lazy"></div>
+                  </div>
+                    
+                </div>
+            </div>
+            </div>
+            <!--基本信息开始-->
+            <div class="ub ub-ver ubt-0 ulev-04 bg-wh">
+                <div class="ub ub-f1 all-padd1 ubb-3" id="mobile">
+            <div class="ub-f1 tx-l" data-lan="STR_MOBILE" style="min-width: 2.5em">手机</div>
+                    <div class="ub-f1 tx-r fc-1" id="mobileNo"></div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3" id="phone2">
+            <div class="ub-f1 tx-l" data-lan1="STR_TELEPHONE" style="min-width: 2.5em">内线</div>
+                    <div class="ub-f1 tx-r fc-1" id="teleNo"></div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3" id="phone">
+            <div class="ub-f1 tx-l" data-lan1="STR_TELEPHONE" style="min-width: 2.5em">外线</div>
+                    <div class="ub-f1 tx-r fc-1" id="teleNo2"></div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3" id="ipPhone">
+                    <div class="ub-f1 tx-l" data-lan1="">集群号</div>
+                    <div class="ub-f1 tx-r fc-1" id="jqNum"></div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3" id="youxiang">
+            <div class="ub-f1 tx-l" data-lan="STR_EMAIL" style="min-width: 2.5em">邮箱</div>
+                    <div class="ub-f1 tx-r fc-1" id="email"></div>
+                </div>
+                <div class="ub ub-f1 ubb borderColor bg-color5">
+                    <div class="ub ub-f1 paddLeft paddRight">
+                        <div class="ub paddTB2 fontSize5 textColor15"></div>
+                    </div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3 ">
+            <div class="ub-f1 tx-l" data-lan="STR_CONTACTS_STAFF_ID" style="min-width: 2.5em">工号</div>
+                    <div class="ub-f1 tx-r" id="userId"></div>
+                </div>
+                <div class="ub ub-f1 all-padd1 ubb-3">
+            <div class="ub-f1 tx-l" data-lan="STR_CONTACTS_DEPARTMENT" style="min-width: 2.5em">部门</div>
+                    <div class="ub-f1 tx-r" id="department"></div>
+                </div>
+                <div class="uhide ub-f1 all-padd1 ubb-3 ">
+            <div class="ub-f1 tx-l " data-lan="STR_CONTACTS_JOB" style="min-width: 2.5em">职位</div>
+                    <div class="ub-f1 tx-r" id="roleName"></div>
+                </div>
+                <div class="uhide ub-f1 all-padd1 ubb-3 ">
+            <div class="ub-f1 tx-l" data-lan="STR_CONTACTS_SUPERIOR" style="min-width: 2.5em">上级</div>
+                    <div class="ub-f1 tx-r" id="leader"></div>
+                </div>
+            </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+        <script type="text/javascript" src="js/crypto-js.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/contact.js"></script>
+        <script src="assets/global.js"></script>
+        <script src="assets/services/userInfo.js"></script>
+        <script src="assets/models/userInfo.js"></script>
+        <script src="assets/views/contactsMain_content.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            contactsInfoViewInstance.load();
+            
+        })
+        
+    </script>
+</html>

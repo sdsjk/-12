@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/personCenter.css">
+    <link rel="stylesheet" href="css/gzmubiao.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        .bg_img{
+            background-image: url('css/img/personCenter.png');
+        }
+        .uinn_p{
+            padding: 1.7em 0 .6em 0;
+        }
+        .uinn_t{
+            padding:0.5em 0 0 0;
+        }
+        .bg_wh2{
+            min-width: 100%;
+            min-height: 25%;
+        }
+        .person_padding{
+            padding:0.3em 1em 1em 1.8em;
+        }
+        .person_margin{
+            margin: 0.75em 0;
+        }
+        .uinn_8{
+            padding:0.4em 0 0 0;
+        }
+        .boxSizing{
+            box-sizing: border-box;
+        }
+        /*基础字体颜色*/
+        .font_color_txt{
+            color:#ffffff;
+        }
+        /*基础字体大小*/
+        .font_size_txt{
+            font-size: 0.875em;
+        }
+        .ut-s2 {
+            word-wrap: break-word; 
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body class="um-vp" ontouchstart>
+<div class="ub ub-ver bg_wh2 ub-img1 bg_img  " >
+    <div class="ub ub-ver person_padding"  id="userInfo">
+        <div class="ub ub-ac ub-pc" >
+            <div class="newgezx1-tx ub-img1 ub ub-pc ub-ac lazy" data-original="" style="background-image: url('css/icons/crmtouxiang.png')" id="imgurl"></div>
+        </div>
+        <div class="ub ub-ac ub-pc person_margin">
+            <div class="ub ub-ac ub-pc">
+                <!-- <div class="font_color_txt ulev-3" id="sexN"></div> -->
+                <div class="ub ub-ver font_color_txt ulev-3" id="dptName">                    
+                </div>
+            </div>
+        </div>
+        <div class="ub ub-ver font_color_txt ulev-1">
+            <div class="ub  uinn_8 ">
+                <div class="ub ub-ac" style="width: 55%">
+                    <span>手机：</span>
+                    <div id="phone">  
+                                       
+                    </div>
+                </div>
+                <div class="ub ub-ac " style="width: 45%">
+                    <span>外线：</span>
+                    <p class='ut-s2 ub-f1' id="tel"></p>
+                </div>
+            </div>
+            <div class="ub  uinn_8 ">
+                <div class="ub ub-ac " style="width: 55%">
+                    <span>内线：</span>
+                    <p class='ut-s2 ub-f1' id="tel2"></p>
+                </div>
+                <div class="ub ub-ac" style="width: 45%">
+                    <span>集群号：</span>
+                    <p class='ut-s2 ub-f1' id="jqNum"></p>
+                </div>
+            </div>
+            <div class="ub  uinn_8">               
+                <div class="ub ub-ac ">
+                    <span>邮箱：</span>
+                    <p class='ut-s2 ub-f1' id="email"></p>
+                </div>
+            </div>
+        </div>                
+    </div>
+</div>
+<div class="ub ub-pc  bg-wh  uinn_p">
+        <div class="uinnlist ub ub-f1 ub-ver ub-pc ub-ac  problems">
+        <div class="todoIcon pc0 ub-img"></div>
+            <div class=" ub-f1 ut-s baseColor uinn_t font_size_txt " data-lan="STR_PROBLEMS">常见问题</div>                      
+        </div>
+        <div class="uinnlist ub ub-f1 ub-ver ub-pc ub-ac  feedback ">
+        <div class="todoIcon pc1 ub-img"></div>
+            <div class="ub-f1 ut-s baseColor uinn_t font_size_txt " data-lan="STR_FEEDBACK">意见反馈</div>            
+        </div>    
+    </div>
+<div class="ub ub-ver bg-wh jj_marg0 shezhi ">
+    <div class="uinnlist ub ub-pc ub-ac baseBottom clearIcache">
+        <div class="todoIcon icache ub-img"></div>
+        <div class="ub-f1 ut-s baseColor uinn1 font_size_txt" data-lan="STR_EMPTY_CACHE">清除缓存</div>
+        <div class="baseColor1 ulev-1 rig-padd1"></div>
+        <div class="ub ub-img tagimgR tagwh3"></div>
+    </div>
+    <div class="uinnlist ub ub-pc ub-ac baseBottom about ">
+        <div class="todoIcon pc2 ub-img"></div>
+        <div class="ub-f1 ut-s baseColor uinn1 font_size_txt " data-lan="STR_ABOUT_US">关于掌上深航</div>
+        <div class="baseColor1 ulev-1 rig-padd1"></div>
+        <div class="ub ub-img tagimgR tagwh3"></div>
+    </div>
+</div>
+<div class="ub ub-f1 bg-wh high ub-ac ubb ubt bder-color lef-padd2 rig-padd1" id="tuichu">
+        <div class="ub  ub-f1 ub-ac">
+            <div class="ub ub-f1 ub-pc" style="color:#EA4F13" data-lan="STR_EXIT_ACCOUNT">退出账号</div>
+    </div>
+</div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/global.js"></script>
+<script src="assets/services/userInfo.js"></script>
+<script src="assets/models/userInfo.js"></script>
+<script src="assets/views/personCenter_content.js"></script>
+
+</body>
+<script>
+    appcan.ready(function () {
+        var userId = appcan.getLocVal('userId');
+        //添加面包屑记录
+        var jsonObj = {leaveBreadcrumb:'个人中心页面'};
+        uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+        // 神策插件记录页面开始加载时间
+        var pageLoadParam = {
+            event:"pageLoadRequestDuration"
+        };
+        uexSensorsAnalytics.trackTimerBegin(JSON.stringify(pageLoadParam));
+        // 神策插件页面加载结束时间参数
+        var paramTrackTimerPageEnd = FunParamTrackTimerEnd("页面加载","个人中心","","pageLoadRequestDuration","false");
+        try {            
+
+            appcan.frame.setBounce(0, null, null, function (type) {
+                personCenterViewInstance.load();
+            }, '#ecf3f7');           
+            //获取登录人的详细信息
+                personCenterViewInstance.load();
+            personCenterViewInstance.modelSet();
+            
+            uexWidgetOne.cbGetCurrentWidgetInfo = function (opId, dataType, data) {
+                var obj = eval('(' + data + ')');
+                var version = obj.version;
+                $("#appversion").html('v'+version);
+            };
+            uexWidgetOne.getCurrentWidgetInfo();
+
+            
+            uexEMM.cbLogout = function (data) {
+                
+                appcan.window.open("login", "login.html", 10);
+                //避免进入登陆页过慢，而快速关闭了当前页;
+                setTimeout(function(){
+                     appcan.window.publish("indexClose", "");
+                },200);
+            }
+        } catch (E) {
+        }
+        // 神策插件记录页面加载结束时间
+        uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerPageEnd));
+        
+
+    
+        appcan.button(".problems", "btn-act", function () {
+              appcan.window.open("problems", "personCenter/problems.html", 10);
+             //开启神策埋点事件追踪
+           try{  
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'个人中心',
+                            funcName:'常见问题',
+                            buttonName:'常见问题'                               
+                        }
+              };
+              
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+           }catch(e){
+               
+           }
+        });
+        appcan.button(".feedback", "btn-act", function () {
+             appcan.window.open("feedBackList", "personCenter/feedBackList.html", 10);
+             //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'个人中心',
+                            funcName:'意见反馈',
+                            buttonName:'意见反馈'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));            
+        });
+        //清除缓存
+        appcan.button(".clearIcache", "btn-act", function () {
+        	appcan.window.openToast("正在清除中...");
+            var emmToken = appcan.getLocVal("emmToken");
+            var emmSoftToken = appcan.getLocVal("emmSoftToken");
+            var emmAccessToken = appcan.getLocVal("emmAccessToken");
+	        //登录xmasOA平台缓存
+	        var xOaRet = appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+	        var xOaTime = appcan.getLocVal("EPortal-XOA-LOGIN-TIME");
+	        var xOaSession = appcan.getLocVal("XMAS-SESSIONID");
+	        var tts = appcan.getLocVal("EPortal-EMM-LOGIN-TIME");
+            var loginPass = appcan.getLocVal("loginPass");
+            var username = appcan.getLocVal("loginName");
+            var userId = appcan.getLocVal("userId");
+            var pwd = appcan.getLocVal("emm_orgPwd");
+            var Config = appcan.getLocVal("EPORTAL_CONFIG")||localStorage.getItem('EPORTAL_CONFIG');
+            var personOrgName = appcan.getLocVal("personOrgName")|| localStorage.getItem("personOrgName");  
+            var DepartmentId = appcan.getLocVal("departmentId")|| localStorage.getItem("departmentId"); 
+            var EmmUserInfo = appcan.getLocVal("EMM_USER_INFO")|| localStorage.getItem("EMM_USER_INFO");
+            var EPortalUserInfo = appcan.getLocVal("EPortal-UserInfo");
+            var appCenter = appcan.getLocVal("CACHE_APPS_CENTER_LIST") || '';
+            var appAdd = appcan.getLocVal("CACHE_APPS_LIST_ADD") || '';
+            var isFirst_guide = appcan.getLocVal("GUIDEPAGER_FIRST") || '';
+    		var rootCheck = appcan.getLocVal("rootCheck") || '';
+    		var indexList = appcan.getLocVal('CUSTOM-INDEX') || '';//置顶后位置缓存
+            var delList = appcan.getLocVal('DEL-MODULE') || '';
+            //清除缓存
+            uexWidgetOne.cleanCache();
+            
+            appcan.setLocVal("EPORTAL_CONFIG",Config); 
+            appcan.setLocVal("personOrgName",personOrgName); 
+            appcan.setLocVal("departmentId",DepartmentId); 
+            appcan.setLocVal("EMM_USER_INFO",EmmUserInfo); //不清除EMM个人信息缓存
+            appcan.setLocVal("EPortal-UserInfo",EPortalUserInfo); //不清除个人信息缓存
+            appcan.setLocVal("emmToken",emmToken); //不清除token值
+            appcan.setLocVal("emmSoftToken",emmSoftToken); //不清除token值
+            appcan.setLocVal("emmAccessToken",emmAccessToken); //不清除emmtoken值
+            appcan.setLocVal("loginName",username); //不清除用户名
+            appcan.setLocVal("loginPass",loginPass); //不清除登录密码
+            appcan.setLocVal("EPortal-EMM-LOGIN-TIME",tts); //不清除初次登陆时间
+            appcan.setLocVal("userId", userId); //不清除用户id
+            appcan.setLocVal("emm_orgPwd", pwd); //不清除emm密码
+            appcan.setLocVal("CACHE_APPS_CENTER_LIST", appCenter); //不清除记录应用中心的应用缓存
+            appcan.setLocVal("CACHE_APPS_LIST_ADD", appAdd); //不清除记录已经添加应用的缓存
+            appcan.setLocVal("GUIDEPAGER_FIRST",isFirst_guide);   //不清除记录引导页已展示缓存
+    		appcan.setLocVal("rootCheck",rootCheck); //不清除记录首次检测越狱设备
+    		appcan.setLocVal('CUSTOM-INDEX',indexList);//不清除置顶后的位置变化数据
+            appcan.setLocVal('DEL-MODULE',delList); //不清除删除后元素ID数据
+              //存储xmasOA平台缓存
+	        appcan.setLocVal('EPortal-XOA-LOGIN-RET',xOaRet);
+	        appcan.setLocVal('EPortal-XOA-LOGIN-TIME',xOaTime); 
+	        appcan.setLocVal('XMAS-SESSIONID',xOaSession); 
+            window.setTimeout(function(){
+                    appcan.window.closeToast();
+            },2000);
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'个人中心',
+                            funcName:'清除缓存',
+                            buttonName:'清除缓存'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            
+        });
+        appcan.button(".about", "btn-act", function () {
+            appcan.window.open("about", "personCenter/about.html", 10);
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'个人中心',
+                            funcName:'关于掌上深航',
+                            buttonName:'关于掌上深航'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));            
+        });
+        var flag = 0;
+        appcan.button("#tuichu", "ani-act", function () {
+            var STR_NOTICE = tools.getString("STR_NOTICE"),
+                    STR_IF_EXIT_ACCOUNT = tools.getString("STR_IF_EXIT_ACCOUNT"),
+                    BTN_OK = tools.getString("BTN_OK"),
+                    BTN_CANCEL = tools.getString("BTN_CANCEL");
+            if (!flag) {
+                flag = 1;
+                appcan.window.alert({
+                    title: STR_NOTICE,
+                    content: STR_IF_EXIT_ACCOUNT,
+                    buttons: [BTN_OK, BTN_CANCEL],
+                    callback: function (err, data, dataType, optId) {
+                        if (data == 0) {
+                            var username = appcan.getLocVal("loginName");
+                            var userId = appcan.getLocVal("userId");
+                            uexWidget.delPushInfo(userId, username);
+                            var appAdd = appcan.getLocVal("CACHE_APPS_LIST_ADD") || '';
+                            var isFirst_guide = appcan.getLocVal("GUIDEPAGER_FIRST") || '';
+                            var rootCheck = appcan.getLocVal("rootCheck") || '';
+                            var indexList = appcan.getLocVal('CUSTOM-INDEX') || '';//置顶后位置缓存
+                            var delList = appcan.getLocVal('DEL-MODULE') || '';
+                            var paramsList = appcan.getLocVal('menuAuthorization2');
+                            appcan.locStorage.remove();
+                            appcan.setLocVal("CACHE_APPS_LIST_ADD", appAdd); //不清除记录已经添加应用的缓存
+                            appcan.setLocVal("GUIDEPAGER_FIRST",isFirst_guide);   //不清除记录引导页已展示缓存
+                            appcan.setLocVal("rootCheck",rootCheck); //不清除记录首次检测越狱设备
+                            appcan.setLocVal('CUSTOM-INDEX',indexList);//不清除置顶后的位置变化数据
+                            appcan.setLocVal('DEL-MODULE',delList); //不清除删除后元素ID数据
+                            appcan.setLocVal('menuAuthorization2',paramsList); //不清除在线参数数据
+                            uexEMM.logout();
+                            uexXmlHttpMgr.clearCookie(); //清除cookie，解决ios上重新登录mas的sid不更新问题
+                            //开启神策埋点事件追踪
+                             var param = {
+                                        event: 'platformClick',
+                                        propertieDict: {
+                                            userId:userId,
+                                            module:'个人中心',
+                                            funcName:'退出掌上深航',
+                                            buttonName:'退出'                               
+                                        }
+                              };
+                              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+                        } else {
+                            flag = 0;
+                        }
+                    }
+                });
+            }
+        });
+        
+        appcan.button("#myicon", "btn-act", function () {
+            var imgIcon = appcan.getLocVal(storeKey.PERSON_INFO_ICON);
+            if(imgIcon){
+                var param = {
+                    displayActionButton: false,
+                    displayNavArrows: false,
+                    enableGrid: false,
+                    startIndex: 0,
+                    data: [{
+                        src:imgIcon
+                    }]
+                };
+                var data=JSON.stringify(param);
+                uexImage.openBrowser(data);
+            }
+        });
+    });
+</script>
+</html>

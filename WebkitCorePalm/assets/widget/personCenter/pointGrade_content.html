@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body class="um-vp bc-wh" ontouchstart>
+        <div class="ub ub-f1 ub-ver t-c fontSize2 uof">
+            <div class="ub ub-f1 top-padd6"></div>
+            <div class="ub ub-f1 ub-ver ubt ubr ubl  ubbColor">
+                <div class="ub ub-f1 ubb ubbColor1 fontSizeSty bg-gray1">
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c" style="width:25%" data-lan="STR_LEVEL">等级</div>
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c" style="width:35%" data-lan="STR_EXPERIENCE">经验</div>
+            <div class="ub ubr ubbColor1 ub-ac ub-pc tx-c" style="width:40%" data-lan="STR_PERSON_TITLE">头衔称号</div>
+                </div>
+             
+                <div class="ub ub-f1 ub-ver" id="list">
+                </div>
+            </div>
+        </div>
+        <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+            <div class="ub ub-ver ub-ac ub-pc">
+                <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+        <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                    暂无数据
+                </div>
+            </div>
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/pointGrade.js"></script>
+        <script src="../assets/models/pointGrade.js"></script>
+        <script src="../assets/views/pointGrade_content.js"></script>
+    </body>
+    <script>
+        var arrData = {"status":"000","msg":{"list":[{"grades":1,"gradesName":"新兵","lowerEmpiric":0,"upperEmpiric":49,"objectId":"565e50cf49a44bf07d1b9083"},{"grades":2,"gradesName":"列兵","lowerEmpiric":50,"upperEmpiric":149,"objectId":"565e50bb49a44bf07d1b9082"},{"grades":3,"gradesName":"下士","lowerEmpiric":150,"upperEmpiric":299,"objectId":"565e50aa49a44bf07d1b9081"},{"grades":4,"gradesName":"中士","lowerEmpiric":300,"upperEmpiric":499,"objectId":"565e509549a44bf07d1b9080"},{"grades":5,"gradesName":"上士","lowerEmpiric":500,"upperEmpiric":799,"objectId":"565e507f49a44bf07d1b907f"},{"grades":6,"gradesName":"准尉","lowerEmpiric":800,"upperEmpiric":1199,"objectId":"565e506949a44bf07d1b907e"},{"grades":7,"gradesName":"少尉","lowerEmpiric":1200,"upperEmpiric":1699,"objectId":"565e505349a44bf07d1b907d"},{"grades":8,"gradesName":"中尉","lowerEmpiric":1700,"upperEmpiric":2399,"objectId":"565e504149a44bf07d1b907c"},{"grades":9,"gradesName":"上尉","lowerEmpiric":2400,"upperEmpiric":3299,"objectId":"565e502e49a44bf07d1b907b"},{"grades":10,"gradesName":"大尉","lowerEmpiric":3300,"upperEmpiric":4499,"objectId":"565e501a49a44bf07d1b907a"},{"grades":11,"gradesName":"少校","lowerEmpiric":4500,"upperEmpiric":5999,"objectId":"565e4fca49a44bf07d1b9079"},{"grades":12,"gradesName":"中校","lowerEmpiric":6000,"upperEmpiric":7999,"objectId":"565e4fb249a44bf07d1b9078"},{"grades":13,"gradesName":"上校","lowerEmpiric":8001,"upperEmpiric":9999,"objectId":"565e4f5849a44bf07d1b9077"},{"grades":14,"gradesName":"大校","lowerEmpiric":10000,"upperEmpiric":12499,"objectId":"565e4f3d49a44bf07d1b9076"},{"grades":15,"gradesName":"准将","lowerEmpiric":12500,"upperEmpiric":15999,"objectId":"565e4f1649a44bf07d1b9075"},{"grades":16,"gradesName":"少将","lowerEmpiric":16000,"upperEmpiric":24999,"objectId":"565e4ef549a44bf07d1b9074"},{"grades":17,"gradesName":"中将","lowerEmpiric":25000,"upperEmpiric":34999,"objectId":"565e4ed949a44bf07d1b9073"},{"grades":18,"gradesName":"上将","lowerEmpiric":35000,"upperEmpiric":49999,"objectId":"565e4ec249a44bf07d1b9072"},{"grades":19,"gradesName":"大将","lowerEmpiric":50000,"upperEmpiric":99999,"objectId":"565e4ea549a44bf07d1b9071"},{"grades":20,"gradesName":"元帅","lowerEmpiric":100000,"upperEmpiric":999999,"objectId":"565e4e7d49a44bf07d1b9070"}]}};
+        appcan.ready(function() {
+            pointGradeListViewInstance.load();
+        })
+    </script>
+</html>

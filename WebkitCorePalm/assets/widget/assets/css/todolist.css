@@ -1,0 +1,70 @@
+.toReview{
+    background-image: url("images/toReview.png")
+}
+.toApprove{
+    background-image: url("images/toApprove.png")
+}
+.toTarget{
+    background-image: url("images/target.png")
+}
+.toTask{
+    background-image: url("images/task.png")
+}
+.toCule{
+    background-image: url("images/cule.png")
+}
+
+.todoIcon {
+    height: 1.5625em;
+    width: 1.5625em;
+}
+.remindIconSize{
+    width: 2em;
+    height: 2em;
+    border-radius: .2em;
+}
+.remindNotice{
+    background-image: url("images/noticeIcon.png");
+}
+.remindPlan{
+    background-image: url("images/planIcon.png");
+}
+.remindFlowicon{
+    background-image: url("images/flowicon1.png");
+}
+.defaultIcon {
+    background-image: url(../../css/img/defaultIcon.png);
+}
+.left{
+    background-image: url("images/left.png");
+    width:.3125em;
+    height:.5em;
+}
+.leftPosition{
+    top:1em;
+    right:-1px;
+    z-index: 10;
+}
+.uinnb5{
+    padding-bottom: .5em;
+}
+.uinnt5{
+    padding-top: .5em;
+}
+.tagwh3 {
+width: 0.5625em;
+height: 0.9375em;
+}
+.tagimgR {
+background-image: url('../../css/img/tagRight.png') !important;
+}
+.uinnremind{
+    padding: .5em .5em 0em .5em;
+    bottom: 0;
+}
+.uinnb2{
+    padding-bottom: .3em;
+}
+.uinnr3{
+    padding-right: .3em;
+}

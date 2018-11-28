@@ -1,0 +1,865 @@
+/*目标动态*/
+.color {
+    color: #505050;
+}
+.fc {
+    color: #1b8eda;
+}
+.fctime {
+    color: #959595;
+}
+.border-bottomm {
+    border-bottom: 1px solid #d7d7d7;
+}
+.mar {
+    margin: 0.5em 0;
+}
+.fontm {
+    font-size: 0.875em;
+}
+.mhei {
+    height: 3.2em;
+    line-height: 1.6em;
+}
+.padding {
+    padding: 0 1em;
+}
+
+/*打卡*/
+.hh {
+    height: 3.6em;
+}
+.mFont {
+    height: 2.375em;
+    font-size: 1.2em;
+    font-weight: bold;
+}/*line-height:2.375em;*/
+.fonts {
+    font-size: 0.875em;
+}
+.fonts1 {
+    font-size: 0.8em;
+}
+em {
+    color: #e35652;
+    font-style: normal;
+}
+.hei {
+    height: 1.8em;
+    line-height: 1.8em;
+}
+.greenf {
+    color: #6ec251;
+}
+.blue {
+    color: #1b8eda;
+}
+.redf {
+    color: #e35652;
+}
+.yellow {
+    color: #ffac1b;
+}
+.weidk {
+    line-height: 1.8em;
+    text-align: center;
+}
+.padd {
+    padding: 0.25em;
+}
+.padd1 {
+    padding: 0.25em 1em;
+}
+.jiange {
+    height: 0.5em;
+    background-color: #ecf3f7;
+}
+.bottom-border {
+    border-bottom: 1px solid #ecf3f7;
+}
+.daka1 {
+    background-image: url(img/daka1.png);
+    height: 1.6em;
+    width: 1.6em;
+}
+
+/*工作任务*/
+.fontS {
+    font-size: 1em;
+}
+.fontC {
+    color: #434343;
+}
+.fontC2 {
+    color: #a0a0a0;
+}
+.fontC3 {
+    color: #e35652;
+}
+.hei1 {
+    height: 1.8em;
+    line-height: 1.8em;
+}
+.gongzuorenwu {
+    width: 1.1875em;
+    background-image: url(img/gongzuorenwu.png);
+    height: 1.1875em;
+}
+.gongzuorenwu1 {
+    background-image: url(img/gongzuorenwu1.png);
+    height: 1em;
+}
+.border-bottom {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/*选择工作任务*/
+.xzgzfont {
+    font-size: 0.9375em;
+    color: #434343;
+}
+.xzgzhei {
+    height: 1.8em;
+}
+/*收到的会议*/
+.daka2 {
+    width: 1.1875em;
+    background-image: url(img/daka1.png);
+    height: 1.1875em;
+}
+.fonth {
+    color: #9c9c9c;
+    font-size: 0.9375em;
+}
+.paddinghui {
+    padding: 0.3em 0em 0.25em 0.625em;
+}
+
+/*快速签到*/
+.map {
+    height: 12.75em;
+    border: 1px solid #a9a9a9;
+}
+.zdiv {
+    height: 1.4375em;
+    width: 1.5em;
+}
+.zuobiao {
+    background-image: url(img/zuobiao.png);
+}
+.fontkuai {
+    font-size: 1em;
+    color: #434343;
+}
+.fontkuai2 {
+    font-size: 0.85em;
+    color: #a0a0a0;
+}
+.paddkuai {
+    padding-left: 3em;
+}
+.pbottom {
+    padding-bottom: 0.5em;
+}
+.ub-img-l {
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.mar-left-sh {
+    margin-left: 0.5em;
+    margin-right: 2.5em;
+}
+
+/*申请单*/
+.zhei {
+    padding: 1.25em 0.875em;
+    font-size: 0.9375em;
+}
+.zcolor1 {
+    color: #a9a9a9;
+}
+.zcolor2 {
+    color: #d0d0d0;
+}
+.zpadd {
+    padding: 0.75em 0.875em;
+    font-size: 0.9375em;
+}
+.zfonts {
+    font-size: 1em;
+}
+
+/*通讯录（工作任务）*/
+.font-c1 {
+    color: #6ec251;
+    font-size: 0.9375em;
+}
+.font-c2 {
+    color: #a0a0a0;
+    font-size: 0.9375em;
+}
+.txl-gzrw {
+    width: 1.1em;
+    background-image: url(img/txl-gongzuorw.png);
+    height: 1em;
+}
+.txl-gzrw2 {
+    width: 1.1em;
+    background-image: url(img/txl-gongzuorw2.png);
+    height: 1em;
+}
+.mleft {
+    margin-left: 1.25em;
+}
+.renwucolor {
+    color: #434343;
+}
+.renwusize {
+    font-size: 0.75em;
+}
+.renwumar {
+    margin-left: 0.5em;
+}
+/*客户列表*/
+.blue-font {
+    color: #1b8eda;
+}
+
+/*积分获取记录*/
+.jfont-s {
+    font-size: 1em;
+}
+
+/*销售机会主页*/
+.xsjhzy {
+    background-image: url(img/more.png);
+    height: 1em;
+}
+.duihua {
+    background-image: url(img/duihua.png);
+    height: 0.84375em;
+    width: 0.8125em;
+}
+.xsmarB {
+    margin-bottom: 0.5em;
+}
+.duihuacolor {
+    color: #0071bc;
+}
+.paddxsb {
+    padding-bottom: 0.5em;
+}
+.paddxs {
+    padding: 0.5em 0;
+}
+.paddmoney {
+    padding: 1em 0;
+}
+.colorRed {
+    color: #eb606a;
+}
+.paddTop {
+    padding-top: 1em;
+}
+.borderLeft {
+    border-left: 1px solid #dadada;
+}
+.xsmar1 {
+    margin: 0 0 0 2.5em;
+}
+.jintian {
+    background-color: #38aefc;
+    border-radius: 40px;
+    width: 4.375em;
+    height: 1.625em;
+    color: #fff;
+    line-height: 1.625em;
+    text-align: center;
+}
+.jintian2 {
+    background-color: #acacac;
+    border-radius: 40px;
+    width: 4.375em;
+    height: 1.625em;
+    color: #fff;
+    line-height: 1.625em;
+    text-align: center;
+}
+.hmmlineH {
+    line-height: 1.7em;
+}
+.marleft {
+    margin-left: 0.3em;
+}
+.uinnxs {
+    padding: 1em 0 1em 1.3em;
+}
+.hmmbor {
+    border: 1px solid #dadada;
+}
+.uinnxs2 {
+    padding: 0.5em;
+}
+.img-xsjh {
+    background-image: url(img/xiaoshoujhzy.png);
+    height: 1em;
+    width: 1.6em;
+    position: absolute;
+    top: 2.5em;
+    left: -1.6em;
+}
+.img-xsjh1 {
+    background-image: url(img/xiaoshoujhzy1.png);
+    height: 1em;
+    width: 1.6em;
+    position: absolute;
+    top: 2.5em;
+    left: -1.6em;
+}
+.tjjhdt {
+    background-image: url(img/tjjhdt.png);
+    height: 1.25em;
+    width: 1.25em;
+}
+.dashbor {
+    border-bottom: 1px dashed #38aefc;
+}
+.divdaxiao {
+    margin: 0.5em
+}
+.tupian {
+    background-image: url(img/guanliangzmb.png);
+    width: 4em;
+    height: 4em;
+}
+.xsfont-c1 {
+    color: #b0b0b0;
+}
+.namecolor {
+    color: #696969;
+}
+.font36 {
+    font-size: 1.125em;
+}
+.font34 {
+    font-size: 1.0625em;
+}
+.font30 {
+    font-size: 0.9375em;
+}
+.font28 {
+    font-size: 0.875em;
+}
+.font24 {
+    font-size: 0.75em;
+}
+.font26 {
+    font-size: 0.8125em;
+}
+.font20 {
+    font-size: 0.825em;
+}
+.xiaoshoujt {
+    background-image: url(img/xiaoshoujt.png);
+    width: 0.6em;
+    height: 1em;
+}
+.xsmarL {
+    margin-left: 0.8125em;
+}
+.xsmarR {
+    margin-right: 0.8125em;
+}
+
+/*关联销售机会*/
+.jhpadd {
+    padding: 0.5em 0 0.35em 0;
+}
+.jhpadd2 {
+    padding: 0 0 0.375em 0;
+}
+
+/*提交的报告*/
+.tijiaobg {
+    width: 1.1875em;
+    background-image: url(img/tijiaobg.png);
+    height: 1.1875em;
+}
+.daka3 {
+    width: 1.3em;
+    background-image: url(img/daka.png);
+    height: 1.3em;
+}
+.fonth1 {
+    color: #9c9c9c;
+    font-size: 0.8125em;
+}
+.bgactive {
+    background-color: #f3f3f3;
+}
+.tjborder {
+    border-bottom: 2px solid #1b8eda;
+}
+.tjhead {
+    height: 3.0625em;
+    font-size: 1em;
+    color: #9c9c9c;
+}
+.tjborderL {
+    border-left: 1px solid #9c9c9c;
+}
+.touchActive {
+    border-bottom: 3px solid #1b8eda;
+    color: #1b8eda;
+}
+.tjcolor1 {
+    color: #434343;
+}
+.tjcolor2 {
+    color: #b5b5b5;
+}
+.tjfontsize {
+    font-size: 0.8125em;
+}
+.xianshi {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.gzrwpadd {
+    padding: 0.75em 0.625em;
+}
+.gztoux {
+    width: 1.9375em;
+    background-image: url(img/head.png);
+    height: 1.9375em;
+    border-radius: 1.9375em;
+}
+
+/*查询结果*/
+.triblue {
+    width: 0.78em;
+    background-image: url(img/triblue.png);
+    height: 0.47em;
+}
+.back {
+    background-image: url(img/richengxq1.png) repeat-x;
+    height: 0.8em;
+}
+.cxpadd1 {
+    padding: 1em 1em 1.125em 1.0625em;
+}
+.cxpadd2 {
+    padding: 0.9735em 1em 0.875em 1.0625em;
+    font-size: 0.75em;
+}
+.width1 {
+    width: 4em;
+}
+.width2 {
+    width: 3.75em;
+}
+.width3 {
+    width: 3.5em;
+}
+.width4 {
+    width: 4em;
+}
+
+/*详情页*/
+.xiangqingtu {
+    width: 18.1875em;
+    height: 9.4375em;
+}
+.xqhead {
+    font-size: 1.125em;
+}
+.xqcon {
+    font-size: 0.9375em;
+}
+.xqcon p {
+    line-height: 1.5em;
+}
+.xqpadd {
+    padding: 0.7em 0;
+}
+.bgxq_width {
+    width: 2.59375em;
+}
+.kehu_mar41 {
+    margin: 0.40625em 0em 0.40625em 0.625em;
+}
+.gudingH {
+    height: 6.90625em;
+}
+/*推荐详情页*/
+.conH {
+    min-height: 0.8125em;
+    padding-top:0.3125em;
+    padding-bottom:0.3125em;
+    color: #686868;
+    background: #f8f8f8;
+}
+.conC {
+    min-height:8em;
+}
+
+/*创建推荐*/
+.cjtjpaddB {
+    padding-bottom: 3.875em;
+}
+
+.logopadd {
+    padding: 3.625em 4.9375em 0;
+}
+.underpadd {
+    padding: 1.5625em 0.625em 1.75em 0.625em;
+}
+.tubiaopadd {
+    padding: 0 1.09375em;
+}
+.twmar {
+    margin-top: 0.3125em;
+    color: #777777;
+}
+.kphead {/*height:2.4375em;*/
+    border-bottom: 1px solid #d7d7d7;
+}
+.tipset2 {
+    background-image: url(img/kpjiantou.png);
+    height: 0.6875em;
+    width: 1.092em;
+}
+.kppaddtb {
+    padding: 0.5em 0;
+}
+.kpmar {
+    padding: 0.8125em 0;
+}
+.xssxline {
+    line-height: 1.75em;
+}
+.xssxmarT {
+    margin-top: 0.75em;
+    padding-bottom: 0.45em;
+}
+.xssxmarB {
+    margin-bottom: 0.5625em;
+    padding-top: 0.45em;
+}
+.jiacu {
+    font-weight: bold;
+}
+.font1-4 {
+    font-size: 1.4em;
+}
+.font1-8 {
+    font-size: 1.8em;
+}
+.pkcolor1 {
+    color: #00b0c8;
+}
+.pkcolor2 {
+    color: #d48a65;
+}
+.pkcolor3 {
+    color: #d6b297;
+}
+.pkcolor4 {
+    color: #f07d8a;
+}
+.pkcolor5 {
+    color: #7f8443;
+}
+.pkcolor6 {
+    color: #e35652;
+}
+.pkcolor7 {
+    color: #6ec251;
+}
+.kpgz1 {
+    background-image: url(img/kpgz1.png);
+    width:1.6em;
+    height:1.6em;
+}
+.kpgz2 {
+    background-image: url(img/kpgz2.png);
+    width:1.6em;
+    height:1.6em;
+}
+.kppadB {
+    padding-bottom: 0.5em;
+}
+.kpuser {
+    background-image: url(img/kpuser.png);
+    width: 1.25em;
+    height: 1.25em;
+}
+.kpjia {
+    background-image: url(img/kpjia.png);
+    width: 1em;
+    height: 1em;
+}
+.calender {
+    background-image: url(img/calender.png);
+    width: 1.25em;
+    height: 1.3125em;
+}
+.kpCIS1 {
+    background-image: url(img/kpCIS1.png);
+    width: 3em;
+    height: 3em;
+}
+.kpCIS2 {
+    background-image: url(img/kpCIS2.png);
+    width: 3em;
+    height: 3em;
+}
+.kpCIS3 {
+    background-image: url(img/kpCIS3.png);
+    width: 3em;
+    height: 3em;
+}
+.kpcolor {
+    color: #a1a1a1;
+}
+
+.kpimg {
+    background-image: url(img/kpimg.png);
+    width: 3.75em;
+    height: 3.75em;
+    position: relative;
+    top: 0.6em;
+}
+.kpimg1 {
+    background-image: url(img/kpimg1.png);
+    width: 3.9375em;
+    height: 3.9375em;
+}
+.kppadl {
+    padding-left: 0.5em;
+}
+.kpuinn1 {
+    padding: 0.2em 0.5em;
+}
+.kpuinn2 {
+    padding: 1em 1em;
+}
+.kpuinn3 {
+    padding: 0.7em 1em;
+}
+.uinn8 {
+    padding: 0.5em 1em 0 1em;
+}
+.uinn9 {
+    padding: 0 1em;
+}
+
+/*企业CIS*/
+.qymargin {
+    margin: 1em 0.5em;
+}
+.qymargin2 {
+    margin-top: 8em;
+}
+.qydenglu {
+    background: #e35652;
+    color: #ffffff;
+    font-weight: bold;
+}
+.qytianjia {
+    background: #6da802;
+    color: #ffffff;
+    font-weight: bold;
+}
+.qyhidden {
+    display: none;
+}
+.qyxianshi {
+    display: block;
+}
+
+/*本周周报*/
+.zbpadd {
+    padding: 0.75em 0.625em 0 0.625em;
+}
+.zbpadd2 {
+    padding: 0.625em 0;
+}
+.zbpadd3 {
+    padding: 0 0.5em;
+}
+
+.addkp {
+    background-image: url(img/add-act.png);
+    height: 1.2em;
+    width: 2em;
+}
+
+/*index*/
+
+.t0 {
+    top: 0em;
+}
+.l0 {
+    left: 0em;
+}
+.mr2 {
+    margin-right: 0.2em;
+}
+.mt1 {
+    margin-top: 0.1em;
+}
+.mt4 {
+    margin-top: 0.4em;
+}
+.mt5 {
+    margin-top: 0.5em;
+}
+.mt8 {
+    margin-top: 0.8em;
+}
+.mt134 {
+    margin-top: 1.34em;
+}
+.mb2 {
+    margin-bottom: 0.2em;
+}
+.ml2 {
+    margin-left: 0.2em;
+}
+.ml5 {
+    margin-left: 0.5em;
+}
+.ml6 {
+    margin-left: 0.6em;
+}
+.fs75 {
+    font-size: 0.75em;
+}
+.fs86 {
+    font-size: 0.86em;
+}
+.fs94 {
+    font-size: 0.94em;
+}
+.fs143 {
+    font-size: 1.43em;
+}
+.c1 {
+    color: #ffffff;
+}
+.c4 {
+    color: #525ba4;
+}
+.c5 {
+    color: #999999;
+}
+.w_100 {
+    width: 100%
+}
+.h_100 {
+    height: 100%
+}
+.pr {
+    position: relative;
+}
+.pa {
+    position: absolute;
+}
+.border {
+    width: 5.13em;
+    height: 5.13em;
+    border: 0.32em solid rgba(212,212,212,0.3);
+    box-sizing: border-box;
+    border-radius: 5.13em;
+    left: 1em
+}
+.background {
+    height: 6em;
+    width: 6.0em;
+    -webkit-background-size: 100% 100%;
+    background-position: center;
+}
+
+/*创建报告*/
+.cjrbhead {
+    background: #daf0ff;
+    color: #434343;
+}
+.cjrbpadd1 {
+    padding: 1.3125em 6em;
+}
+.cjrbpadd2 {
+    padding: 0.75em 0.825em;
+}
+.cjrbpadd3 {
+    padding: 1.3125em 0.625em;
+}
+.cjrbtext {
+    height: 5.625em;
+}
+.cjrb2padd1 {
+    padding: 1.3125em 1.1875em;
+}
+.cjrb2padd2 {
+    padding: 1.3125em 0.625em;
+}
+.cjrb2padd3 {
+    padding: 1.3125em 0;
+    width: 4.615em;
+    text-align: center;
+}
+.cjrb2padd4 {
+    padding-right: 4.3125em;
+}
+.cjrbcolor {
+    color: #9c9c9c;
+}
+.bc-bg2 {
+    background-color: #fff;
+}
+
+/*设置placeholder的颜色*/
+.phc::-webkit-input-placeholder {
+    color: rgba(127,127,127,0.8)
+}
+/*安全中心同设置样式*/
+.shezhi_in {
+    padding: 1.125em 0.625em 1.125em 0.3125em;
+}
+.icon-shezhir {
+    background-image: url(img/xiaoshoujt.png);
+    height: 0.81252em;
+}
+.utlv_21 {
+    color: #434343;
+}
+.bg-c2 {
+    background-color: #fff;
+}
+.gs_h2 {
+    font-size: 1.2em;
+    padding-bottom: 0.3125em;
+}
+.rw-mar-r{
+    margin-right:0.8em;
+}
+.rw-uinn{
+    padding:0.15em .5em;
+}
+.rw-situation1{
+    color:#ff5858;
+    border:1px solid #ff5858;
+}
+.rw-situation2{
+    color:#2b61aa;
+    border:1px solid #2b61aa;
+}
+.rw-situation3{
+    color:#ffa800;
+    border:1px solid #ffa800;
+}

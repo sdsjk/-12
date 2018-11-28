@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/ping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dip"
+        >
+    <LinearLayout
+        android:id="@+id/ping_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+        <TextView
+            android:id="@+id/userName"            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginRight="15dp"
+            android:ellipsize="middle"
+            android:lines="1"
+            />
+        <RatingBar
+            android:id="@+id/userScore"
+            style="@style/appraise_ratingbar_style"
+            android:layout_width="wrap_content"
+            android:layout_height="15dip"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:layout_gravity="center"
+            android:numStars="5"
+            android:rating="3.5" />
+        <TextView
+            android:id="@+id/ratingTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:layout_gravity="right"
+            android:layout_marginRight="0dp"
+            android:textSize="14sp"
+            android:gravity="right"
+            />
+         </LinearLayout>
+        <TextView 
+            android:id="@+id/discussContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ping_config"
+            android:layout_marginTop="8dip"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="系统自带的Gallery选中的item总是在组件的中间。但是有些时候我们需要把选中的元素放在左边或者是Gallery一出来就要放在左边。"
+            />
+    </RelativeLayout>
+</LinearLayout>

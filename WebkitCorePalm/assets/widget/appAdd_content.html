@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/yuefen-style.css">
+        <link rel="stylesheet" href="css/my.css">
+        <link rel="stylesheet" href="css/common.css">
+        <style>
+            .yuandian{
+                height: 0.6em;
+                width: 0.6em;
+                border-radius: 0.3em;
+                margin-right:0.1em;
+                background-color:#ff3333;
+            }
+            .uabs-l{
+                position: absolute;
+                left: -0.7em;
+                top: 0.5em;
+            }
+        </style>
+    </head>
+    <body class="um-vp bg-color" onclick>
+        <div class="ub ub-ver" id="f-card-container">
+            
+        </div>
+        <script id="template" type="text/template">
+          <%_.each(appList, function(item) {%>
+            <div class="<%=item.showType%> sc-bg uinn ulev-1">
+                <div class=""><%=item.appTypeName%></div>
+                <div class="ub-f1 tx-r selectAll" id="SLA-<%=item.appTypeId%>">全选</div>
+            </div>
+            <div class="<%if(item.appType=="25"){%>uhide<%}else{%>ub<%}%> ub11 ubb jj-padd6 borderColor umh6" id="<%=item.appId%>" data-appType="<%=item.appType%>">
+                <div class="umw2 umh4 ub-img4 umar-r" style="background-image: url('<%if(item.iconLoc){%><%=item.iconLoc%><%}else{%>./css/img/appOA.png<%}%>')"></div>
+              <div class="ub ub-pc  ub-ver" style="margin-left: 0.5em">
+                  <div class="<%if(item.installVersion && item.installVersion != item.curVersion){%>ub<%}else{%>uhide<%}%> uabs-l yuandian"></div>
+                  <div class="zt-font6 " ><%=item.name%></div>     
+                  <%if(item.curVersion){%><div class="zt-font11 zt-color2 jj-padd24" ><%=item.curVersion%></div><%}%>
+              </div>   
+              <div class="ub ub-pc ub-ac ub-f1"><div class=""></div></div>          
+              <div class="ub ub-pc ub-ver tx-r">
+                  <div class="addInit ub-img" id="<%=item.appId%>_id"></div>
+              </div>               
+            </div>
+          <%});%>
+        </script>
+        
+        <script src="js/language.js"></script>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/common.js"></script>
+    </body>
+    <script>
+		var work_default = [];
+		var appList = [];
+		var appAddObj = {}; //记录添加到首页的状态；
+		var listDataObj = {};     
+
+		appcan.ready(function() {          
+                appcan.frame.setBounce(0,null,null,function(){            
+                    if(appList.length==0) showView();
+                    else appcan.window.publish("YGET_APPLIST", "");
+                },'rgba(0,0,0,0)');
+                
+                //自动下拉刷新效果
+                if(appList.length==0) uexWindow.topBounceViewRefresh();
+                appcan.window.subscribe("YGET_APPLIST_CB", function(list) {
+                    showView();
+                });
+
+                
+   
+		});
+
+
+        function showView(){           
+            appList = JSON.parse(appcan.locStorage.val("CACHE_APPS_LIST"));               
+            appList = sortAppListByAppType2(appList);    
+            $("#f-card-container").html('');
+            $("#f-card-container").html(_.template($("#template").html(), appList)); 
+
+            var appAdd = appcan.getLocVal("CACHE_APPS_LIST_ADD") || '{}';     
+            appAddObj = JSON.parse(appAdd); //记录添加到首页的状态；
+            
+            for (var i in appList) {
+                var obj = appList[i];
+                
+                //若未添加过，则从greatApp配置添加项
+                if(appAdd == '{}') appAddObj[obj.appId] = obj.greatApp;    
+                if(appAddObj[obj.appId]) {
+                    $('#'+obj.appId+'_id').toggleClass("addInit addSelete");      
+                }
+                    
+                    
+                  
+            }
+            
+            appcan.button(".jj-padd6", "", function() {
+                var _this = this;
+                var appId = _this.id;
+                var addInit = $('#' + appId + '_id');
+                addInit.toggleClass("addInit addSelete");
+                // 点击加号处理new图标 并改变缓存中的新应用  
+                var msgId = (addInit.hasClass("addInit"))?"APP_WORK_DEL":"APP_WORK_ADD";
+                appcan.window.publish(msgId, appId);
+                
+                var state = (addInit.hasClass("addInit"))?false:true;
+                appAddObj[appId] = state;
+                appcan.setLocVal("CACHE_APPS_LIST_ADD", JSON.stringify(appAddObj));
+                
+                var appTypeId = $(_this).attr("data-appType");
+                listDataObj[appTypeId][appId] = state;
+                
+                if(!state){
+                    $('#SLA-'+appTypeId).html('全选');
+                }else{
+                    var appListObj = listDataObj[appTypeId];
+                    var txt = '全不选';
+                    for(var aid in appListObj){
+                        if(!appListObj[aid]) {
+                            txt = '';
+                            break;
+                        }
+                    }
+                    if(txt) $('#SLA-'+appTypeId).html(txt);
+                }
+            });
+            appcan.frame.resetBounce(0);
+            
+            for(var typeId in listDataObj){
+                var appListObj = listDataObj[typeId];
+                var addAll = 1;
+                for(var appId in appListObj){        
+                    if(appAddObj[appId]){
+                        listDataObj[typeId][appId] = 1;
+                    }else{
+                        addAll = 0;
+                    }
+                }
+                if(addAll){
+                    $('#SLA-'+typeId).html('全不选');
+                }
+            }
+            
+            //处理全选全不选操作：
+            appcan.button(".selectAll", "", function() {
+                var typeId = this.id.replace('SLA-','');
+                var innerText = this.innerText;
+                var txt = '全选';
+                var msgId = '';
+                
+                if(innerText == txt){   // 全选   
+                    //进行全部选中操作：
+                    txt = '全不选';
+                    for(var appId in listDataObj[typeId]){
+                        var added = listDataObj[typeId][appId];
+                        var addInit = $('#' + appId + '_id');                             
+                        if(!added) { // 让么有添加到桌面的应用添加到桌面
+                            listDataObj[typeId][appId] = 1;
+                            
+                            addInit.toggleClass("addInit addSelete");
+                          
+                            msgId = "APP_WORK_ADD";
+                            appAddObj[appId] = true;
+                            appcan.window.publish(msgId, appId);
+               
+                        }
+                    }
+                }else{
+                    //进行全部删除操作：
+                    for(var appId in listDataObj[typeId]){
+                        var added = listDataObj[typeId][appId];
+                        var addInit = $('#' + appId + '_id');
+                        if(added){  // 让选中的应用从工作桌面移除
+                            listDataObj[typeId][appId] = 0;
+                            
+                            addInit.toggleClass("addInit addSelete");
+                          
+                            msgId = "APP_WORK_DEL";
+                            appAddObj[appId] = false;
+                            appcan.window.publish(msgId, appId);
+                        }
+                    }
+                }
+                $('#SLA-'+typeId).html(txt);
+                appcan.setLocVal("CACHE_APPS_LIST_ADD", JSON.stringify(appAddObj));
+            });
+        }
+            
+            /**
+     * //对appList数据按类别排序
+     */
+     function sortAppListByAppType2(list){
+        var arrRet = [];
+        var appTypeMap = {};
+        for(var i in list){
+            var objApp = list[i];
+            var id = objApp.appType;
+            var name = objApp.appTypeName;
+            appTypeMap[id]=name;
+        }
+        
+        try{
+            var objTemp = {};
+            for(var i in list){
+                var obj = list[i];
+                obj.showType = 'uhide';
+                obj.appTypeId = '';
+                if(!objTemp[obj.appType]) {
+                    objTemp[obj.appType]=[];
+                    obj.appTypeId = obj.appType;
+                    if(obj.appType!='25') obj.showType = 'ub';
+                    obj.appTypeName = appTypeMap[obj.appType];
+                }
+                objTemp[obj.appType].push(obj);
+                
+               if(!listDataObj[obj.appType]) listDataObj[obj.appType]={};
+               listDataObj[obj.appType][obj.appId] = 0;
+            }
+            for(var ii in objTemp){
+                if(objTemp[ii]) arrRet = arrRet.concat(objTemp[ii]);
+            }
+        }catch(e){
+            arrRet = list;
+        }
+        
+        return arrRet;
+     }
+    </script>
+</html>

@@ -1,0 +1,42 @@
+.personCenter1{
+    background-image: url("images/personCenter1.png")
+}
+.personCenter2{
+    background-image: url("images/personCenter2.png")
+}
+.personCenter3{
+    background-image: url("images/personCenter3.png")
+}
+.personCenter4{
+    background-image: url("images/personCenter4.png")
+}
+.personCenter5{
+    background-image: url("images/personCenter5.png")
+}
+.personCenter6{
+    background-image: url("images/personCenter6.png")
+}
+.personCenter7{
+    background-image: url("images/personCenter7.png")
+}
+.personCenter8{
+    background-image: url("images/personCenter8.png")
+}
+.todoIcon {
+    height: 1.5625em;
+    width: 1.5625em;
+}
+
+.pc0{
+    background-image: url("images/problems.png")
+}
+.pc1{
+    background-image: url("images/feedback.png")
+}
+.pc2{
+    background-image: url("images/about_app.png")
+}
+
+.icache{
+    background-image: url("images/clearIcahce.png")
+}

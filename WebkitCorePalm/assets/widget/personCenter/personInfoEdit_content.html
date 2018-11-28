@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/gzmubiao.css">
+    <link rel="stylesheet" href="../css/yuefen-style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body class="um-vp bg" ontouchstart>
+<div class="ub ub-ver" id="userInfo">
+    <!--头部背景开始-->
+    <!--练习方式区域开始-->
+    <!--基本信息开始-->
+    <div class="ub ub-f1 uinn-09 bg-wh jj_marg0 ubt-1 ubb-3">
+        <div class="u-width t-9c uinn-23 ub ub-ac ub-pc" data-lan="STR_ICON">
+            头像
+        </div>
+        <div class="ub ub-f1 ub-ac ">
+            <div class="newgezx1-tx bg-xindttx ub-img1 ub ub-pc ub-ac lazy" data-original="" id="imgurl" style="background-image: url('../css/icons/crmtouxiang.png')"></div>
+        </div>
+    </div>
+
+    <div class="ub ub-f1 uinn-09 ubb-3 bg-wh ubt-1">
+        <div class="u-width tx-c t-9c uinn-23" data-lan="STR_SEX">
+            性别
+        </div>
+        <div class="uinput ub ub-f1 select">
+            <div class="ub-f1 text-c" data-lan="STR_MALE" id="sexN">男</div>
+            <div class="ub rig-padd1 uhide">
+                <div class="ub ub-img ub-pc ub-pe tagimgR tagwh3 "></div>
+            </div>
+        </div>
+    </div>
+    <div class="ub ub-f1 uinn-09 ubb-3 bg-wh">
+
+        <div class="u-width tx-c t-9c uinn-23" data-lan="STR_MOBILE">
+            手机
+        </div>
+        <div class="uinput ub ub-f1">
+            <input disabled="disabled"  placeholder="请输入手机号码" data-lan="STR_MOBILE_EMPTY" type="tel" class="ub-f1 text-c" value=""
+                   id="phone">
+        </div>
+    </div>
+    <div class="ub ub-f1 uinn-09 ubb-3 bg-wh">
+        <div class="u-width tx-c t-9c uinn-23" data-lan1="STR_TELEPHONE">
+            内线
+        </div>
+        <div class=" uinput ub ub-f1">
+            <input disabled="disabled"   placeholder="请输入座机号码" data-lan="STR_TELEPHONE_EMPTY" type="tel" class="ub-f1 text-c" value=""
+                   id="tel2">
+        </div>
+    </div>
+    <div class="ub ub-f1 uinn-09 ubb-3 bg-wh">
+        <div class="u-width tx-c t-9c uinn-23" data-lan1="STR_TELEPHONE">
+            外线
+        </div>
+        <div class=" uinput ub ub-f1">
+            <input disabled="disabled"   placeholder="请输入座机号码" data-lan="STR_TELEPHONE_EMPTY" type="tel" class="ub-f1 text-c" value=""
+                   id="tel">
+        </div>
+    </div>
+    <div class="ub ub-f1 uinn-09 ubb-3 bg-wh">
+        <div class="u-width tx-c t-9c uinn-23" data-lan="STR_EMAIL">
+            邮箱
+        </div>
+        <div class=" uinput ub ub-f1">
+            <input disabled="disabled"   placeholder="请输入邮箱" data-lan="STR_EMAIL_EMPTY" type="email" class="ub-f1 text-c" value="" id="email">
+        </div>
+    </div>
+</div>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script type="text/javascript" src="../js/crypto-js.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/contact.js"></script>
+<script src="../js/global.js"></script>
+<script src="../assets/services/userInfo.js"></script>
+<script src="../assets/models/userInfo.js"></script>
+<script src="../assets/views/personInfoEdit_content.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        personInfoViewInstance.modelSet();
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/gzmubiao.css">
+        <link rel="stylesheet" href="assets/css/base.css">
+    </head>
+    <body class="um-vp" ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh headColor ub bc-head">
+                <div class="nav-btn" id="nav-left">
+                    <div class="nav-sty" style="width: 4em">
+                        <div class="ub-img icon-nav-left umwh-left" style="margin-left: 0.4375em"></div>
+                    </div>
+                </div>
+                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">   </h1>
+                <div class="nav-btn" id="nav-right">
+                    <!--按钮开始-->
+
+                    <!--按钮结束-->
+                </div>
+            </div>
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l bc-bg">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+        <script src="js/common.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            uexWidget.cbGetOpenerInfo = function(opCode,dataType,data){
+                if(isDefine(data)){
+                    if(data=="gsbumen.html" || data == "contactDptRadio.html"){
+                        location.href = "contactDptRadio.html";//单选
+                    }else if(data=="gsbumenfuxuan.html" || data == "contactDptCheckBox.html"){
+                        location.href = "contactDptCheckBox.html";//复选
+                    }else if(data == "gsrenyuanadd.html" || data == "contactDptCheckBoxIMAdd.html"){
+                        location.href = "contactDptCheckBoxIMAdd.html";//旧群组增加人员
+                    }else if(data == "contactDpt.html"){
+                        location.href = data;
+                    }else if(data=="gsbumenfuxuan1.html" || data == "contactDptCheckBoxIM.html"){
+                        location.href = "contactDptCheckBoxIM.html";//新建群组选人
+                    }
+                }else{
+                }
+            };
+            uexWidget.getOpenerInfo();
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+        });
+        appcan.button("#nav-left", "btn-act", function() {
+             uexWidget.finishWidget("uexWidget.finishWidget");
+        })
+    </script>
+</html>

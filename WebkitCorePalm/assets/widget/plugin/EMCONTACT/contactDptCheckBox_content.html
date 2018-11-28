@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzmubiao.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/gzxiangqing.css">
+</head>
+<body class="um-vp bg" ontouchstart>
+<div class="ub ub-ver uof">
+    <div class="ub ub-f1 bg-color5">
+        <div class="ub ub-ac ub-pc ub-f1 uof" style="padding:.6em .4em .6em .4em; ">
+            <div class=" uinput ub ub-f1  borderColor uba uc-a1 " style="background-color:#fff;">
+                <!-- 搜索的图标 -->
+                <div class="ub ub-ac" id="search">
+                    <div class=" ub-f1 img-search"></div>
+                </div>
+                <form action="javascript:return true;" class="ub ub-f1">
+                <!-- 搜索的图标 结束-->
+                <input oninput="OnInput()" placeholder="请输入搜索关键字" data-lan="TIPS_SEARCH" name="search" type="search"
+                        class="ub-f1" style="padding-right:3em"
+                       id="my_form" onchange="selectWho()">
+                </form>
+                <!-- 删除的图标 -->
+                <div class="uhide-serach ub ub-ac" id="remove">
+                    <div class=" ub-f1 img-remove"></div>
+                </div>
+                <!-- 删除的图标结束 -->
+            </div>
+        </div>
+    </div>
+    <div class="uhide" id="dpt">
+        <div class="ub bot-padd5 top-padd ubb bder-color" id="zibumen" style="width:100%;overflow-x:auto">
+            <div class="bg-wh rig-padd4 uc-a jj_marg1 jj_marg4 uba tx-color1 bder-color1" id="allbm" data-lan="STR_ALL">
+                全部
+            </div>
+        </div>
+        <div id="list">
+            <div class="ub ub-ver bg-wh" id="dptList">
+                <ul></ul>
+            </div>
+            <div id="dev"></div>
+            <div class="ub ub-ver bg-wh" id="perList">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+    <div class="ub ub-ver bg-wh uhide" id="searchList">
+        <ul></ul>
+    </div>
+    <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+        <div class="ub ub-ver ub-ac ub-pc">
+            <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+            <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                暂无数据
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+<script src="assets/global.js"></script>
+<script src="assets/services/contacts.js"></script>
+<script src="assets/models/contacts.js"></script>
+<script src="assets/views/contactDpt_content.js"></script>
+</body>
+<script>
+    var STR_ALL = tools.getString("STR_ALL");
+    var flag = 0;
+    appcan.ready(function () {
+        var IMAdd = zy_parse();
+        flag = IMAdd.IMAdd;
+        if (flag) {
+            try {
+                var userId = appcan.getLocVal("userId").toLowerCase();
+                var defaultIM = JSON.parse(appcan.getLocVal("personId") || '["' + userId + '"]');
+                contactDptListViewInstance.defaultIM = defaultIM;
+                searchListViewInstance.defaultIM = defaultIM;
+            } catch (e) {
+                errorDetail(e);
+            }
+        }
+        searchListViewInstance.kind = "checkbox";
+        contactDptListViewInstance.kind = "checkbox";
+        appcan.frame.setBounce(0, null, null, function (type) {
+            if (parseInt(type) == 0) {
+                contactDptListViewInstance.load(null, null, 1);
+            }
+        }, '#ecf3f7')
+        contactDptListViewInstance.load();
+        appcan.window.subscribe("EMCONTACT_DPT_BACK", function (result) {
+            if ($("#dpt").hasClass("uhide")) {
+                $("#remove").addClass("uhide-serach");
+                $("#my_form").val("");
+                $("#dpt").removeClass("uhide");
+                $("#searchList").addClass("uhide");
+                searchListViewInstance.collection.set();
+                return;
+            }
+            var dptel = $("#zibumen").children().last();
+            if (dptel.html() == STR_ALL) {
+                appcan.window.publish("EMCONTACT_CLOSE", "")
+                return;
+            }
+            dptel = dptel.prev();
+            var pdtId = dptel.data("dpt");
+            if (pdtId) {
+                dptel.next().remove();
+                contactDptListViewInstance.load(dptel.html(), pdtId);
+            } else {
+                $("#allbm").siblings().remove();
+                contactDptListViewInstance.load();
+            }
+
+        });
+    })
+    appcan.button("#allbm", "btn-act", function () {
+        $(this).siblings().remove();
+        contactDptListViewInstance.load();
+    })
+
+</script>
+</html>

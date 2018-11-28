@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="um-vp bc-wh" ontouchstart>
+<div class="content">
+</div>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+</body>
+<script>
+
+    var STR_FAQ_Q_1 = tools.getString("STR_FAQ_Q_1");
+    var STR_FAQ_Q_2 = tools.getString("STR_FAQ_Q_2");
+    var STR_FAQ_Q_3 = tools.getString("STR_FAQ_Q_3");
+    var STR_FAQ_Q_4 = tools.getString("STR_FAQ_Q_4");
+    var STR_FAQ_Q_5 = tools.getString("STR_FAQ_Q_5");
+    var STR_FAQ_Q_6 = tools.getString("STR_FAQ_Q_6");
+    var STR_FAQ_Q_7 = tools.getString("STR_FAQ_Q_7");
+    var STR_FAQ_Q_8 = tools.getString("STR_FAQ_Q_8");
+    var STR_FAQ_Q_9 = tools.getString("STR_FAQ_Q_9");
+    var STR_FAQ_Q_10 = tools.getString("STR_FAQ_Q_10");
+    var STR_FAQ_Q_11 = tools.getString("STR_FAQ_Q_11");
+    var STR_FAQ_Q_12 = tools.getString("STR_FAQ_Q_12");
+    var STR_FAQ_Q_13 = tools.getString("STR_FAQ_Q_13");
+    var STR_FAQ_Q_14 = tools.getString("STR_FAQ_Q_14");
+    var STR_FAQ_Q_15 = tools.getString("STR_FAQ_Q_15");
+    var STR_FAQ_Q_16 = tools.getString("STR_FAQ_Q_16");
+    var STR_FAQ_Q_17 = tools.getString("STR_FAQ_Q_17");
+
+    var STR_FAQ_A_1 = tools.getString("STR_FAQ_A_1");
+    var STR_FAQ_A_2 = tools.getString("STR_FAQ_A_2");
+    var STR_FAQ_A_3 = tools.getString("STR_FAQ_A_3");
+    var STR_FAQ_A_4 = tools.getString("STR_FAQ_A_4");
+    var STR_FAQ_A_5 = tools.getString("STR_FAQ_A_5");
+    var STR_FAQ_A_6 = tools.getString("STR_FAQ_A_6");
+    var STR_FAQ_A_7 = tools.getString("STR_FAQ_A_7");
+    var STR_FAQ_A_8 = tools.getString("STR_FAQ_A_8");
+    var STR_FAQ_A_9 = tools.getString("STR_FAQ_A_9");
+    var STR_FAQ_A_10 = tools.getString("STR_FAQ_A_10");
+    var STR_FAQ_A_11 = tools.getString("STR_FAQ_A_11");
+    var STR_FAQ_A_12 = tools.getString("STR_FAQ_A_12");
+    var STR_FAQ_A_13 = tools.getString("STR_FAQ_A_13");
+    var STR_FAQ_A_14 = tools.getString("STR_FAQ_A_14");
+    var STR_FAQ_A_15 = tools.getString("STR_FAQ_A_15");
+    var STR_FAQ_A_16 = tools.getString("STR_FAQ_A_16");
+    var STR_FAQ_A_17 = tools.getString("STR_FAQ_A_17");
+
+    appcan.ready(function () {
+        appcan.initBounce();
+
+        var data = [
+            {
+                Q: STR_FAQ_Q_1,
+                A: STR_FAQ_A_1
+            }, {
+                Q: STR_FAQ_Q_2,
+                A: STR_FAQ_A_2
+            }, {
+                Q: STR_FAQ_Q_3,
+                A: STR_FAQ_A_3
+            }, {
+                Q: STR_FAQ_Q_4,
+                A: STR_FAQ_A_4
+            }, {
+                Q: STR_FAQ_Q_5,
+                A: STR_FAQ_A_5
+            }, {
+                Q: STR_FAQ_Q_6,
+                A: STR_FAQ_A_6
+            }, {
+                Q: STR_FAQ_Q_7,
+                A: STR_FAQ_A_7
+            }, {
+                Q: STR_FAQ_Q_8,
+                A: STR_FAQ_A_8
+            }, {
+                Q: STR_FAQ_Q_9,
+                A: STR_FAQ_A_9
+            }, {
+                Q: STR_FAQ_Q_10,
+                A: STR_FAQ_A_10
+            }, {
+                Q: STR_FAQ_Q_11,
+                A: STR_FAQ_A_11
+            }, {
+                Q: STR_FAQ_Q_12,
+                A: STR_FAQ_A_12
+            }, {
+                Q: STR_FAQ_Q_13,
+                A: STR_FAQ_A_13
+            }, {
+                Q: STR_FAQ_Q_14,
+                A: STR_FAQ_A_14
+            }, {
+                Q: STR_FAQ_Q_15,
+                A: STR_FAQ_A_15
+            }, {
+                Q: STR_FAQ_Q_16,
+                A: STR_FAQ_A_16
+            }, {
+                Q: STR_FAQ_Q_17,
+                A: STR_FAQ_A_17
+            }
+        ];
+        for (var i in data) {
+            addItem(data[i].Q, data[i].A);
+        }
+    });
+
+    function addItem(question, answer) {
+        var html = $('.content').html();
+       
+        var htmlNew = '<div class="ub ub-f1 ub-ver t-c uof body-padding"><div class="ft-sz3 baseColor uinn question">' + question + '</div><div class="ft-sz3 baseColor1 uinn answer">' + answer + '</div></div>';
+        
+        html += htmlNew;
+       
+        $('.content').html(html);
+    }
+</script>
+</html>

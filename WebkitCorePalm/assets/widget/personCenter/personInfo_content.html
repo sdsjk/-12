@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/gzmubiao.css">
+        <link rel="stylesheet" href="../css/yuefen-style.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/my.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body class="um-vp bg" ontouchstart>
+        <div class="ub ub-ver" id="userInfo">
+            <!--头部背景开始-->
+            <!--练习方式区域开始-->
+            <!--基本信息开始-->
+            <div class="ub  ub-ac rig-padd1 lef-padd2 bg-wh jj_marg0 bder-color ubt ubb" id="user-info">
+                    <div class="ub ub-f1 ub-ac top-padd bot-padd">
+                        <div class="hh-touxiang ub-img lazy" data-original="" style="background-image: url('../css/icons/crmtouxiang.png')"></div>
+                        <div class="ub-f1 lef-padd2">
+                            <div class="ft-sz1 text-c" id="fullName"></div>
+                            <div class="zt-color2 zt-font11 top-padd" id="position1"></div>
+                        </div>
+                     </div>
+                </div>
+                <div class="ub  bg-wh ubt ubb bder-color jj_marg7 ub-ver" >
+                        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_CONTACTS_DEPARTMENT">部门</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="department"></div>
+                            </div>
+                       </div>
+                       <div class="ub ub-f1 high ub-ac   bder-color lef-padd2 rig-padd1">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_CONTACTS_JOB">职位</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="roleName"></div>
+                            </div>
+                       </div>
+                </div>
+                <div class="ub  bg-wh ubt ubb bder-color ub-ver" id="nav-shezhi">
+                        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_SEX">性别</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="sex"></div>
+                            </div>
+                       </div>
+                       <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1 uhide">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_MOBILE">手机</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="mobileNo"></div>
+                            </div>
+                       </div>
+                       <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_TELEPHONE">座机</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="teleNo"></div>
+                            </div>
+                       </div>
+                       <div class="ub ub-f1 high ub-ac   bder-color lef-padd2 rig-padd1">
+                            <div class="ub  ub-f1 ub-ver">
+                <div class="ub  ub-f1 text-c" data-lan="STR_EMAIL">邮箱</div>
+                                <div class="ub  ub-f1 sc-text ulev-1" id="email"></div>
+                            </div>
+                       </div>
+                       
+                </div>
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+        <script src="../js/language.js"></script>
+        <script type="text/javascript" src="../js/crypto-js.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/contact.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/userInfo.js"></script>
+        <script src="../assets/models/userInfo.js"></script>
+        <script src="../assets/views/personInfo_content.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.frame.setBounce(0, null, null, function(type) {
+                if (parseInt(type) == 0) {
+                    personInfoViewInstance.load();
+                } else {
+                    return;
+                }
+            }, '#ecf3f7');
+            personInfoViewInstance.load();
+            appcan.window.subscribe("PERSONINFO_EDIT", function(m) {
+                personInfoViewInstance.load();
+            })
+            appcan.window.subscribe("loginSucc", function(m) {
+                personInfoViewInstance.load();
+            })
+        })
+        
+    </script>
+</html>

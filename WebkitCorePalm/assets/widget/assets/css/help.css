@@ -1,0 +1,16 @@
+.contactService{
+    background-image: url("images/contactService.png")
+}
+.FAQ{
+    background-image: url("images/FAQ.png")
+}
+.description{
+    background-image: url("images/description.png")
+}
+.helpSize {
+    height: 1.5em;
+    width: 1.5em;
+}
+.helpli{
+    padding: 1.5em 1em;
+}

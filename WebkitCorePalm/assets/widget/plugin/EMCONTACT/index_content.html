@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/gzxiangqing.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.initBounce();
+        })
+        appcan.button("#qywh", "ani-act", function() {
+             appcan.window.open("qiyewenhua", "qiyewenhua.html", "10",1024);
+        })
+        appcan.button("#qyhd", "ani-act", function() {
+             appcan.window.open("neibuhd", "neibuhd.html", "10",1024);
+        })
+        appcan.button("#nbtj", "ani-act", function() {
+             appcan.window.open("neibutuijian", "neibutuijian.html", "10",1024);
+        })
+        appcan.button("#sdhy", "ani-act", function() {
+            appcan.locStorage.setVal('report','0');
+            appcan.window.open("gzbg_shoudao", "gzbg_shoudao.html", "10",1024);
+        })
+        appcan.button("#fchy", "ani-act", function() {
+            appcan.locStorage.setVal('report','1');
+            appcan.window.open("gzbg_shoudao", "gzbg_shoudao.html", "10",1024);
+        })
+        appcan.button("#hyroom", "ani-act", function() {
+              appcan.window.open('shoudaodehuiyi','shoudaodehuiyi.html',10,1024)
+        })
+    </script>
+</html>

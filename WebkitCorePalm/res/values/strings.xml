@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="plugin_log_error_no_permisson_INTERNET">没有网络访问权限</string>
+
+    <!--appstore use start-->
+    <string name="appstore_host">https://apps.shenzhenair.com/</string>
+    <string name="plugin_app_market_update_file_default_msg">发现新版本，立即升级体验吧！</string>
+    <!-- xlistview -->
+    <string name="xlistview_header_hint_normal">下拉可以刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载数据...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    
+    <!--20150921 add-->
+    <string name="plugin_appstore_display_error_title">提示</string>
+    <string name="plugin_appstore_display_button_sub_exit">退出子应用</string>
+    <!--20151105 add-->
+    <string name="plugin_appstore_load_app_list">加载应用列表...</string>
+    <string name="plugin_appstore_hint_error_network">网络故障</string>
+    <string name="plugin_appstore_hint_no_data">没有数据</string>
+    <string name="plugin_appstore_hint_no_more_data">没有更多数据</string>
+    <string name="plugin_appstore_app_refresh_fail">刷新失败</string>
+    <!--20151208 add tile use-->
+    <string name="plugin_appstore_del_default_prompt">推荐磁贴，不允许删除！</string>
+    <!--20151210 add tile use-->
+    <string name="plugin_appstore_load_tile_prompt">正在加载磁贴列表...</string>
+    <string name="plugin_appstore_hint_no_tile_data">没有磁贴数据</string>
+    <string name="plugin_appstore_download_fail">下载失败</string>
+    <string name="plugin_appstore_downloading">下载中</string>
+    <string name="plugin_appstore_install_fail">安装失败</string>
+    <string name="plugin_appstore_param_error">参数错误</string>
+    <!--20151214 add tile use-->
+    <string name="plugin_appstore_not_install">未安装</string>
+    <string name="plugin_appstore_installed">已安装</string>
+    <!--20151216 add tile use-->
+    <string name="plugin_appstore_not_force">网络不给力</string>
+    <string name="plugin_appstore_installing">正在安装, 请稍候...</string>
+    <!--20160802 add -->
+    <string name="plugin_appstore_cancel">取消</string>
+    <string name="plugin_appstore_open">打开</string>
+    <!--20160826 add -->
+    <string name="plugin_appstore_app_details">应用详情</string>
+    <string name="plugin_appstore_ueser_evalute">用户评价</string>
+    <string name="plugin_appstore_install_complete">安装完成</string>
+    <string name="plugin_appstore_to_be_updated">待更新</string>
+    <string name="plugin_appstore_download_time">次下载</string>
+    <string name="plugin_appstore_download_evalute">加载评论列表...</string>
+    <string name="plugin_appstore_no_evalute">暂无评论</string>
+    <string name="plugin_appstore_no_more_evalute">没有更多评论</string>
+    <string name="plugin_appstore_evalute_action">我要评价</string>
+    <string name="plugin_appstore_rate_app">请为该应用打分</string>
+    <string name="plugin_appstore_enter_comment">请输入您的评论内容</string>
+    <string name="plugin_appstore_enter_comment_limit">请输入100个字以内</string>
+    <string name="plugin_appstore_subit_comment">提交评论中...</string>
+    <string name="plugin_appstore_subit_comment_fail">评论失败！</string>
+    <string name="plugin_appstore_subit_comment_success">评论成功！</string>
+    <string name="plugin_appstore_add_app">添加应用</string>
+    <string name="plugin_appstore_soft_token_null">SoftToken为空!</string>
+    <string name="plugin_appstore_str">应用商店</string>
+    <string name="plugin_appstore_boutique_list">精品</string>
+    <string name="plugin_appstore_rank_list">排行</string>
+    <string name="plugin_appstore_category_list">分类</string>
+    <string name="plugin_appstore_new_list">最新</string>
+    <string name="plugin_appstore_no_comment">暂无评论</string>
+    <string name="plugin_appstore_input_keywords">请输入关键词</string>
+    <string name="plugin_appstore_load_category_list">加载分类列表...</string>
+    <string name="plugin_appstore_enter_search_criteria">请输入搜索条件！</string>
+    <string name="plugin_appstore_search_str">搜索</string>
+    <string name="plugin_appstore_all_category">全部类别</string>
+    <string name="plugin_appstore_into_document_center">点击进入文档中心&gt;&gt;   </string>
+    <string name="plugin_appstore_install_app">安装</string>
+    <string name="plugin_appstore_load_app_pause">暂停下载...</string>
+    <string name="plugin_appstore_upgrade_prompt">更新提示</string>
+    <string name="plugin_appstore_app_upgrade">更新</string>
+    <string name="plugin_appstore_exit_app">退出</string>
+    <string name="plugin_appstore_no_sd_card">内存卡不存在</string>
+    <string name="plugin_appstore_not_enough_storage">存储空间不足!</string>
+    <string name="plugin_appstore_load_app_detail">加载应用详情...</string>
+    <string name="plugin_appstore_cancel_request">取消请求</string>
+    <string name="plugin_appstore_net_data_abnomal">网络数据异常</string>
+    <string name="plugin_appstore_app_not_install">应用未安装</string>
+    <string name="plugin_appstore_operation_not_perform">无法执行此操作</string>
+    <string name="plugin_appstore_sub_app_suspend_service">该子应用暂停服务</string>
+    <string name="plugin_appstore_unknown_error">未知错误！</string>
+    <string name="plugin_appstore_loading">加载中...</string>
+    
+    <!--appstore use end-->
+
+
+   
+    <!-- uexWeChat 微信分享 -->
+    <string name="err_auth_denied">认证被否决</string>
+    <string name="err_comm">发送错误</string>
+    <string name="err_ok">发送成功</string>
+    <string name="err_sent_failed">发送错误</string>
+    <string name="err_support">不支持错误</string>
+    <string name="err_user_cancel">取消发送</string>
+
+
+
+     <string name="plugin_sms_are_you_sure_to_send_sms">确定发送短信吗?</string>
+
+
+    <!-- plugin_uexScanner -->
+    <string name="plugin_uexscanner_not_support_flash">设备不支持闪光灯</string>
+    <string name="plugin_uexscanner_msg_default_status">将二维码/条形码放置框内，即开始扫描</string>
+    <string name="plugin_uexscanner_msg_scanning">正在扫描</string>
+    <string name="plugin_uexscanner_msg_camera_framework_bug">抱歉，Android相机出现问题。</string>
+
+
+    <!-- uexPDFReader -->
+    <string name="plugin_uexpdfreader_yes">是</string>
+    <string name="plugin_uexpdfreader_no">否</string>
+    <string name="plugin_uexpdfreader_cannot_open_document">无法打开文档</string>
+    <string name="plugin_uexpdfreader_cannot_open_document_Reason">无法打开文档： %1$s</string>
+    <string name="plugin_uexpdfreader_dismiss">解除</string>
+    <string name="plugin_uexpdfreader_enter_password">输入密码</string>
+    <string name="plugin_uexpdfreader_print_failed">未能打印</string>
+    <string name="plugin_uexpdfreader_entering_reflow_mode">输入重排模式</string>
+    <string name="plugin_uexpdfreader_leaving_reflow_mode">正在离开重排模式</string>
+    <string name="plugin_uexpdfreader_format_currently_not_supported">当前不支持此格式</string>
+    <string name="plugin_uexpdfreader_search">搜索</string>
+    <string name="plugin_uexpdfreader_copy_text">复制文本</string>
+    <string name="plugin_uexpdfreader_select_text">选择文本</string>
+    <string name="plugin_uexpdfreader_highlight">高亮</string>
+    <string name="plugin_uexpdfreader_underline">下划线</string>
+    <string name="plugin_uexpdfreader_strike_out">删除线</string>
+    <string name="plugin_uexpdfreader_ink">墨迹</string>
+    <string name="plugin_uexpdfreader_draw_annotation">作批注</string>
+    <string name="plugin_uexpdfreader_copied_to_clipboard">已复制到剪贴板</string>
+    <string name="plugin_uexpdfreader_no_text_selected">未选择文本</string>
+    <string name="plugin_uexpdfreader_nothing_to_save">没有要保存的内容</string>
+    <string name="plugin_uexpdfreader_document_has_changes_save_them_">文档已变更，保存变更吗？</string>
+    <string name="plugin_uexpdfreader_cannot_open_file_Path">无法打开文件：%1$s</string>
+    <string name="plugin_uexpdfreader_cannot_open_buffer">无法打开缓冲器</string>
+    <string name="plugin_uexpdfreader_fill_out_text_field">填充文本字段</string>
+    <string name="plugin_uexpdfreader_choose_value">选择值</string>
+    <string name="plugin_uexpdfreader_not_supported">不被支持</string>
+    <string name="plugin_uexpdfreader_searching_">正在搜索…</string>
+    <string name="plugin_uexpdfreader_text_not_found">未发现文本</string>
+    <string name="plugin_uexpdfreader_no_further_occurrences_found">未发现更多实例。</string>
+    <string name="plugin_uexpdfreader_no_media_warning">没有存储介质</string>
+    <string name="plugin_uexpdfreader_no_media_hint">存储介质在设备和 PC 上共同使用，会导致该存储介质在设备上无法被访问</string>
+    <string name="plugin_uexpdfreader_picker_title_App_Ver_Dir">%1$s%2$s:%3$s</string>
+    <string name="plugin_uexpdfreader_parent_directory">[向上一级]</string>
+    <string name="plugin_uexpdfreader_outline_title">目录</string>
+    <string name="plugin_uexpdfreader_print">打印</string>
+
+
+    <string name="plugin_uex_image_choose">选择</string>
+    <string name="plugin_uex_image_at_least_choose">请至少选择%s张图片</string>
+    <string name="plugin_uex_image_share">分享</string>
+    <string name="plugin_uex_image_list">列表</string>
+    <string name="plugin_uex_image_crop_cancel">取消</string>
+    <string name="plugin_uex_image_crop_done">完成</string>
+    <string name="plugin_uex_image_crop_pick_error">无效的图片</string>
+    <string name="plugin_uex_image_crop_saving">正在保存照片…</string>
+    <string name="plugin_uex_image_crop_wait">请等待…</string>
+
+     <!--  uexIM -->
+     <string name="im_tcp_host"/>
+     <string name="im_http_host"/>
+
+    <string name="plugin_fileMgr_folder">文件夹</string>
+    <string name="plugin_file_now_loading_folder">正在读取文件夹</string>
+    <string name="plugin_file_can_not_open_this_folder">无法打开此目录!</string>
+    <string name="plugin_file_not_exist">文件不存在!</string>
+    <string name="plugin_file_file_path_error">文件路径错误!</string>
+    <string name="plugin_file_can_not_mount_sdcard">无法加载存储卡</string>
+    <string name="plugin_file_are_you_sure_to_exit_file_explorer">确定退出文件管理器吗</string>
+    <string name="plugin_file_target_directory_is_not_exist_auto_redirect_to_sdcard">目前文件夹不存在,自动定位到SD卡目录!</string>
+    <string name="plugin_file_input_path_is_not_valid_path_redirect_to_sdcard">传入路径不是一个有效的目录,自动定位到SD卡目录!</string>
+    <string name="plugin_fileMgr_invalid_params">Invalid Params!</string>
+    <string name="plugin_fileMgr_json_format_error">JSON Format Error!</string>
+    <string name="plugin_fileMgr_need_keywords">Need Keywords</string>
+
+    <string name="plugin_file_type_archive">压缩包</string>
+    <string name="plugin_file_type_certificate">证书</string>
+    <string name="plugin_file_type_directory">目录</string>
+    <string name="plugin_file_type_document">文件</string>
+    <string name="plugin_file_type_drawing">图片</string>
+    <string name="plugin_file_type_excel">EXCEL</string>
+    <string name="plugin_file_type_image">照片</string>
+    <string name="plugin_file_type_music">音乐</string>
+    <string name="plugin_file_type_pdf">PDF</string>
+    <string name="plugin_file_type_power_point">PPT</string>
+    <string name="plugin_file_type_word">WORD</string>
+    <string name="plugin_file_multi_file">多选</string>
+
+
+    <!-- plugin emm use start -->
+    <string name="app_sign">EA1D05EB3AF497D9DB32CAD4B6C714DA71FB2D28A4B038A115793E7A6BCBD2F4</string>
+    <!--20150829 add-->
+    <string name="plugin_uexemm_query_ueser_cert_hint_str">本次登录需要验证用户证书，请输入证书授权码，申请证书。</string>
+    <string name="plugin_uexemm_auth_code_et_hint_str">证书授权码</string>
+    <string name="plugin_uexemm_query_ueser_cert_str">申请证书</string>
+    <!--20150914 add-->
+    <string name="plugin_uexemm_get_cert_file">获取证书失败！</string>
+    <!--20151009 add-->
+    <string name="plugin_uexemm_network_error">请检查您的网络状态</string>
+    <string name="plugin_uexemm_network_error_title">无可用网络</string>
+    <string name="plugin_uexemm_network_error_msg">您的应用只能访问离线资源</string>
+    <string name="plugin_uexemm_exit_app">退出应用</string>
+    <string name="plugin_uexemm_exit_sub_app">退出子应用</string>
+    <string name="plugin_uexemm_continue">进入应用</string>
+    <string name="plugin_uexemm_prompt_title">提示</string>
+    <string name="plugin_uexemm_mamfail_msg">网络异常或服务器异常，请检查网络或服务器！</string>
+    <string name="plugin_uexemm_mamforbidden_msg">您的应用功能将会受到限制</string>
+    <string name="plugin_uexemm_app_sign_error_msg">应用签名非法</string>
+    <string name="plugin_uexemm_warning_title">警告</string>
+    <string name="plugin_uexemm_parm_error">参数错误</string>
+    <string name="plugin_uexemm_offline_login_error">离线登录失败</string>
+    <string name="plugin_uexemm_msg_network_error">无法连接至服务器，请检查网络</string>
+    <string name="plugin_uexemm_not_root_prompt">本应用仅适用于未Root机，即将关闭。</string>
+    <string name="plugin_uexemm_new_app_default_prompt">发现新版本,是否升级?</string>
+    <string name="plugin_uexemm_app_upgrade">更新</string>
+    <string name="plugin_uexemm_button_cancel">取消</string>
+    <string name="plugin_uexemm_sub_app_suspend_service">该子应用暂停服务</string>
+    <string name="plugin_uexemm_downloading_file">正在下载文件</string>
+    <string name="plugin_uexemm_download_fail">下载失败</string>
+    <string name="plugin_uexemm_no_sd_card">您的手机未安装SD卡!</string>
+    <string name="plugin_uexemm_connect_error">连接失败,请重试!</string>
+    <string name="plugin_uexemm_download_error">下载出错,请重试!</string>
+    <string name="plugin_uexemm_download_again">重新下载</string>
+    <string name="plugin_uexemm_upgrade_later">暂不更新</string>
+    <string name="plugin_uexemm_install_upgrade">安装更新</string>
+    <string name="plugin_uexemm_download_completed">更新包下载完成</string>
+    <string name="plugin_uexemm_not_found_app">未找到可执行的应用</string>
+    <string name="plugin_uexemm_upgrade_msg">部分内容更新优化，请更新后使用</string>
+    <string name="plugin_uexemm_upgrade_prompt">更新提示</string>
+    <string name="plugin_uexemm_problems_msg">可能网络传输或其他问题造成，请点击重试</string>
+    <string name="plugin_uexemm_upgrade_fail">更新失败</string>
+    <string name="plugin_uexemm_retry">重试</string>
+    <string name="plugin_uexemm_continue_upgrade_msg">上次更新未完成，请继续更新</string>
+    <string name="plugin_uexemm_continue_upgrade_prompt">继续更新</string>
+    <string name="plugin_uexemm_restart_prompt">更新完成，请重新启动！</string>
+    <string name="plugin_uexemm_confirm">确定</string>
+    <string name="plugin_uexemm_suspend_server">该应用暂停服务</string>
+    <!--20151203 add-->
+    <string name="plugin_uexemm_erase_data_msg">应用数据擦除中，请稍候重启！</string>
+    <!--20151222 add-->
+    <string name="plugin_uexemm_update_later">以后再说</string>
+    <string name="plugin_uexemm_update_now">立即升级</string>
+    <string name="plugin_uexemm_downloading_app">更新中...</string>
+    <string name="plugin_uexemm_downloading_app_msg">请勿关闭或离开当前界面，以免造成更新失败！</string>
+    <!--20160107 add-->
+    <string name="plugin_uexemm_get_soft_token_error_info">MAC和IMEI号获取失败。</string>
+    <!--20170113 add-->
+    <string name="plugin_uexemm_goto_replce_ver">前往</string>
+    <!-- plugin emm use end -->
+
+
+
+    <string name="plugin_email_attchment_path_params_error">附件路径参数错误！</string>
+    <string name="plugin_uexEmail_select_app_to_send_email">选择发送邮件程序</string>
+
+    <string name="plugin_downloadermgr_error_parameter">参数错误</string>
+
+
+    <string name="plugin_uexDocumentReader_file_not_exist">文件不存在</string>
+    <string name="plugin_uexDocumentReader_file_not_exist_or_path_error">文件不存在或文件路径错误</string>
+
+
+    <!--uexDevice-->
+    <string name="plugin_uexDevice_invalid_params">Invalid Params</string>
+
+ 
+   <string name="plugin_control_date_input_error">日期输入错误！</string>
+   <string name="plugin_control_time_input_error">时间输入错误！</string> 
+
+
+    <!-- concact use string -->
+    <string name="plugin_contact_add_prompt">是否添加联系人</string>
+    <string name="plugin_contact_delete_prompt">是否删除联系人</string>
+    <string name="plugin_contact_modify_prompt">是否修改联系人</string>
+    <string name="plugin_contact_add_succeed">添加成功</string>
+    <string name="plugin_contact_add_fail">添加失败</string>
+    <string name="plugin_contact_delete_succeed">删除成功</string>
+    <string name="plugin_contact_delete_fail">删除失败</string>
+    <string name="plugin_contact_find_succeed">查找成功</string>
+    <string name="plugin_contact_find_fail">查找失败</string>
+    <string name="plugin_contact_modify_succeed">修改成功</string>
+    <string name="plugin_contact_modify_fail">修改失败</string>
+    <string name="plugin_contact_linkman_all">全部联系人</string>
+    <string name="plugin_contact_open_fail">打开通讯录失败!</string>
+    <string name="plugin_contact_multi_select">多选</string>
+
+
+    <!-- uexCamera -->
+    <string name="plugin_camera_cancel">取消</string>
+    <string name="plugin_camera_complete">完成</string>
+    <string name="plugin_camera_location">传入的地理位置</string>
+    <string name="plugin_camera_take_photo_again">重拍</string>
+    <string name="plugin_camera_submit">使用照片</string>
+    <string name="plugin_camera_title_activity_second">uexCameraSecondActivity</string>
+
+    <!-- alipay_lib sdk -->
+    <string name="plugin_uexAliPay_confirm_title">提示</string>
+    <string name="plugin_uexAliPay_ensure">确定</string>
+    <string name="plugin_uexAliPay_cancel">取消</string>
+    <string name="plugin_uexAliPay_content_description_icon">icon</string>
+    <string name="plugin_uexAliPay_refresh">刷新</string>
+    <string name="plugin_uexAliPay_processing">加载中</string>
+    <string name="plugin_uexAliPay_download">下载</string>
+    <string name="plugin_uexAliPay_download_fail">下载安装包失败</string>
+    <string name="plugin_uexAliPay_cancel_install_msp">你已取消安装移动快捷支付服务</string>
+    <string name="plugin_uexAliPay_cancel_install_alipay">你已取消安装支付宝钱包</string>
+    <string name="plugin_uexAliPay_redo">重试</string>
+    <string name="plugin_uexAliPay_install_msp">你尚未安装支付宝移动快捷支付服务，请立即安装</string>
+    <string name="plugin_uexAliPay_install_alipay">你尚未安装支付宝钱包，请立即安装</string>
+   
+	
+    <string name="plugin_uexCalendarView_today">今</string>
+
+
+    <!-- common use通用字符串 -->
+    <string name="app_name">掌上深航(新)</string>
+    <string name="back">返回</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="prompt">提示</string>
+    <string name="complete">完成</string>
+    <string name="path_error">路径错误!</string>
+    <string name="settings">设置</string>
+    <string name="save">保存</string>
+    <string name="select_all">全选</string>
+    <string name="cancel_select_all">取消选定</string>
+    <string name="select">选择</string>
+    <string name="can_not_find_suitable_app_perform_this_operation">找不到适合的程序执行此操作!</string>
+    <string name="exit">退出</string>
+    <string name="confirm_delete">确定删除</string>
+    <string name="ma">吗?</string>
+    <string name="exit_message_server">该应用暂停服务</string>
+    <string name="exit_message_appid">当前应用ID非法</string>
+    <string name="error_parameter">参数错误</string>
+    <string name="no_have_read_limits_power">没有读取权限</string>
+    <string name="no_have_write_limits_power">没有写入权限</string>
+    <string name="error_sdcard_is_not_available">SD卡不可用</string>
+    <string name="error_file_does_not_exist">文件不存在</string>
+    <string name="error_no_permisson_RW">没有读写权限</string>
+    <string name="error_no_permisson_INTERNET">没有网络访问权限</string>
+    <string name="no_permisson_declare">没有申明相关权限</string>
+    <string name="info_update">发现新版本,是否升级?</string>
+
+    <!-- browser use -->
+    <string name="browser_exitdialog_app_text">确定要退出程序吗？</string>
+    <string name="browser_exitdialog_msg">退出提示</string>
+    <string name="browser_dialog_error">错误提示</string>
+    <string name="browser_init_error">程序不完整</string>
+    <!-- 3000.1.02.000.00.00.9999.000 -->
+	<!-- Analytics config -->
+    <string name="appkey" translatable="false">221c2e35-c78b-194b-3f91-5e77f8564192</string>
+    <string name="appstatus" translatable="false">BB73CAB486439F7D6E267CAC5D89A8E65CC3CF54A05E824977A5818E3812DD03B2</string>
+    <string name="push" translatable="false">true</string>
+    <string name="certificate_psw" translatable="false"/>
+    <string name="widget_startup_report_host" translatable="false">https://apps.shenzhenair.com/v4/</string>
+    <string name="push_host" translatable="false">apps.shenzhenair.com:1883</string>
+    <string name="bindUser_host" translatable="false">https://apps.shenzhenair.com/gateway/</string>
+    <string name="analytics_host" translatable="false">https://apps.shenzhenair.com/analyIn/4.0/service/</string>
+    <string name="mam_host" translatable="false"/>
+    <string name="mam_push_host_and_port" translatable="false"/>
+
+    <!-- platform myspace  use -->
+    <string name="platform_myspace_app_center">应用中心</string>
+    <string name="platform_myspace_recommend_apps">推荐应用</string>
+    <string name="platform_myspace_my_apps">我的应用</string>
+    <string name="platform_myspace_pull_to_refresh">下拉刷新推荐列表</string>
+    <string name="platform_myspace_release_to_refresh">释放刷新推荐列表</string>
+    <string name="platform_myspace_loading">加载中…</string>
+    <string name="platform_myspace_tap_to_refresh">点击刷新推荐列表</string>
+    <string name="widgetone_version" translatable="false">4030.1.02.001.00.00.9999.000</string>
+    <string name="platform_no_configuration_decryption_permissions">没有配置解密权限！</string>
+    <string name="platform_downloading_file">正在下载文件</string>
+    <string name="platform_connect_failed">连接失败,请重试!</string>
+    <string name="platform_download_failed">下载出错,请重试!</string>
+    <string name="platform_only_test">测试版本仅用于开发测试</string>
+    <string name="platform_choose_app">请选择:</string>
+    <string name="platform_widget_id_not_exist">AppId为 %1$s 的Widget不存在</string>
+    <string name="platform_widget_path_not_exist">路径为 %1$s 的Widget不存在</string>
+    <string name="platform_widget_search_failed">搜索Widget发生异常!请确认Widget是否损坏!</string>
+
+    <string name="warning">警告</string>
+    <string name="no_permission_to_open_window">没有打开%1$s窗口的权限</string>
+    <string name="load_uex_object_error">uex对象加载发生异常,请检查XML文件!</string>
+    <string name="install">安装…</string>
+    <string name="install_failed">安装失败</string>
+    <string name="get_open_login_list">尚未登录,正在获取开放平台登录列表</string>
+    <string name="operation_cancel">操作已取消!</string>
+    <string name="get_info_failed">获取信息失败!</string>
+    <string name="download_info_error">下载信息错误!</string>
+    <string name="app_has_download_please_run">应用已下载，请直接运行</string>
+    <string name="app_downloading">应用正在下载请稍候…</string>
+
+    <string name="get_user_info">正在获取用户登录信息…</string>
+    <string name="get_login_list">尚未登录,获取登录列表…</string>
+    <string name="app_is_download_please_wait">应用正在下载请稍候…</string>
+    <string name="get_user_info_failed">获取登录信息失败!</string>
+    <string name="delete">删除</string>
+    <string name="is_uninstalling">正在卸载…</string>
+    <string name="login_failed">登录失败…</string>
+    <string name="select_operation">请选择操作</string>
+    <string name="cannot_find_this_widget">未找到此widget，无法启动!</string>
+    <string name="refresh_success">更新成功!</string>
+    <string name="refresh_failed">刷新失败</string>
+    <string name="plugin_config_no_exist">插件配置文件不存在!</string>
+    <string name="more">更多</string>
+
+    <string name="widget_not_exist_id_path">在%1$s目录下的 appId 是%2$s的widget不存在</string>
+    <string name="not_any_widget">该应用下没有任何widget</string>
+    <string name="tenant_id">F33B82E1</string>
+    <string name="mbaas_host"/>
+</resources>

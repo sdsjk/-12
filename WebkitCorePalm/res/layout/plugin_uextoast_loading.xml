@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView 
+        android:id="@+id/plugin_uextoast_bg_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.75"
+        android:background="@color/black"/>
+    
+    <ImageView
+        android:id="@+id/plugin_uextoast_exit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:scaleType="fitXY" />
+    
+    <ImageView
+        android:id="@+id/plugin_loading_rotation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+         />
+
+</RelativeLayout>

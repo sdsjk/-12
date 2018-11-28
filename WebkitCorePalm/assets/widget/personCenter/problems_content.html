@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../css/own-common.css">
+    <style>
+        .search_postion{
+            position: absolute;
+            top:.6em;
+            left:37%;
+        }
+        .tab_problems{
+            padding:0.5em;
+            margin-top:0.7em;
+            margin-right: 0.5em;
+            background-color: #FFFFFF;
+            color:#cecece;
+        }
+        .tab_check{
+            background-color: #FFFFFF;
+        }
+        .tab_isCheck{
+            background-color: #FC363B;
+            color:#FFFFFF;
+        }
+        .tab_wrap{  
+            display:flex;      
+            flex-wrap:wrap;
+            -webkit-flex-wrap:wrap;
+        }
+        .txt_color_list{
+            color:#cecece;
+        }
+        .title_padding{
+            padding-bottom: 0.5em;
+        }
+        .romeve_search{
+            position: absolute;
+            top:.6em;
+            right:.3em;
+        }
+        .jiantou{
+            display:inline-block;
+            width:0.8em;
+            height:1.13em;
+            background-image: url('../css/img/more-arrow.png');
+        }
+        .uinn-l{
+            padding: 0.75em 0.5em;
+        }
+        .bgColor{
+            background: rgba(255,255,255,.5);
+        }
+        .appLoad{
+            background-image: url('../css/img/loading.gif');
+        }
+        .appLoad_bgColor{
+            background-color: #4C4C4C;
+        }
+        .positon_fixed{
+            position: fixed;
+            z-index: 9999;
+            width:100%;
+            background-color: #F0F0F5;
+        }
+    </style>
+</head>
+<body class="um-vp bg" ontouchstart>
+  <div class="ub ub-ver ">
+    <div class="ub ub-f1 bg-color5 ub-ver" >
+      <div class="ub  ub-ac ub-pc ub-f1 positon_fixed "  style="background-color: #ecf3f7;">
+        <div class="ub ub-ac ub-pc ub-f1  uof " style="padding:.6em .4em .6em .4em; ">
+            <div class=" uinput ub ub-f1 borderColor uba uc-a1 " style="background-color:#fff;">
+                <!-- 搜索的图标 -->
+                <div class="ub ub-ac" id="search">
+                    <div class=" ub-f1 img-search " style="width: 0.8em;margin:0 .3em"></div>
+                </div>
+                <form action="javascript:return true;" class="ub ub-f1">
+                <!-- 搜索的图标 结束-->
+                <input oninput="OnInput()" placeholder="请输入关键字搜索"  name="search" type="search"
+                        class="ub-f1 " style="margin-right:1.2em"
+                       id="my_feedBack">
+                </form>
+                <!-- 删除的图标 -->
+                <div class=" ub ub-ac romeve_search uhide-serach"  id="remove">
+                    <div class=" ub-f1 img-remove" style="width: 1.2em;"></div>
+                </div>
+                <!-- 删除的图标结束 -->                
+            </div> 
+            <!--取消按钮-->
+            <div class="ub ub-ac uhide" style="padding: 0 .3em;" id="cancelBtn">
+                 <div class="ub-f1 txt_color_list">取消</div>
+            </div>    
+        </div>
+      </div>
+      <div id='tabProblems' style="margin-top: 2.5em;" style="padding:.6em .4em .6em .4em; ">
+                <ul class='tab_wrap'>
+                    
+                </ul>
+                <script id="tabProblemsList" type="text/template">
+                       <li class="tab_problems ulev-30" id="<%=data.id%>">        
+                           <p ><%=data.sortName%></p>
+                      </li>
+                </script>
+        </div>
+    </div>
+    <div class="ub ub-ver bg-wh" id="problemslist">       
+        <ul>
+            
+        </ul>
+        <script id="tmpProblemslist" type="text/template">
+                <li class="uinn-l ubt bc-border ub ub-ac ub-pj" style="font-size: 0.9375em;" id="<%=data.listId%>">        
+                     <p class="ut-s" style="width: 80%;"><%=data.issueName%></p>
+                     
+                     <span class="ub-img jiantou"></span>
+                </li>
+        </script>
+    </div>
+    <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+        <div class="ub ub-ver ub-ac ub-pc">
+            <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+            <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                暂无数据
+            </div>
+        </div>
+    </div>
+    <div id="searchTxt" class="uhide" style="margin-top: 3.5em;">
+        <p class="tx-c txt_color_list">搜索指定内容</p>
+    </div>
+  </div>
+  <div class="up bgColor ub ub-ac ub-pc uhide load">
+    <div class="uinn_pad appLoad_bgColor uc-a1">
+        <div class="umw4 umh6 ub-img appLoad"></div>
+        <p style="color: #FFFFFF;padding: .5em 0.2em;">正在努力加载中</p>
+    </div>
+  </div>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/global.js"></script>
+<script src="../js/personPublic.js"></script>
+<script src="../assets/views/problems_content.js"></script>
+</body>
+<script>
+    var isProSearch = true;
+    
+    appcan.ready(function () {
+        //添加面包屑记录
+        var jsonObj = {leaveBreadcrumb:'常见问题列表页面'};
+        uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+        appcan.frame.setBounce(0, null, null, function (type) {
+                
+                if (parseInt(type) == 0) {
+                       $("#my_feedBack").val("");
+                       problemsTabList();
+                       $("#remove").addClass("uhide-serach");
+                       
+                }else if(parseInt(type) == 1){
+                       
+                       appcan.frame.resetBounce(1);
+                }
+        }, '#ecf3f7');
+        
+        problemsTabList();
+        appcan.window.subscribe('PROBLEMSLIST-REQ',function(data){
+            
+            problemList(data);
+        });
+        $('#my_feedBack').change(function(){
+            $("#my_feedBack").blur();
+            
+            problemsSerachList(1);            
+        });
+        $('#my_feedBack').focus(function(){
+            if(!isProSearch) return;
+            isProSearch = true;
+            appcan.window.enableBounce();
+            $('#tabProblems').addClass('uhide');
+            $('#problemslist').addClass('uhide');
+            $('#searchTxt').removeClass('uhide'); 
+            $('#cancelBtn').removeClass('uhide');
+            $('#norecord').addClass('uhide');          
+        });
+        appcan.window.subscribe('PROBLEMS-SETBOUNCE',function(data){
+            
+            
+            var data = JSON.parse(data);
+            var page = data.page;                                               
+            var msgLength = data.msgLength;
+                       
+            appcan.frame.setBounce([1], null, null, function (type) {
+                if (parseInt(type) == 1) {
+                    if(msgLength == 10){
+                         page = page + 1;
+                        // 传页数加载更多
+                        // 加载更多新建方法
+                            problemsSerachList2(page);
+                                            
+                    }else{
+                        appcan.frame.resetBounce(1);
+                        setTimeout(function(){
+                            appcan.window.openToast('暂无更多数据',800);
+                        },10);
+                    }
+                }else if(parseInt(type) == 0){
+                    appcan.frame.resetBounce(0);
+                }
+                
+            }, '#ecf3f7');
+           
+        });
+        appcan.button('#remove','btn-act',function(){ 
+            $("#remove").addClass("uhide-serach");
+            $("#my_feedBack").val("");
+            $('#searchTxt').removeClass('uhide');
+            $('#norecord').addClass('uhide');
+                      
+        });
+        appcan.button('#cancelBtn','btn-act',function(){ 
+            isProSearch = false; 
+            
+            appcan.frame.setBounce(0, null, null, function (type) {
+                    if (parseInt(type) == 0) {
+                           $("#my_feedBack").val("");
+                           problemsTabList();
+                           $("#remove").addClass("uhide-serach");
+                           
+                    }else if(parseInt(type) == 1){
+                           
+                           appcan.frame.resetBounce(1);
+                    }
+            }, '#ecf3f7');
+                      
+            $("#my_feedBack").val("");
+            $("#my_feedBack").blur();
+            $('#tabProblems').removeClass('uhide');
+            $('#problemslist').removeClass('uhide');
+            $('#norecord').addClass('uhide');
+            $('#searchTxt').addClass('uhide');
+            $('#cancelBtn').addClass('uhide');
+            $("#remove").addClass("uhide-serach");
+            var tabIsCheck = $('.tab_isCheck');
+            if(tabIsCheck.length == 0){
+                problemsTabList();
+            }else{
+                var el = $('#tabProblems .tab_wrap').children();
+                var arr = [];
+                for(var i in el){
+                      var element = el[i];        
+                      if(element instanceof HTMLElement){
+                          var className = element.getAttribute('class');
+                      
+                          var thisId = element.getAttribute('id');                           
+                           
+                          if(className.indexOf('tab_isCheck')>0){
+                                 
+                               problemList(thisId);
+                          }
+                      }
+  
+                }
+            }
+            
+            
+        });
+        
+    })
+</script>
+</html>

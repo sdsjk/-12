@@ -1,0 +1,146 @@
+.uinn_2{
+    padding: 0.5em 1em;
+    margin: 0;
+}
+.ub_f4{
+    -webkit-box-flex: 4; 
+    box-flex: 4;
+}
+.ub_f6{
+    -webkit-box-flex: 6; 
+    box-flex: 6;
+}
+
+.bg_2{
+    background-color: #FFFFFF;
+}
+.bg_1{
+    background-color: #E8E8E8;
+}
+.uinn_8 {
+    padding: 0.66em 0em;
+    margin: 0;
+}
+.uinn_9{
+    padding: 0.4em 0;
+    margin: 0;
+}
+.uinn_10{
+    padding: 0.1em 0;
+    margin: 0;
+}
+.uinn_11{
+    padding:0.4em 0 0 0;
+    margin: 0;
+}
+.uinn_12{
+    padding: 0.2em 0;
+}
+.uinn_13{
+    padding:2em 0;
+    margin: 0;
+}
+.uinn_14{
+    padding: 2em 1em 1em 2em ;
+    margin: 0;
+}
+.umar_12{   
+    margin: 0 0.3em;
+}
+
+.ulev_0{
+    font-size: 0.5em;
+}
+.ulev_1{
+    font-size: 0.75em;
+}
+.uba_1{
+    border:1px solid #D2D2D2;
+}
+.uba_t{
+    border-top-color: transparent;
+}
+    
+
+.uc_a{
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.zb_font{
+    font-size: 0.7em;
+    /*font-size: 0.65em;*/
+    /* ƻ��-�� ������*/
+    font-family: PingFangSC-Regular, sans-serif;
+    line-height:2.75em;
+    /*line-height: 1.875em;*/
+    color:#FFFFFF;
+}
+.jiazai{
+    top: -0.5em;
+    left: -0.5em;
+    width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    position: absolute;
+    border: 0
+}
+.customBtn{
+    
+}
+.customBlock{
+    
+}
+.message_icon{
+    position: absolute;
+    top:-1.5em;
+    left:50%;
+    margin-left: -1.5em;
+}
+.colse_icon{
+    position: absolute;
+    bottom: -4em;
+    left:50%;
+    margin-left: -1.5em;
+}
+.NotificationMessage{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/*.NotificationMessage{
+    position: fixed;
+}*/
+#messageContent .content_msg>p{
+    word-wrap:break-word;
+}
+.isTouch{
+      overflow: hidden;
+}
+.potion{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
+.jiazai_gif{
+    background-image: url('img/jiazai.gif');
+ }
+@media screen and (max-width: 640px){
+    .uinn_2{
+        padding: 0.5em 0.5em;
+        margin: 0;
+    }
+    .uinn{
+        padding: 0.5em 0.3em;
+        margin:0;
+    }
+}
+.lookMore {
+    color: #3c3c3c;
+    font-size: 0.9375em;
+}
+.zbwh{
+    min-width:2.75em;
+    min-height: 2.75em;
+}

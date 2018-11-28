@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzmubiao.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body class="um-vp bg-wh" ontouchstart>
+<div class="ub ub-ver uof">
+    <div class="ub ub-f1 bg-color5">
+        <div class="ub ub-ac ub-pc ub-f1 uof" style="padding:.6em .4em .6em .4em; ">
+            <div class=" uinput ub ub-f1  borderColor uba uc-a1 " style="background-color:#fff;">
+                <!-- 搜索的图标 -->
+                <div class="ub ub-ac" id="search">
+                    <div class=" ub-f1 img-search"></div>
+                </div>
+                <form action="javascript:return true;" class="ub ub-f1">
+                <!-- 搜索的图标 结束-->
+                <input oninput="OnInput()" placeholder="请输入搜索关键字" data-lan="TIPS_SEARCH" name="search" type="search"
+                        class="ub-f1" style="padding-right:0.75em"
+                       id="my_form" onchange="selectWho()">
+                </form>
+                <!-- 删除的图标 -->
+                <div class="uhide-serach ub ub-ac " id="remove">
+                    <div class=" ub-f1 img-remove"></div>
+                </div>
+                <!-- 删除的图标结束 -->
+            </div>
+        </div>
+    </div>
+    <!--上方分割线-->
+    <div class="ubt borderColor"></div>
+    <div class="ub ub-ac lef-padd2 rig-padd1 borderColor" id="gsbumen">
+        <div class="ub ub-img qytxl-wh top-padd4 bot-padd6"></div>
+        <div class="ub ub-f1">
+            <!-- bder-color uba-->
+            <div id="get_branch" class="ub top-padd4 bot-padd6" style="width:96%;overflow-x:auto;"></div>
+
+            <div class="ub ub-ac ub-pe">
+                <div class=" bg-youbianjiao ub-img-right"></div>
+            </div>
+        </div>
+    </div>
+    <!--上方分割线-->
+    <div class="ubt borderColor"></div>
+    <div class="ub lef-padd2 rig-padd1 borderColor uhide" id="qunzulist">
+        <div class="ub ub-img qytxl-wh1 top-padd4 bot-padd6"></div>
+        <div class="ub ub-f1">
+            <div class="ub ub-f1 ub-ac" data-lan="STR_CONTACTS_COMPANY_GROUP">群组</div>
+            <div class="ub ub-ac ub-pe">
+                <div class=" bg-youbianjiao ub-img-right"></div>
+            </div>
+        </div>
+    </div>
+    <!--下方分割线-->
+    <div class="ubb borderColor"></div>
+    <div class="ub ub-f1 ubb borderColor bg-color5">
+        <div class="ub ub-f1 paddLeft paddRight">
+            <div class="ub paddTB2 fontSize5 textColor15"></div>
+        </div>
+    </div>
+    <!--模板填充数据放在ul里面  本部门通讯录里面的人-->
+    <div class="ub ub-ver" id="contactlist">
+        <ul></ul>
+    </div>
+    <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+        <div class="ub ub-ver ub-ac ub-pc">
+            <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+            <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                暂无数据
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/global.js"></script>
+<script src="assets/services/contacts_content.js"></script>
+<script src="assets/models/contacts_content.js"></script>
+<script src="assets/views/contacts_content.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        var userId = appcan.getLocVal('userId');
+        //添加面包屑记录
+        var jsonObj = {leaveBreadcrumb:'通讯录页面'};
+        uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+        var param = {
+            event:"pageLoadRequestDuration"
+        };
+        // 记录页面开始加载时间（只在首次加载页面时）
+        uexSensorsAnalytics.trackTimerBegin(JSON.stringify(param));
+        // 下拉刷新操作
+        appcan.frame.setBounce(0, null, null, function (type) {
+            // 当下拉刷新的时候 将搜索输入框里面输入的内容全部清空
+            $("#my_form").val("");
+            // 为0时是下拉刷新
+            if (parseInt(type) == 0) {
+                contactListViewInstance.load(1);
+            }
+        }, '#ecf3f7');
+        contactListViewInstance.load();
+        // 通讯录上方组织机构
+        getBranch();
+        /*个人头像更新刷新头像*/
+        appcan.window.subscribe("PERSONINFO_EDIT", function (m) {
+             contactListViewInstance.load(1);
+        });
+        appcan.window.subscribe('loadingMore',function(ev){
+            var event = JSON.parse(ev);
+            var pageNo = event.pageNo;
+            var msgLength = event.msgLength;
+            appcan.frame.setBounce([0,1], null, null, function (type) {
+            // 当下拉刷新的时候 将搜索输入框里面输入的内容全部清空
+                // 为0时是下拉刷新
+                if (parseInt(type) == 1) {
+                    if(msgLength == 20){
+                         pageNo = pageNo + 1;
+                        // 传页数加载更多
+                        // 加载更多新建方法
+                        contactListViewInstance.searchPer2(pageNo);
+                    }else{
+                        appcan.frame.resetBounce(1);
+                        setTimeout(function(){
+                            appcan.window.openToast('暂无更多数据',800);
+                        },10);
+                    }
+                }else if(parseInt(type) == 0){
+                     $("#my_form").val("");
+                    contactListViewInstance.load(1);
+                    appcan.window.disableBounce();
+                    appcan.frame.setBounce(0, null, null, function (type) {
+                        if (parseInt(type) == 0) {
+                            contactListViewInstance.load(1);
+                        }else if(parseInt(type) == 1){
+                            appcan.frame.resetBounce(1);
+                        }
+                    }, '#ecf3f7');
+                }
+            }, '#ecf3f7');  
+        });
+        // 记录页面加载结束时间
+        var pageLoadParamTrackTimerEnd = FunParamTrackTimerEnd("页面加载","通讯录","","pageLoadRequestDuration","false");// 页面加载结束参数
+        uexSensorsAnalytics.trackTimerEnd(JSON.stringify(pageLoadParamTrackTimerEnd));
+    });
+</script>
+</html>

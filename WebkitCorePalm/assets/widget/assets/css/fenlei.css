@@ -1,0 +1,110 @@
+.set-height{
+    /*float: left;*/
+    overflow: hidden;
+    zoom:1;
+ }
+.list-item-baccolor{
+   background-color: #EEEEEE;
+     display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    box-sizing: border-box;  /*设置为padding和margin都在width和height里面*/ 
+    margin: 7% 5%;
+}
+.loadingManage{
+   width:100%;
+   height:100%;
+   z-index:99999; 
+   background-image: url('./images/loading.gif');
+   background-repeat: no-repeat;
+   background-position:center;
+   background-size: 100% 100%;
+   background-color:#ecf3f7;
+}
+.left-myapp{
+    background:#FB363B;
+    float:left;
+    height: 0.75em;
+    width: 0.25em;
+    margin-top: 0.3em;
+}
+.myapp{
+    padding:1em 1em 0em 1em;
+    vertical-align: middle;
+    background: #FFFFFF;
+}
+.add-app-img{
+ background-image:url(../../css/img/addApp_icon.png);
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    min-height: 1.1em;
+    min-width: 1.1em;
+}
+.remove-app-img{
+  background-image:url(../../css/img/remove_icon.png); 
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+     min-height: 1.1em;
+    min-width: 1.1em;
+}
+.yuandian-right {
+    position: absolute;
+    right: -0.35em;
+    top:-0.2em;
+}
+.biao{
+   width: 100%; 
+}
+#header{
+    width:100%; 
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 9999;
+
+}
+.content{
+  width: 100%;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.storetype{
+   width:100%;
+    padding:1em;
+    background: #fff;
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+}
+#nav-bar{
+    width: 100%;
+    overflow: hidden;
+    background: #FFF;
+    font-size: 0.9375em;
+    /*border-bottom: 0.05em solid #D7D7D7;*/
+    color:#3c3c3c;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    /*font-style: 苹方简-常规体;*/
+    font-family: PingFangSC-Regular, sans-serif;
+}
+#nav-bar .selected1{
+    font-weight:bold;
+    color: #FB363B;
+    border-bottom: 3px solid #FB363B;
+    /*font-style: 苹方简-中粗;*/
+    font-family: PingFangSC-Semibold, sans-serif;
+}
+#nav-bar .swiper-slide {
+    padding: 0.75em;
+    width: auto;
+}

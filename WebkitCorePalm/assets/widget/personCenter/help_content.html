@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/help.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body class="um-vp  bc-bg" ontouchstart>
+<ul class="ub ub-ver ub-ac bc-bg uinn baseColor body-padding">
+    <li class="  bg-wh uc-a1 ub-fh " data-url="contactService">
+        <div class="helpli ub  ub-ac">
+            <div class="ub ub-img contactService helpSize uinn2"></div>
+            <div class="ub-f1 uinn2" data-lan="STR_CONTACT_CUSTOMER_SERVICE">联系客服</div>
+        </div>
+    </li>
+    <li class="  bg-wh uc-a1 ub-fh umar-t" data-url="FAQ">
+        <div class="helpli ub  ub-ac">
+            <div class="ub ub-img FAQ helpSize uinn2"></div>
+            <div class="ub-f1 uinn2" data-lan="STR_COMMON_PROBLEMS">常见问题</div>
+        </div>
+    </li>
+    <!--功能说明UI界面未给出-->
+    <li class="bg-wh uc-a1 ub-fh umar-t uhide" data-url="description">
+        <div class="helpli ub  ub-ac">
+            <div class="ub ub-img description helpSize uinn2"></div>
+            <div class="ub-f1 uinn2" data-lan="STR_FUNCTIONAL_SPECIFICATIONS">功能说明</div>
+        </div>
+    </li>
+
+</ul>
+
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        appcan.initBounce();
+    });
+    appcan.button("li", "btn-act", function () {
+        var url = $(this).data("url");
+        appcan.window.open(url, url + '.html', 10);
+    });
+</script>
+</html>

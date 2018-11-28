@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../assets/css/myEnt.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+</head>
+<body class="um-vp bg" ontouchstart>
+<div class="ub ub-ver  up" id="myEnt">
+    <div class="entBg ub-img ub-fh ub ub-ver ub-pc ub-ac">
+        <div class="ub-f1"></div>
+        <div id="fullName" class="bc-text-head fontSize9375" data-bind="text:fullName"></div>
+        <div class="ub-f1"></div>
+        <div class="ub baseColor3 ulev-2">
+            <div data-lan="STR_ENTERPRISE_IDENTIFICATION">企业标识：</div>
+            <div id="shortName" data-bind="text:shortName"></div>
+        </div>
+        <div class="ub-f1"></div>
+    </div>
+    <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+        <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_STATUS">企业状态</span></div>
+        <div class="uinn3 ub-f1 ub-pe ub"></div>
+        <div class="ub ub-ac bg-wh" data-bind="html:setStatus"></div>
+    </div>
+    <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+        <div class="uinn3"><span class="fontSize9375 " data-lan="STR_OFFICIAL_WEBSITE_ADDRESS">官网地址</span></div>
+        <div class="uinn3 ub-f1  ub-pe ub">
+            <div class="fontSize9375 " id="corpUrl" data-bind="text:corpUrl"></div>
+        </div>
+    </div>
+    <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+        <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_ADDRESS">企业地址</span></div>
+        <div class="uinn3 ub-f1  ub-pe ub">
+            <div class="fontSize9375 " id="address" data-bind="text:address"></div>
+        </div>
+    </div>
+    <div class="ub ubb baseBottom baseColor ub-ac uinn3">
+    </div>
+    <div id="enterprisePhoneNumberDiv" class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+        <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_TELEPHONE">企业电话</span></div>
+        <div class="uinn3 ub-f1 ub-pe ub">
+            <div class="fontSize9375 " id="telNum" data-bind="text:telNum"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/backbone.epoxy.min.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/global.js"></script>
+<script src="../assets/services/myEnt.js"></script>
+<script src="../assets/models/myEnt.js"></script>
+<script src="../assets/views/myEnt_content.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        var w = $('.entBg').offset().width;
+        var h = w * 200 / 640;
+        $('.entBg').css('height', h);
+        myEntViewInstance.load();
+        appcan.frame.setBounce(0, null, null, function (type) {
+            myEntViewInstance.load();
+        }, '#ecf3f7');
+    });
+    //企业电话点击事件
+    appcan.button("#enterprisePhoneNumberDiv", "btn-act", function () {
+        //调用系统拨号界面
+        var telNum = $("#telNum").text();
+        var onlyNumber = new RegExp("[\d-]+");
+        var regExpResult = onlyNumber.test(telNum);
+        if (regExpResult) {
+            uexCall.dial(telNum);
+        }
+    });
+</script>
+</html>

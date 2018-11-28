@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body class="um-vp " ontouchstart>
+<div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+    <div id="header" class="ub uh headColor bc-head ub-ver">
+        <div class="ub ub-f1 ">
+            <div class="ub head-btn ub-ac paddLeft11" id="nav-left">
+                <div class="ub ub-img tagimg tagwh "></div>
+            </div>
+            <div class="ub ub-f1 ub-pc ub-ac ut">
+                <div class="fontSize1 " id="title" data-lan="STR_CONTACTS_COMPANY_DEPARTMENT">公司部门</div>
+            </div>
+            <div class="ub paddRight5 head-btn fontSize ub-ac ub-pe" id="nav-right">
+                <div class=""></div>
+            </div>
+        </div>
+    </div>
+    <!--header结束--><!--content开始-->
+    <div id="content" class="ub-f1 tx-l bc-bg"></div>
+    <!--content结束-->
+    <div id="footer" class="uf  ub ubt bc-border ub-ac" style="background-color: #FFF;height: 3.125em">
+        <div class="ub-f1 uinn-fsp ub ft-sz1 ub-ac" id="people" style="width:100%;overflow-x:auto">
+        </div>
+        <div class="ft-sz2 tx-color3 uba bder-color2 ub" style="margin: 0.625em">
+            <div class="all-padd" id="number" data-lan="STR_SUBMIT_NUMBER">
+                提交(0)
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="assets/language.js"></script>
+<script src="js/common.js"></script>
+</body>
+<script>
+
+    var STR_SUBMIT = tools.getString("STR_SUBMIT");
+    var STR_CONTACTS_ERROR_CREATE_GROUP_FAIL = tools.getString("STR_CONTACTS_ERROR_CREATE_GROUP_FAIL");
+    var STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON = tools.getString("STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON");
+    var array = [];
+    var isCreat = false;
+
+    //最后的人员数组。
+    appcan.ready(function () {
+        
+        var openType = appcan.getLocVal("openType");
+        if(openType){
+            appcan.locStorage.remove('_toXzPage');
+        }
+        
+        appcan.locStorage.remove("personId");
+        var titHeight = $('#header').offset().height;
+        setMember();
+        appcan.frame.open("content", "contactDptCheckBox_content.html?IMAdd=1", 0, titHeight);
+        window.onorientationchange = window.onresize = function () {
+            appcan.frame.resize("content", 0, titHeight);
+        };
+        appcan.window.subscribe("E_XMPP_SHUXINMSG", function (result) {
+            uexWidget.finishWidget("", "EMCONTACT", "0");
+        });
+        appcan.window.subscribe("EMCONTACT_CLOSE", function (result) {
+            closeqbrw();
+        });
+        if (isAndroid) {
+            //监听返回键
+            uexWindow.onKeyPressed = function (keyCode) {
+                if (keyCode == '0') {
+                    appcan.window.publish("EMCONTACT_DPT_BACK", "");
+                }
+            };
+            uexWindow.setReportKey('0', '1');
+        }
+        appcan.window.subscribe("E_XMPP_CBCREATEGROUPCHAT", function (result) {//创建群聊回调的返回结果
+            var result1 = result;
+            //群节点,唯一标识
+            var groupId = result1.groupName;
+            if (result1.errorCode == 0) {
+                var imId = JSON.parse(appcan.getLocVal("peoArr"));
+                var param = {
+                    groupName: groupId,
+                    dataList: imId,
+                    reason: "abc"
+                };
+                var params = JSON.stringify(param);
+                uexIM.inviteToChatGroup(params);
+            } else {
+                isCreat = false;
+                isCreat1 = false;
+                appcan.window.openToast(STR_CONTACTS_ERROR_CREATE_GROUP_FAIL, 3000, 5);
+            }
+        });
+        appcan.window.subscribe("E_XMPP_CBJOINGROUPCHAT", function (result) {
+            var data = result;
+            var groupDes = data.groupdes;
+            var groupId = data.groupName;
+            if (data.errorCode == 0) {
+                appcan.setLocVal("groupObjIds", '');
+                appcan.setLocVal("groupName", groupId);
+                appcan.setLocVal("groupDes", groupDes);
+                appcan.locStorage.remove('_toXzPage');
+                uexWidget.startWidget("IM", "10", "", "huihuaqunliao.html", "300");
+                setTimeout(function(){
+                    closeqbrw('0')
+                },400)
+            } else {
+                isCreat = false;
+            }
+        });
+        appcan.window.subscribe("gsbumenfuxuan", function (result) {
+            setMember(result)
+        });
+    });
+
+    function setMember(result) {
+      
+        var data = [];
+        if (result)
+            result = JSON.parse(result);
+        else {
+            result = [];
+        }
+        var toXzPageadd = appcan.getLocVal("_toXzPage");
+        if (toXzPageadd) {
+            var topage = JSON.parse(toXzPageadd);
+            if (topage.length != 0) {
+                for (var j in result) {
+                    for (var i = 0, len = topage.length; i < len; i++) {
+                        if (topage[i].userId == result[j].userId) {
+                            break;
+                        }
+                    }
+                    if (i == len) {
+                        topage.push(result[j]);
+                    } else {
+                        topage.splice(i, 1);
+                    }
+                }
+                data = topage;
+            } else {
+                data = result;
+            }
+        } else {
+            data = result;
+        }
+        appcan.setLocVal("_toXzPage", JSON.stringify(data));
+       
+        $("#number").html(STR_SUBMIT + '(' + data.length + ')');
+        var $people = $("#people");
+        $people.empty();
+        array = data;
+        for (var i = 0; i < data.length; i++) {
+            var name = data[i].fullName;
+            if ($.trim($people.html()) == '') {
+                $people.append('<div class="lef-padd2 peopl" data-name="' + name + '" data-index="' + i + '">' + name + '</div>');
+            } else {
+                $people.append('<div class="lef-padd2 peopl" data-name="' + name + '" data-index="' + i + '">、' + name + '</div>');
+            }
+        }
+        $people.scrollLeft($people[0].scrollWidth);
+
+        //选中的人点击事件
+        appcan.button(".peopl", "btn-act", function () {
+            var index = parseInt(this.getAttribute('data-index'));
+           
+            data[index] = null;
+            appcan.window.publish("DELETE_PERSON", $(this).data("name"));
+            array = [];
+            _.each(data, function (item) {
+                if (item) {
+                    array.push(item);
+                }
+            });
+            showSelectedPeople();
+            appcan.setLocVal("_toXzPage", array);
+            $("#number").html(STR_SUBMIT + '(' + array.length + ')');
+        });
+    }
+    appcan.button("#nav-left", "btn-act", function () {
+        appcan.window.publish("EMCONTACT_DPT_BACK", "");
+    });
+    appcan.button("#number", "btn-act", function () {
+        if (isCreat) {
+            return;
+        }
+        
+        isCreat = true;
+        var openType = appcan.getLocVal("openType");
+
+        if (openType == "huihua") {
+            if (array.length == 0) {
+                isCreat = false;
+                appcan.window.openToast(STR_CONTACTS_TIPS_CHOOSE_CHAT_PERSON, 1500, 5);
+            } else if (array.length == 1) {
+                var userId = (array[0].userId).toLowerCase();
+                var fullName = array[0].fullName;
+                appcan.setLocVal("yghao", userId);
+                appcan.setLocVal("contactsName", fullName);
+                //头像还没有赋值传
+                uexWidget.startWidget("IM", "10", "", "huihuadanliao1.html", "300");
+                setTimeout(function(){
+                    closeqbrw('0')
+                },400)
+                return;
+            } else {
+                var peoArr = [];
+                var nameArr = [];
+                for (var i = 0; i < array.length; i++) {
+                    var userId = (array[i].userId).toLowerCase();
+                    var fullName = array[i].fullName;
+                    peoArr.push(userId);
+                    nameArr.push(fullName);
+                }
+                var groupDes = nameArr.join();
+                appcan.setLocVal("groupDes", groupDes);
+                appcan.setLocVal("peoArr", peoArr);
+
+                creatGroup(groupDes)
+            }
+        } else {
+            appcan.locStorage.remove('_toXzPage');
+            appcan.setLocVal("personArr", JSON.stringify(array));
+            appcan.window.publish("qunliaochengyuan", JSON.stringify(array));
+            uexWidget.finishWidget("", "EMCONTACT", "0");
+        }
+    });
+    function creatGroup(groupDes) {
+        var param = {
+            description: groupDes
+        };
+        var params = JSON.stringify(param);
+        if (isCreat) {
+            appcan.window.publishForJson("CREAT_GROUP_CHAT", params);
+        }
+    }
+    function closeqbrw(f) {
+        appcan.locStorage.remove('_toXzPage');
+        if(f && f == '0'){
+            uexWidget.finishWidget("", "EMCONTACT", "0",'0');
+        }else{
+            uexWidget.finishWidget("", "EMCONTACT", "0");
+        }
+        
+    }
+
+    /**
+     * 显示被选中的人
+     */
+    function showSelectedPeople() {
+
+        var $people = $("#people");
+        $people.empty();
+        for (var i = 0; i < array.length; i++) {
+            var name = array[i].fullName;
+            if ($.trim($people.html()) == '') {
+                $people.append('<div class="lef-padd2 peopl" data-name="' + name + '" data-index="' + i + '">' + name + '</div>');
+            } else {
+                $people.append('<div class="lef-padd2 peopl" data-name="' + name + '" data-index="' + i + '">、' + name + '</div>');
+            }
+        }
+        $people.scrollLeft($people[0].scrollWidth);
+
+        //选中的人点击事件
+        appcan.button(".peopl", "btn-act", function () {
+            var data = array;
+            var index = parseInt(this.getAttribute('data-index'));
+            
+            data[index] = null;
+            appcan.window.publish("DELETE_PERSON", $(this).data("name"));
+            array = [];
+            _.each(data, function (item) {
+                if (item) {
+                    array.push(item);
+                }
+            });
+            showSelectedPeople();
+            appcan.setLocVal("_toXzPage", array);
+            $("#number").html(STR_SUBMIT + '(' + array.length + ')');
+        });
+    }
+</script>
+</html>

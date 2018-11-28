@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../css/own-common.css">
+    <link rel="stylesheet" href="../lib/swiper/css/swiper.min.css" />
+    <style>
+        .detail_padding{
+            padding: 1em 0.7em 0 0.5em;
+        }
+        .umar-b1{
+            margin-bottom: .7em;
+        }
+        
+        .txt_color_list{
+            color:#cecece;
+        }
+    </style>
+</head>
+<body class="um-vp bg" ontouchstart>
+  <div class="ub ub-ver detail_padding" >
+    <div class="ubb bc-border umar-b1" style="padding-bottom: 0.4em">
+        <h4 >反馈内容</h4>
+        <p class="txt_color_list ulev-4 tx-r time"></p>
+    </div>
+    <div class="umar-b1" id="feedBackDetail">
+        <!-- <h4 style="padding-bottom:.4em">如何在APP中实现快速找人</h4>
+        <p class="txt_color_list">2018.07.12 10：32：03</p> -->
+    </div>
+    <div class="swiper-container" >
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-1.png" style="width:96%"/></div>
+            <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-2.png" style="width:96%"/></div>
+            <div class="swiper-slide" style="width:65% !important;"><img src="../css/img/contact-1.png" style="width:96%"/></div> -->
+          </div>
+    </div>
+    
+  </div>
+  <script id="tmpFeedBacklist" type="text/template">
+          <p style="padding-bottom:.4em;font-size: 0.9375em;" ><%=data.content%></p>             
+  </script>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/global.js"></script>
+<script  src="../lib/swiper/js/swiper.min.js"></script>
+<script  src="../lib/swiper/js/swiper.animate.min.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        
+        feedBackDetailView();
+        var swiper = new Swiper('.swiper-container',{
+            freeMode: true,
+            freeModeMomentumRatio : 5,
+            slidesPerView :1.6,
+        });
+        
+        
+    })
+    function feedBackDetailView(){
+        
+        var json = appcan.getLocVal('FEEDBACKDETAIL-JSON') || localStorage.getItem('FEEDBACKDETAIL-JSON');
+         json = JSON.parse(json);        
+        var tmpHtml = $('#tmpFeedBacklist').html();
+        
+        var listVeiwTmpl = appcan.view.template(tmpHtml);
+        
+        var $con = $('#feedBackDetail');          
+        $con.html('');
+        var ele = $(listVeiwTmpl({
+                    data:json
+                }));
+        
+        $con.append(ele);
+        $('.time').html(json.createdAt);
+        var themeImagePath = json.themeImagePath;
+        themeImagePath = themeImagePath.split(',');        
+        
+        var content = '';
+        for(var i in themeImagePath){            
+            content+= '<div class="swiper-slide" style="width:65% !important;"><img src="'+themeImagePath[i]+'" style="width:96%"/></div>';
+        }
+        
+        $('.swiper-wrapper').html(content); 
+    }
+</script>
+</html>
+
+

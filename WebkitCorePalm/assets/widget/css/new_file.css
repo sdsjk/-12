@@ -1,0 +1,32 @@
+.deleteIcon{
+    background-image: url(img/delete.png);
+}
+
+.qluinn{
+    padding:1.28125em 0.625em;
+}
+.qluinn1{
+    padding:0.5em 0.625em;
+}
+.qluinn-rl{
+    padding: 0 0.3125em;
+}
+.qlt-82{
+    color: #828282;
+}
+.qlicon{
+    width:3.75em;
+    height:3.75em;
+}
+.qltouxiang{
+    background-image: url(img/qunliaotouxiang.png);
+}
+.qladd{
+    background-image: url(img/qunliaoadd.png);
+}
+.qldelete{
+    background-image: url(img/qunliaodelete.png);
+}
+.qllineH{
+    line-height:1em;
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gzxiangqing.css">
+    <link rel="stylesheet" href="css/gzmubiao.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+	<style>
+       .uabs-right {
+            position: absolute;
+            right: 0.6em;
+            top: 0.6em;
+       }
+        .yuandian{
+            height: 0.6em;
+            width: 0.6em;
+            border-radius: 0.3em;
+            margin-right:0.1em;
+            background-color:#FF9900;
+        }
+        .icon-nav-mag{
+            background-image: url('css/img/tou_icon.png');
+        }
+        .uinnFoot_2{
+            padding:0.4em 0 0.75em 0;
+        }
+    </style>
+</head>
+<body class="um-vp " ontouchstart>
+<div id="page_0" class="up ub ub-ver bc-bg">
+    <div id="header" class="">
+        <div id="header0" class="ub uh headColor bc-head ub-ver uhide">
+            <div class="ub ub-f1 ">
+                <div class="ub head-btn ub-ac nav-saoma" style="padding-left: 0.925em">
+                    <div class="ub ub-img4    ub-img-right icon-nav-saoma umwh-right  "></div>
+                </div>
+                <div class="ub ub-f1 ub-pc ub-ac ut" id="closeTitle">
+                    <div class="fontSize1 " data-lan="TIT_HOME">首页</div>
+                </div>
+                <div class="ub head-btn ub-ac ub-pe" style="padding-right: 0.75em" id="module-nav">
+                    <div class="ub ub-img4   ub-img-right icon-nav-mag umwh-right2  "></div>
+                </div>
+            </div>
+        </div>
+        <div id="header1" class="ub uh headColor bc-head ub-ver uhide">
+            <div class="ub ub-f1 ">
+                <div class="ub head-btn ub-ac nav-saoma">
+                    <div class="ub ub-img4  tagwh paddLeft ub-img-right icon-nav-saoma umwh-right m-left "></div>
+                </div>
+                <div class="ub ub-f1 ub-pc ub-ac ut">
+                    <div class="fontSize1 " data-lan="STR_APPS">应用中心</div>
+                </div>
+                <div class="ub head-btn fontSize ub-ac ub-pe" id="addApp">                                       
+                </div>
+            </div>
+        </div>
+        <div id="header3" class="ub uh headColor bc-head ub-ver uhide ub-img1" style="background-image: url('css/img/personCenter_tou.png')">
+            <div class="ub ub-f1 ">
+                <div class="ub head-btn ub-ac nav-saoma">
+                    <div class="ub ub-img4  tagwh paddLeft ub-img-right icon-nav-saoma umwh-right m-left "></div>
+                </div>
+                <div class="ub ub-f1 ub-pc ub-ac ut">
+                    <div class="fontSize1 strUserName" ></div>
+                </div>
+                <div class="ub head-btn fontSize ub-ac ub-pe">
+                    <div class="">
+                        <div class="uhide ub-img-right icon-nav-right umwh-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header2" class="ub uh headColor bc-head ub-ver uhide">
+            <div class="ub ub-f1 ">
+                <div class="ub head-btn ub-ac nav-saoma" id="nav-left">
+                    <div class="ub ub-img4  tagwh paddLeft ub-img-right icon-nav-saoma umwh-right m-left "></div>
+                </div>
+                <div class="ub ub-f1 ub-pc ub-ac ut">
+                    <div class="fontSize1 " data-lan="TIT_CONTACT">通讯录</div>
+                </div>
+                <div class="ub head-btn fontSize ub-ac ub-pe">
+                    <div class="paddRight">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--header结束--><!--content开始-->
+    <div id="content" class="ub-f1 tx-l uh">
+	
+	</div>
+    <!--content结束-->
+    <div id="tabview" class="uinnFoot  bg-wh ubt boder"></div>
+</div>
+<div class="up uhide" style="background-color: #282828;opacity: .7" id="maskLayer_2"></div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script src="js/appcan.tab.js"></script>
+<script type="text/javascript" src="./js/bluebird.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/scanner.js"></script>
+<script src="js/home.js"></script>
+<script src="js/push.js"></script>
+<script src="js/store.js"></script> 
+</body>
+<script>
+    appcan.ready(function () {
+        var userId = appcan.getLocVal('userId');      
+        //添加面包屑记录
+        var jsonObj = {leaveBreadcrumb:'index页面'};
+        uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));     
+        home.initPage(0);
+        var isMsgAppData = appcan.getLocVal('ISINSTALL-MSG-APP');
+        //开启遮罩层
+        var isShowMessage = appcan.getLocVal('NOTIFICTION-MESSAGE');             
+        if(isShowMessage == 'true'){ 
+            $('#maskLayer_2').removeClass('uhide');
+        }
+        appcan.window.subscribe('NOTIFICTION-MESSAGE-2',function(){
+            home.initPage(0);
+            $('#maskLayer_2').removeClass('uhide');
+        });
+        //关闭遮罩层
+        appcan.window.subscribe('MASKLAYER-COLSE',function(){
+            $('#maskLayer_2').addClass('uhide');
+        });
+        //iphone X设备改变底部导航高度
+        if(isIphoneX()){
+            $('#tabview').addClass('uinnFoot_2');
+        }
+        //设置个人中心页用户名
+        var userName = JSON.parse(appcan.getLocVal('EPortal-UserInfo')).userName;
+        $('.strUserName').html(userName);
+         // 获取应用数据，缓存自定义模块应用数据  
+       setTimeout(function(){
+        appcan.window.subscribe("YGET_APPLIST_CB",function(list){            
+           var newAppList = JSON.parse(list);
+          
+           var newAppListInfo=newAppList.info;
+           
+           for(var i in newAppListInfo){
+                    var obj = newAppListInfo[i];
+                    var lcKey = '';
+                    if(obj.appId=='aaamu10002'){
+                        //OA待办
+                        lcKey = 'CACHE_APPS_TODO';
+                    }else if(obj.appId=='aaamu10052'){
+                        //财务审批
+                        lcKey = 'CACHE_APPS_TODO_OIE';
+                    }else if(obj.appId=='aaamu10061'){
+                        //监察计划
+                        lcKey = 'CACHE_APPS_TODO_CSM';
+                    }else if(obj.appId == 'aaamu10030'){
+                        //新闻动态
+                        appcan.setLocVal('CACHE_APPS_NEWS',JSON.stringify(obj));
+                    }else if (obj.appId == 'aaamu10062'){
+                        //公司文件
+                        appcan.setLocVal('CACHE_APPS_CAM_FILE',JSON.stringify(obj));
+                    }else if(obj.appId == 'aaamu10027'){
+                        //值班信息
+                        appcan.setLocVal('CACHE_APPS_DUTY',JSON.stringify(obj));
+                    }else if (obj.appId == 'aaamu10102'){
+                        //已办事项
+                        
+                        appcan.setLocVal('CACHE_APPS_HAVETODO',JSON.stringify(obj));
+                    }else if(obj.appId == 'aaamu10107'){
+                        //绩效考核 
+                        appcan.setLocVal('CACHE_APPS_PERFORMANCE',JSON.stringify(obj));
+                    }
+                    if(lcKey) appcan.setLocVal(lcKey, JSON.stringify(obj));           
+            }     
+              
+        });
+       },500);
+          
+          //自动安装推送消息中的应用 -app处于前台   
+         appcan.window.subscribe('HOME_PAGE1',function(data){
+            
+              home.initPage(1);
+              var data = JSON.parse(decodeURIComponent(data));     
+              var appCategory = data.appCategoryName ? data.appCategoryName : data.appCategory;
+              switch (appCategory) {
+                  case  "AppCanWgt":
+                     widgetParam = '';
+                     startWgt(data);
+                     break;
+              }
+              if(isAndroid) loadAppStore();
+              appcan.locStorage.remove('ISINSTALL-MSG-APP');
+         });
+         
+         //自动安装推送消息中的应用 -app处于前台
+         if(isMsgAppData){
+             home.initPage(1);             
+              var data = JSON.parse(decodeURIComponent(isMsgAppData));  
+              var appCategory = data.appCategoryName ? data.appCategoryName : data.appCategory;              
+              switch (appCategory) {
+                  case  "AppCanWgt":
+                     widgetParam = '';
+                     startWgt(data);
+                     break;
+              }
+              if(isAndroid) loadAppStore(); 
+             appcan.locStorage.remove('ISINSTALL-MSG-APP');
+         }
+        
+        if (uexWindow.setStatusBarTitleColor) uexWindow.setStatusBarTitleColor(0);
+        appcan.window.subscribe("E_XMPP_NEWMSGCOMING", function () {
+            uexIM.getUserAndGroupAllMsgUnreadCount();
+        });
+        appcan.window.subscribe("E_XMPP_OFFLINE", function (result) {
+            $("#loginStatus").removeClass("uhide");
+            $("#loginStatusing").addClass("uhide");
+        });
+        appcan.window.subscribe("E_XMPP_LOGINING", function (result) {
+            $("#loginStatus").addClass("uhide");
+            $("#loginStatusing").removeClass("uhide");
+        });
+        appcan.window.subscribe("E_XMPP_LOGIN_RES", function (result) {
+            if (result == 0) {
+                $("#loginStatus").addClass("uhide");
+                $("#loginStatusing").addClass("uhide");
+            } else {
+                $("#loginStatus").removeClass("uhide");
+                $("#loginStatusing").addClass("uhide");
+            }
+        });
+        
+        appcan.window.subscribe("APP_WORK_LONGTAB", function (appId) {
+                $('#delMenu').toggleClass("uhide ub");
+                $('#addApp').html('<p class="" style="min-width: 3em;">完成</p>');
+                $('#addApp').data('LONGTAB', '1');
+        });
+
+        if (uexWindow.setRightSwipeEnable) uexWindow.setRightSwipeEnable(0);
+        appcan.window.subscribe("indexClose", function () {
+            appcan.window.close(0);
+        });
+        //监听返回键
+        uexWindow.onKeyPressed = function (keyCode) {
+            if (keyCode == '0') {
+                var s = $('#addApp').data('LONGTAB');
+                if(s==1){
+                    delStateCancel();
+                }
+                else 
+                    uexWidget.finishWidget('');
+            }
+        };
+        uexWindow.setReportKey('0', '1');
+        
+        
+        
+        //取在线自定义参数:
+          getParamInfo();
+        //设置别名
+        setAlias_user();
+        //听云userId相关
+         var key_ios = "29fc9c9b626346a2bee72034bd974cf3";
+         var key_android = "4154fc6f8c2f429a9fbcf9d7aabe438b";
+         var userId = JSON.parse(appcan.getLocVal('EPortal-UserInfo')).userId;
+         var jsonObj = {userId:userId};
+         if(isAndroid) {
+             uexNBSAppAgent.startNBSAppAgent(key_android);
+         } else{
+              uexNBSAppAgent.startNBSAppAgent(key_ios);
+          }
+          
+         uexNBSAppAgent.setOptions(JSON.stringify(jsonObj));
+         //扫码功能
+         scanner();
+         
+		 
+		 //打开管理模块页面
+        appcan.button('#module-nav','btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'管理模块',
+                            funcName:'自定义模块管理',
+                            buttonName:'管理模块'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+              appcan.window.open('module','module.html',10);
+        });
+           
+    });
+    
+    appcan.button("#shizi", "btn-act", function () {
+        appcan.setLocVal("openType", "huihua");
+        uexWidget.startWidget("EMCONTACT", "10", "", "gsbumenfuxuan1.html", "300");
+    });
+    appcan.button("#closeTitle", "", function () {
+    });
+    //未连接时会话点击登录
+    appcan.button(".IMLOGIN", "", function () {
+        if (!$("#loginStatus").hasClass("uhide"))
+            appcan.window.publish("IM-LOGIN", "")
+    });
+
+    appcan.button("#mCancel", "", function () {
+        delStateCancel();
+    });
+    appcan.button("#mOK", "", function () {
+        
+    });
+
+    appcan.button("#addApp", "btn-act", function () {
+        
+        var s = $('#addApp').data('LONGTAB');
+        if(s==1){
+            delStateCancel();
+        }
+        else { 
+        }
+    });
+    
+    function delStateCancel(){
+        //点击完成版本更新标识
+         var versionID=1;
+         //发送消息通道给工作桌面
+         appcan.window.publish("versionID",versionID);
+        $('#delMenu').toggleClass("uhide ub");
+        $('#addApp').data('LONGTAB', '');
+  
+       $('#addApp').empty();
+       var param=false;
+         appcan.window.publish("APP_WORK_LONGTAB_TUOZHUAI",param);
+         appcan.window.publish("APP_WORK_LONGTAB_CANCEL", '');
+        
+    }
+   function startYb(){
+       appcan.window.publish("EPORTAL_HAVETODO_START", '');
+   }
+   
+   function scanner(){
+       
+        var userId = appcan.getLocVal('userId');
+        var loginName = appcan.getLocVal('loginName');
+        var mobileNo = JSON.parse(appcan.getLocVal("emmToken")).info.mobileNo;
+        var email = JSON.parse(appcan.getLocVal("emmToken")).info.email;
+        var AccessToken = appcan.getLocVal("emmAccessToken");
+        var SoftToken = appcan.getLocVal("emmSoftToken");      
+         appcan.button('.nav-saoma', 'btn-act', function(){
+             
+             //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'掌上深航',
+                            funcName:'扫码',
+                            buttonName:'扫码'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+             //设置扫码数据，开始扫码功能
+             var jsonData = {
+                      lineImg:"",
+                      pickBgImg:"res://pick_bg.png",
+                      tipLabel:"对准二维码/条形码,即可自动扫描",
+                      title:"扫一扫"
+             };
+             uexScanner.setJsonData(jsonData);              
+             uexScanner.cbOpen = function(opId,dataType,data){        
+                var data = JSON.parse(data);  
+                 if(opId === 0){         
+                     scannerLogin(data);  
+                  }
+                                 
+              }
+               uexScanner.open();
+         });
+   }
+         
+</script>
+</html>

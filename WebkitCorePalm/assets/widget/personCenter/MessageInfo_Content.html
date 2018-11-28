@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <meta charset="utf-8">
+         <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../assets/css/base.css">
+        <title></title>
+        <style>
+           html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0 auto;
+                background-color: #FFFFFF;
+            }
+           
+            #content{
+                display: flex;
+                flex-direction: column;
+                 background-color: #FFFFFF;
+            }
+            .title {
+                font-size: 1.1em;
+                margin: 0.2em 0.6em;
+                font-weight: 600;
+            }
+            .subtitle {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin: 0.1em 0.5em;
+                flex-wrap: nowrap;
+            }
+            .time {
+                 margin-left:  0.2em;
+                 width:100%;
+                font-size: 1em;
+                color:gray ;
+                padding-bottom:0.3em;
+                border-bottom: 1px #CCCCCC solid;
+            }
+            .content {
+                margin: 1em 0.7em;
+                font-size: 1em;
+                line-height:1.3em
+            }
+            .notic {
+                width:100%;
+                margin-left:  0.2em;
+                font-size: 1em;
+                color:gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <script id="test" type="text/html">
+               <div class="title">
+                    {{pushTitle==""?'— —':pushTitle}}
+                 </div>
+                        <div class="subtitle">
+                            <div class="notic">
+                                通知
+                            </div>
+                         
+                        </div>
+                        <div class="subtitle" style="">
+                           <div class="time">
+                                 {{signature_created==""?'— —':signature_created}}
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{content==""?'— —':content}}
+                        </div>
+              </script>
+        </div>
+    </body>
+    <script src="../js/appcan.js"></script>
+    <script src="../js/appcan.control.js"></script>
+    <script src="../js/language.js"></script>
+    <script src="../js/appcan.tab.js"></script>
+     <script src="../js/template-web.js"></script>
+      <script src="../js/dateUtil.js"></script>
+    <script>
+              //声明一个json对象存储详情                             
+            var data = {};
+             appcan.ready(function() {
+                    // 开启页面弹动效果
+                  appcan.window.enableBounce();        
+                    // 隐藏滚动条
+                   appcan.window.setWindowScrollbarVisible(0); 
+    
+                 //获取上推送通知缓存的详情信息
+                  var messageData = appcan.locStorage.getVal('messageData');
+                   var after = JSON.parse(messageData);
+                          //通知标题
+                          var pushTitle =after.pushTitle;
+                           //通知内容
+                           var content = after.content;
+                           //通知时间
+                           var signature_created=after.signature_created;
+                            data.pushTitle=pushTitle;
+                            data.content=content;
+                            data.signature_created=signature_created;          
+                      
+                         //渲染模板
+                             var html = template('test', data);
+                             document.getElementById('content').innerHTML = html;
+                 });
+                
+    </script>
+</html>

@@ -1,0 +1,702 @@
+/*二期样式*/
+/*个人中心*/
+.divheight {
+    height: 0.3125em; /*10px*/
+}
+
+.newgezx-tx {
+    background-image: url(img/touxiang.png);
+    height: 3.625em; /*116px*/
+    width: 3.625em;
+    border-radius: .2em;
+}
+
+.qytxl-wh {
+    background-image: url(img/jiegou.png);
+    height: 1.375em; /*44px*/
+    width: 1.5em; /*48px*/
+}
+
+.qytxl-wh1 {
+    background-image: url(img/txlql.png);
+    height: 1.375em; /*44px*/
+    width: 1.5em; /*48px*/
+}
+
+.qz-jiao {
+    background-image: url(img/jbiao.png);
+    height: 0.875em; /*28px*/
+    width: 0.5em; /*16px*/
+}
+
+.qz-jiah {
+    background-image: url(img/jiahao.png);
+    height: 0.9375em; /*30px*/
+    width: 0.9375em; /*30px*/
+}
+
+.qz-tx {
+    background-image: url(img/qltx.png);
+    height: 3.75em; /*120px*/
+    width: 3.75em; /*120px*/
+}
+
+.qz-jiaren {
+    background-image: url(img/jiaren.png);
+    height: 3.75em; /*120px*/
+    width: 3.75em; /*120px*/
+}
+
+.qz-jianren {
+    background-image: url(img/jianhao.png);
+    height: 3.75em; /*120px*/
+    width: 3.75em; /*120px*/
+}
+
+.qz-chahao {
+    background-image: url(img/chahao.png);
+    height: 1em; /*120px*/
+    width: 1em; /*120px*/
+}
+
+.bm-xxduihua {
+    background-image: url(img/xxduihua.png);
+    height: 1.5em; /*48px*/
+    width: 1.5em; /*48px*/
+}
+
+.bm-phone {
+    background-image: url(img/phone.png);
+}
+
+.bm-phonewh {
+    height: 1.5em; /*48px*/
+    width: 1.5em; /*48px*/
+}
+
+.ql-wh {
+    height: 2.8125em; /*116px*/
+    width: 2.8125em;
+    border-radius: .2em;
+}
+
+/*群聊头像*/
+.ql-img3 {
+    background-image: url(img/qltx3.png);
+}
+
+.tx-padd {
+    padding: 1em 0.625em 1em 0.625em;
+}
+
+.tagimgR {
+    background-image: url('img/tagRight.png') !important;
+}
+
+.tagwh3 {
+    width: 0.5625em; /*18px*/
+    height: 0.9375em; /*30px*/
+}
+
+.img-padd {
+    padding: 1.3125em 0em; /*42px*/
+}
+
+.all-padd1 {
+    padding: 1.125em 0.625em;
+}
+
+.top-padd {
+    padding-top: 0.625em; /*20px*/
+}
+
+.top-padd1 {
+    padding-top: 0.875em; /*28px*/
+}
+
+.top-padd2 {
+    padding-top: 1.625em; /*74px*/
+}
+
+.top-padd3 {
+    padding-top: 0.5em; /*74px*/
+}
+
+.top-padd4 {
+    padding-top: 1.1875em; /*38px*/
+}
+
+.top-padd5 {
+    padding-top: 1em; /*32px*/
+}
+
+.top-padd6 {
+    padding-top: 0.375em; /*12px*/
+}
+
+.bot-padd {
+    padding-bottom: 0.625em;
+}
+
+.bot-padd1 {
+    padding-bottom: 1.4375em; /*46px*/
+}
+
+.bot-padd2 {
+    padding-bottom: 0.5em; /*16px*/
+}
+
+.bot-padd3 {
+    padding-bottom: 2.75em; /*16px*/
+}
+
+.bot-padd4 {
+    padding-bottom: 1.125em; /*16px*/
+}
+
+.bot-padd5 {
+    padding-bottom: 0.625em; /*20px*/
+}
+
+.bot-padd6 {
+    padding-bottom: 1.1875em; /*38px*/
+}
+
+.bot-padd7 {
+    padding-bottom: 1em; /*32px*/
+}
+
+.lef-padd {
+    padding-left: 0.9375em; /*30px*/
+}
+
+.lef-padd1 {
+    padding-left: 1.375em; /*30px*/
+}
+
+.lef-padd2 {
+    padding-left: 0.625em; /*20px*/
+}
+
+.lef-padd3 {
+    padding-left: 0.75em; /*24px*/
+}
+
+.rig-padd {
+    padding-right: 1.3125em; /*42px*/
+}
+
+.rig-padd1 {
+    padding-right: 0.625em; /*20px*/
+}
+
+.rig-padd2 {
+    padding: 1.3125em 0.625em;
+}
+
+.rig-padd3 {
+    padding-right: 0.9375em; /*30px*/
+}
+
+.rig-padd4 {
+    padding: 0.375em 0.375em; /*20px 10px*/
+}
+
+.rig-padd5 {
+    padding-right: 1.25em; /*40px*/
+}
+
+.all-padd {
+    padding: 0.625em 0.3125em; /*20px*/
+}
+
+.xx_padd {
+    padding-top: 1.18125em;
+    padding-bottom: 1.11875em;
+}
+
+.jj_marg {
+    margin: 0.625em 0;
+}
+
+.jj_marg0 {
+    margin: .75em 0;
+}
+
+.jj_marg1 {
+    margin-right: 0.625em; /*20px*/
+}
+
+.jj_marg2 {
+    margin: 0.625em 0 1.0625em;
+}
+
+.jj_marg3 {
+    margin-right: 0.9375em; /*30px*/
+}
+
+.jj_marg4 {
+    margin-left: 0.625em; /*20px*/
+}
+
+.jj_marg5 {
+    margin-right: 1.09375em; /*35px*/
+}
+.bm-xxduihua.jj_l_marg5 {
+    margin-left: 1.09375em; /*35px*/
+}
+.jj_marg6 {
+    margin-bottom: 0.625em; /*20px*/
+}
+
+.jj_marg7 {
+    margin-bottom: 0.375em; /*12px*/
+}
+
+.jj_marg8 {
+    margin: 0.3em;
+}
+
+.suojin {
+    text-indent: 1.875em;
+}
+
+.uh-lxrbg1 {
+    height: 13.4375em;
+}
+
+.uh-liaotian {
+    /*  min-width:1.1875em;*/
+    min-width: 1.4em;
+    min-height: 1.2em;
+}
+
+.ulev-09 {
+    font-size: 1.125em !important;
+}
+
+.ft-sz {
+    font-size: 0.75em;
+}
+
+.ft-sz1 {
+    font-size: 1em;
+}
+
+.ft-sz2 {
+    font-size: 0.8125em;
+}
+
+.ft-sz3 {
+    font-size: 0.875em; /*28*/
+}
+
+.ft-sz4 {
+    font-size: 0.6875em; /*22*/
+}
+
+.ft-sz5 {
+    font-size: 0.5em; /*16*/
+}
+
+.liaotian {
+    background-image: url(img/liaotian.png);
+}
+
+.tx-color {
+    color: #ffb424;
+}
+
+.tx-color1 {
+    color: #2b61aa;
+}
+
+.tx-color2 {
+    color: #828282;
+}
+
+.tx-color3 {
+    color: #2b61aa;
+}
+
+.bgd-color {
+    background-color: #ecf3f7;
+}
+
+.high {
+    height: 3.4375em;
+}
+
+.high-1 {
+    height: 9.4375em;
+}
+
+.bder-color {
+    border-color: #e5e5e5;
+}
+
+.bder-color1 {
+    border-color: #e5e5e5;
+}
+
+.bder-color2 {
+    border-color: #e5e5e5;
+}
+
+/*个人中心改版2015-10-14*/
+.personBg {
+    background-image: url(img/person/personBg.png);
+    height: 12.5em;
+}
+
+.apps {
+    background-image: url(img/person/apps.png);
+}
+
+.personInfo {
+    background-image: url(img/person/personInfo.png);
+}
+
+.position {
+    background-image: url(img/person/pos.png);
+}
+
+.score {
+    background-image: url(img/person/score.png);
+}
+
+.setting {
+    background-image: url(img/person/setting.png);
+}
+
+.personSize {
+    width: 2.375em;
+    height: 1.875em;
+}
+
+.text-c {
+    color: #434343;
+}
+
+.text-c1 {
+    color: #878787;
+}
+
+.opacityIcon {
+    background-color: rgba(255, 255, 255, .34);
+}
+
+.newgezx1-tx {
+    /*background-image:url(img/touxiang.png);*/
+    height: 4.6875em;
+    width: 4.6875em;
+    border-radius: 50%;
+    border:2px solid #FFFFFF;
+}
+
+.iconbg {
+    height: 5.0625em;
+    width: 5.0625em;
+    border-radius: .2em;
+}
+
+.levelSize {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.bg-wh {
+    background-color: white;
+}
+
+.bg-gray1 {
+    background-color: #e7e7e7;
+}
+
+.bg-gray2 {
+    background-color: #f7f7f7;
+}
+
+/*岗位职责2015-11-2*/
+/*积分样式*/
+.ubbColor {
+    border-color: #e5e5e5;
+}
+
+.ubbColor1 {
+    border-color: #FFFFFF;
+}
+
+.paddLeft11 {
+    padding-left: 1em; /*32*/
+}
+
+.paddLeft {
+    padding-left: 0.625em; /*20px*/
+}
+
+.paddRight {
+    padding-right: 0.625em;
+}
+
+.paddRight6 {
+    padding-right: 3.0625em; /*98px*/
+}
+
+.paddRight5 {
+    padding-right: 1em; /*32px*/
+}
+
+.paddTB18 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.paddTB5 {
+    padding-top: 0.15625em; /*5px*/
+    padding-bottom: 0.15625em;
+}
+
+.paddTB22 {
+    padding-top: 0.5625em; /*18px*/
+    padding-bottom: 0.5625em;
+}
+
+.paddTB3 {
+    padding-top: 0.1875em; /*6px*/
+    padding-bottom: 0.1875em;
+}
+
+.paddTB2 {
+    padding-top: 0.3125em; /*10px*/
+    padding-bottom: 0.3125em;
+}
+
+.paddB4 {
+    padding-bottom: 0.3125em; /*10px*/
+}
+
+.paddT4 {
+    padding-top: 0.3125em; /*10px*/
+}
+
+.bc-wh {
+    background-color: #FFFFFF;
+}
+
+.bc-ff {
+    background-color: #ffd46c; /*黄色*/
+}
+
+.bc-f5 {
+    background-color: #ecf3f7;
+}
+
+.t-c {
+    color: #434343;
+}
+
+.headImg1 {
+    background-image: url('img/headImg1.png') !important;
+}
+
+.huaImg {
+    background-image: url('img/hua.png') !important;
+}
+
+.headwh1 {
+    width: 3.125em; /*66px*/
+    height: 3.125em;
+    border-radius: .2em;
+}
+
+.huawh {
+    width: 0.875em; /*28*/
+    height: 1em; /*32*/
+}
+
+/*相对定位*/
+.urel {
+    position: relative;
+}
+
+.triangleStyle {
+    margin: 0 50%;
+    top: -2px;
+    left: -0.3125em;
+}
+
+.triangleStyle1 {
+    margin: 0 50%;
+    bottom: -1px;
+    left: -0.3125em;
+    top: auto;
+}
+
+.lineH {
+    line-height: 1.5em;
+}
+
+.topHe {
+    top: 85%;
+}
+
+.kuangsty {
+    width: 100%;
+    bottom: -10px;
+    top: auto;
+}
+
+.jdHight {
+    height: 0.5em;
+}
+
+.ubbColor4 {
+    border-color: #ffce37; /*橘色*/
+}
+
+.fontSize9 {
+    font-size: 0.4375em; /*14px*/
+}
+
+.fontSize3 {
+    font-size: 0.75em; /*24px*/
+}
+
+.fontSize6 {
+    font-size: 0.5625em; /*18px*/
+}
+
+.fontSize2 {
+    font-size: 0.815em; /*26px*/
+}
+
+.textColor19 {
+    color: #9c9c9c;
+}
+
+.textColor18 {
+    color: #ffb21d;; /*橘色*/
+}
+
+.fontSizeSty {
+    line-height: 2em;
+}
+
+.tagimg {
+    background-image: url('img/tagLeft.png') !important;
+}
+
+.tagwh {
+    width: 0.8125em; /*26px*/
+    height: 1.3125em; /*42px*/
+}
+
+/*提醒页面css*/
+.paddTb {
+    padding-top: 0.9375em; /*30*/
+    padding-bottom: 0.9375em;
+}
+
+.paddTb1 {
+    padding-top: 0.8125em; /*26*/
+    padding-bottom: 0.8125em;
+}
+
+.paddAll {
+    padding: 0.1em;
+}
+
+.paddTop {
+    padding-top: 0.625em; /*20*/
+}
+
+.noticeImg {
+    background-image: url('img/remind_notice.png') !important;
+}
+
+.csmOppImg {
+    background-image: url('img/remind_csmOpp.png') !important;
+}
+
+.orderImg {
+    background-image: url('img/remind_order.png') !important;
+}
+
+.remindPerImg {
+    background-image: url('img/remind_person.png') !important;
+}
+
+.punchCardImg {
+    background-image: url('img/remind_punchCard.png') !important;
+}
+
+.reportImg {
+    background-image: url('img/remind_report.png') !important;
+}
+
+.scheduleImg {
+    background-image: url('img/remind_schedule.png') !important;
+}
+
+.targetTaskImg {
+    background-image: url('img/remind_targetTask.png') !important;
+}
+
+.workplanImg {
+    background-image: url('img/remind_workplan.png') !important;
+}
+
+.noticewh {
+    width: 1.45em; /*40*/
+    height: 1.45em;
+}
+
+.remindwh {
+    min-width: 1em;
+    height: 1em;
+    border-radius: 1em;
+    background-color: #e35652;
+}
+
+.textColor16 {
+    color: #2b61aa; /*蓝色*/
+}
+
+.borderColor {
+    border-color: #E5E5E5;
+}
+
+.font30 {
+    font-size: 0.9375em;
+}
+
+.radius2 {
+    border-radius: .2em;
+}
+
+.uinnlist {
+    padding: .6em;
+}
+
+.break_word {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.body-padding {
+    padding: 0.8em;
+}
+
+.body-padding-horizontal {
+    padding: 0em 0.8em;
+}
+
+.bg-color-white {
+    background-color: white;
+}
+
+.border-circular {
+    border: solid #CCCCCC 1px;
+    border-radius: 5px;
+}

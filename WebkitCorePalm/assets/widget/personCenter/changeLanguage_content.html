@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/yuefen-style.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body class="um-vp bgd-color" ontouchstart>
+<div class="ub ub-ver utlv_22 utlv_21">
+    <div class="ub  bg-wh ubt bder-color jj_marg7 ub-ver">
+        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1" id="zh_cn">
+            <div class="ub ub-f1 ub-ac">
+                <div class="radiobox umar-r" name=""><input id="radio_zh_cn" type="radio" class="radio uabs ub-con"
+                                                            name="language"></div>
+                <div class="ub  ub-f1 text-c" data-lan="LAN_ZH_CN">简体中文</div>
+            </div>
+        </div>
+        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1" id="en_us">
+            <div class="ub ub-f1 ub-ac">
+                <div class="radiobox umar-r" name=""><input id="radio_en_us" type="radio" class="radio uabs ub-con"
+                                                            name="language"></div>
+                <div class="ub  ub-f1 text-c" data-lan="LAN_EN_US">英语(美国)</div>
+            </div>
+        </div>
+    </div>
+
+    <!--切换语言(原生)测试-->
+    <input class="btn" value="获得当前语言" type="button" onclick="getAppLanguage()">
+    <input id="languageFlag" type="number">
+    <input class="btn" value="设置语言" type="button" onclick="setAppLanguage($('#languageFlag').val())">
+    <input class="btn" value="弹出原生提示框" type="button" onclick="openNativeDialog()">
+</div>
+
+</body>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/appcan.listview.js"></script>
+<script src="../js/common.js"></script>
+</body>
+<script>
+
+    var LOC_TEMP_LANGUAGE = "LOC_TEMP_LANGUAGE";
+
+    appcan.ready(function () {
+        appcan.button("#zh_cn", "btn-act1", function () {
+            removeChecked();
+            $("#radio_zh_cn").attr("checked", true);
+            appcan.locStorage.setVal(LOC_TEMP_LANGUAGE, "zh_cn");
+        });
+        appcan.button("#en_us", "btn-act1", function () {
+            removeChecked();
+            $("#radio_en_us").attr("checked", true);
+            appcan.locStorage.setVal(LOC_TEMP_LANGUAGE, "en_us");
+        });
+        initRadioCheck();
+
+    });
+
+    /**
+     * 初始化单选框选中状态
+     */
+    function initRadioCheck() {
+        removeChecked();
+        var lan = tools.getLan();
+        if (lan == '') {
+            
+            return;
+        }
+        if (lan == 'zh_cn') {
+            $("#radio_zh_cn").attr("checked", true);
+            appcan.locStorage.setVal(LOC_TEMP_LANGUAGE, "zh_cn");
+        } else if (lan == 'en_us') {
+            $("#radio_en_us").attr("checked", true);
+            appcan.locStorage.setVal(LOC_TEMP_LANGUAGE, "en_us");
+        }
+    }
+
+    /**
+     * 移除所有单选框被选中的状态
+     */
+    function removeChecked() {
+        try {
+            $("#radio_zh_cn").removeAttr("checked");
+            $("#radio_en_us").removeAttr("checked");
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+
+    /**
+     * 获得App当前语言(原生部分)
+     */
+    function getAppLanguage() {
+        try {
+            uexAppLanguage.cbGetLanguage = function (opId, dataType, data) {
+                
+            };
+            uexAppLanguage.getLanguage();
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+
+    /**
+     * 设置App当前语言(原生部分)
+     * @param languageFlag 0：系统语言;1：简体中文;2：英文;
+     */
+    function setAppLanguage(languageFlag) {
+        try {
+            uexAppLanguage.cbSetLanguage = function (opId, dataType, data) {
+                
+            };
+            uexAppLanguage.setLanguage(languageFlag);
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+
+    /**
+     * 弹出原生提示框
+     */
+    function openNativeDialog() {
+        uexWidgetOne.exit(1);
+    }
+
+</script>
+</html>

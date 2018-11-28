@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/wqb-style.css">
+        <link rel="stylesheet" href="../css/yuefen-style.css">
+        <link rel="stylesheet" href="../css/gzxiangqing.css">
+        <link rel="stylesheet" href="../css/gzmubiao.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body class="um-vp bg-wh fontS">
+        <div class="ub ub-ver ub-f1 uof" id="datalist">
+            <ul></ul>
+        </div>
+        <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+            <div class="ub ub-ver ub-ac ub-pc">
+                <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+        <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                    暂无数据
+                </div>
+            </div>
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+		<script src="../js/language.js"></script>
+        <script src="../js/appcan.optionList.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/chatGrouplist.js"></script>
+        <script src="../assets/models/chatGrouplist.js"></script>
+        <script src="../assets/views/chatGroupList_content.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.frame.setBounce([0, 1], null, null, function(type) {
+                chatGroupListViewInstance.load(type);
+            });
+            uexWindow.topBounceViewRefresh();
+            appcan.window.subscribe("shuaxinqzlb", function(result) {
+                uexWindow.topBounceViewRefresh();
+            });
+            appcan.window.subscribe("DEL_RECORD_SUCCESS", function(param) {
+                uexWindow.topBounceViewRefresh();
+            });
+            appcan.window.subscribe("EDIT_GNAME_SUCCESS", function(result) {
+                uexWindow.topBounceViewRefresh();
+            });
+            appcan.window.subscribe("refresh_groupList", function(result) {
+                uexWindow.topBounceViewRefresh();
+            });
+            appcan.window.subscribe("CB_LEAVE_CHATGROUP", function(result) {
+                var data = result;
+                if(data.errorCode==0){
+                    var delGroupId = appcan.getLocVal("DELgroupid");
+                    chatGroupListViewInstance.collection.remove(chatGroupListViewInstance.collection.get(delGroupId));
+                    if(chatGroupListViewInstance.collection.length==0){
+                        $("#norecord").removeClass("uhide");
+                    }
+                }
+            });
+           
+            
+        });
+    </script>
+</html>

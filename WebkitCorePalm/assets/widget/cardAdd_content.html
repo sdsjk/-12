@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/yuefen-style.css">
+        <link rel="stylesheet" href="css/my.css">
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body class="um-vp bg-color" onclick>
+        <div class="ub ub-ver" id="f-card-container">
+          
+            <script id="template" type="text/template">
+              <%_.each(appList, function(item) {%>
+                <div class="ub ubb jj-padd6 borderColor l-h1 uhide" id="<%=item.tilesList.param.cardId%>">
+                  <div class="ub ub-pc  ub-ver">
+                      <div class="zt-font6 "><%=item.tilesList.tilesname%></div>
+                      <div class="zt-font11 zt-color2 jj-padd24"><%=item.tilesList.param.describe%></div>
+                  </div>   
+                  <div class="ub ub-pc ub-ac ub-f1"><div class=""></div></div>          
+                  <div class="ub ub-pc ub-ver tx-r">
+                      <div class="addInit ub-img" id="<%=item.tilesList.param.cardId%>_id"></div>
+                  </div>               
+                </div>
+              <%});%>
+            </script>
+            
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+			var work_default = [];
+			var appList = [];
+			appcan.ready(function() {
+				appcan.initBounce();
+				appList = JSON.parse(appcan.locStorage.val("TILES_WORK_ALL"));
+				work_default = JSON.parse(appcan.locStorage.val("TILES_WORK_DEFAULT"));
+				$("#f-card-container").html(_.template($("#template").html(), appList)); 
+				for (var i in work_default) {
+					$('#' + work_default[i].tilesList.param.cardId + '_id').toggleClass("addInit addSelete");
+				}
+				
+				appcan.button(".jj-padd6", "bg-color321", function() {
+                  var _this = this;
+                  var addInit = $('#' + _this.id + '_id');
+                  addInit.toggleClass("addInit addSelete");
+                  if (addInit.hasClass("addInit")) {
+                    appcan.window.publish("CARD_WORK_DEL", _this.id);
+                  } else {
+                    appcan.window.publish("CARD_WORK_ADD", _this.id);
+                  }
+          
+                });
+        
+			});
+
+    </script>
+</html>

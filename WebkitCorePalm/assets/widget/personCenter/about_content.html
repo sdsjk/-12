@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="../lib/swiper/css/swiper.min.css" />
+    <style>
+        .txtSize{
+          font-size:0.875em
+        }
+        body{
+        	background:#FFFFFF;
+        }
+		.headerContent {
+			display: flex;
+			display: -webkit-flex;
+			justify-content:space-between;
+		}
+		.textColor {
+			color:lightgray;
+		}
+		.lineColor{
+			background:lightgray;
+		}
+		.gray{
+			background:gray;
+		}
+		.left-about{
+			background:#FB363B;
+			float:left;
+			height:0.95em;
+			width: 0.3em;
+			margin-top:0.4em;
+		}
+		.myabout{
+		    padding:1em 1em 0em 1em;
+		    vertical-align:left;
+		    background: #FFFFFF;
+		}
+        p {
+            text-indent: 2em;
+        }
+        .bg-code2 {
+            background-image: url(../css/img/code2.png);
+            height: 10em;
+            width: 10em;
+        }
+        .share{
+          margin-top:0.5em;
+        }
+        .bg_Color{
+           background-color:gray; 
+           z-index: 100; 
+        }
+    </style>
+</head>
+<body  class="um-vp bg-wh" ontouchstart> 
+  <div id="page"> 
+   	<!--<div class="headerContent" style="padding:0.75em;">
+   		<div class="headerContent">
+			<img src="../css/img/icon.png" style="width:3.75em;height:3.75em;background-size:100% 100%;"/>
+		 	<div style="margin-top:0.5em;line-height:1.5em;margin-left:0.75em;">
+		    	<span id="APPversion" class="ulev-30">掌上深航-V01.00.0005</span>
+		    	<br />
+		    	<span class="garytext textColor ulev-30">深圳航空有限责任公司</span>     
+		 	</div>
+		 	
+       </div>
+       <div class="share">
+		 	<img src="../css/img/share.png" style="height:1.5em;width:1.5em;background-size:100% 100%;" />
+	   </div>
+   	</div>-->
+   <!--<div  class="garyline lineColor" style="height:1px;text-align:center;margin:0 1em 0.75em 1em; "></div>-->
+   	<div class="ub" style="margin:0 0.75em;padding-top:0.75em;">
+		<div class="left-about"></div>
+		<div style="margin-left:0.5em;line-height:1.5em;">
+			<span>掌上深航</span><br />
+			<span id="twoversion" class="garytext textColor txtSize" ></span><br />
+			<span id="description" class="txtSize"></span>        
+		</div>     
+   	</div>
+	<div class="ub" style="margin:0.75em">
+		<div class="left-about"></div>
+		<div style="margin-left:0.5em;line-height:1.75em">
+			<span>新功能预览</span>
+		</div> 
+   </div>
+  
+   <div class="swiper-container" style="margin-top:1em;padding-left:0.75em;min-height:40%;">
+	  	<div class="swiper-wrapper">
+	    	<div class="swiper-slide" style="width:65% !important;"><img src="../css/img/aboutSZair1.png" style="width:95%"/></div>
+	    	<div class="swiper-slide" style="width:65% !important;"><img src="../css/img/aboutSZair2.png" style="width:95%"/></div>
+	    	<!--<div class="swiper-slide" style="width:65% !important;"><img src="../css/img/aboutSZair3.png" style="width:95%"/></div>-->
+	  	</div>
+	</div>
+	<div class="ub ub-ver ub-ac">
+		<div class="ub" style="padding-top:2em">
+	        <div class="bg-about3 ub-img bg-code2"></div>
+	    </div>
+	    <div class="umh1"></div>
+	    <div class=" zt-font6 uinnb bfc" id="appversion">&nbsp;</div>
+	</div>
+	<div class="up uhide bg_Color" style="opacity: .5"></div>
+  </div>
+  <div id="shareFooter" class="uhide allabout" style="height:40%;width:100%;text-align:center;background:#FFFFFF;z-index:6666;position:fixed;bottom:0;font-size:0.9em;">
+		<div class="allabout" style="text-align:center;padding:1em 0;color:gray">
+	              分享至
+		</div>
+		<div class="ub allabout" style="width:100%;padding-top:0.5em">
+		<div  class="allabout" style="width:25%;text-align:center;">
+			<img id="weixin" src="../css/img/weixin.png" style="height:3.75em;width:3.75em;background:100% 100%;"/><br />
+			<span class="allabout" style="text-align:center;">微信好友</span>
+		</div>
+		<div class="allabout" style="width:25%;text-align:center;">
+			<img id="wxFriends"  src="../css/img/wechat.png" style="height:3.75em;width:3.75em;background:100% 100%;"/><br />
+			<span class="allabout"  style="text-align:center;">微信朋友圈</span>
+		</div>
+		<div class="allabout" style="width:25%;text-align:center;">
+			<img id="qq" src="../css/img/qq.png" style="height:3.75em;width:3.75em;background:100% 100%;"/><br />
+			<span class="allabout" style="text-align:center;">腾讯QQ</span>
+		</div>
+		<div class="allabout" style="width:25%;text-align:center;">
+			<img id="message" src="../css/img/duanxin.png" style="height:3.75em;width:3.75em;background:100% 100%;"/><br />
+			<span class="allabout"  style="text-align:center;">短信</span>
+		</div>
+	    </div>
+  </div>
+  
+  
+	<script src="../js/appcan.js"></script>
+	<script src="../js/appcan.control.js"></script>
+	<script src="../js/language.js"></script>
+	<script src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/crypto-js.js"></script>
+    <script type="text/javascript" src="../js/bluebird.min.js"></script>
+	<script  src="../lib/swiper/js/swiper.min.js"></script>
+	<script  src="../lib/swiper/js/swiper.animate.min.js"></script>
+	
+</body>
+
+<script>
+    appcan.ready(function () {
+	    var userId = appcan.getLocVal('userId');
+		var desc = '掌上深航提供了OA、运行、飞行、乘务、营销、地服、机务、大数据八大领域功能，为您带来全新的移动办公体验！不论何时何地，指尖一点，使管理更高效，让工作更轻松！';
+    	//取消页面弹动
+    	appcan.window.disableBounce();
+    	//预览功能 滑动显示预览页
+	    var swiper = new Swiper('.swiper-container',{
+	        freeMode: true,
+	        freeModeMomentumRatio : 5,
+	        slidesPerView :1.6,
+	    });	    
+        //版本号 、版本描述
+		var widgetInfo=uexWidgetOne.getCurrentWidgetInfo();
+		$("#twoversion").html("版本-"+widgetInfo.version);
+		$("#description").html(desc);
+        
+        appcan.window.subscribe('SHARE-APP',function(){           
+            
+            document.body.addEventListener('touchmove',bodyScroll,false);
+           $('.garyline').removeClass("lineColor");  
+           $('.garytext').removeClass("textColor");  
+           $("#shareFooter").removeClass("uhide");           
+           $('.bg_Color').removeClass('uhide');
+        });
+                                         
+    $(document).on("tap","#shareFooter",function(event){
+   	   var clickShareId=event.target.id;
+   	   //微信好友分享
+   	   if(clickShareId=="weixin"){//微信好友
+   	   	  appcan.window.openToast("加载中,请稍后..."); 
+   	   	  setTimeout(function(){
+   	    	appcan.window.closeToast();
+   	      },2000);
+          //用户授权
+   	   	 var info= uexWeiXin.registerApp('wxe0530f337c7107bf');
+		 //info返回为0则用户授权成功
+   	   	  if(info==0){
+   	   	  	  //判断用户是否安装微信
+			  var installInfo = uexWeiXin.isWXAppInstalled();
+			  //分享图片 	
+   	   	  	  	    appcan.window.closeToast();
+   	   	  	  	    $('.garyline').addClass("lineColor");  
+                    $('.garytext').addClass("textColor");
+                    $("#shareFooter").addClass("uhide");
+                    $('.bg_Color').addClass('uhide');
+                    document.body.removeEventListener('touchmove',bodyScroll,false); 
+				    var JsonData = '{"thumbImg":"res://code2.png","image":"res://code2.png","scene":0}';
+					uexWeiXin.shareImageContent(JsonData,function(error){
+					    if(error==0){
+					      	 uexWindow.toast(0,5,"分享成功!",2000); 
+				        }else{
+				             uexWindow.toast(0,5,"分享失败!",2000);
+				        }
+                    });
+   	   	   }else{    	
+   	   	   	 //授权失败弹出提示
+   	   	  	 uexWindow.toast(0,5,"非常抱歉,微信分享失败!",2000);
+   	   	   }
+               //开启神策埋点事件追踪
+                var param = {
+                            event: 'platformClick',
+                            propertieDict: {
+                                userId:userId,
+                                module:'关于掌上深航',
+                                funcName:'微信分享',
+                                buttonName:'微信分享'                               
+                            }
+                };
+                uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+   	   }else if(clickShareId=="wxFriends"){//微信朋友圈
+   	   	   appcan.window.openToast("加载中,请稍后..."); 
+   	   	   setTimeout(function(){
+   	   	    	appcan.window.closeToast();
+   	   	    },2000);
+   	       //用户授权
+   	   	   var info = uexWeiXin.registerApp('wxe0530f337c7107bf');
+   	   	   //info返回为0则用户授权成功
+   	   	   if(info==0){
+   	   	  	  //判断用户是否安装微信
+			  var installInfo = uexWeiXin.isWXAppInstalled();
+			  //分享图片
+   	   	  	  	    $('.garyline').addClass("lineColor");  
+                    $('.garytext').addClass("textColor");
+                    $("#shareFooter").addClass("uhide");
+                    $('.bg_Color').addClass('uhide');
+                    document.body.removeEventListener('touchmove',bodyScroll,false); 
+				    var JsonData = '{"thumbImg":"res://code2.png","image":"res://code2.png","scene":1}';
+					uexWeiXin.shareImageContent(JsonData,function(error){
+						 if(error==0){
+					      	uexWindow.toast(0,5,"分享成功!",2000);
+				        }else{
+				            uexWindow.toast(0,5,"分享失败!",2000);
+				        }
+                    });
+		   }else{
+   	   	   	 //授权失败弹出提示
+   	   	  	 uexWindow.toast(0,5,"非常抱歉,微信分享失败!",2000);
+   	   	   }
+               //开启神策埋点事件追踪
+                var param = {
+                            event: 'platformClick',
+                            propertieDict: {
+                                userId:userId,
+                                module:'关于掌上深航',
+                                funcName:'微信朋友圈分享',
+                                buttonName:'微信朋友圈'                               
+                            }
+                };
+                uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+   	   }else if(clickShareId=="qq"){//腾讯QQ
+   	   	    appcan.window.openToast("加载中,请稍后...");
+   	   	    setTimeout(function(){
+   	   	    	appcan.window.closeToast();
+   	   	    },2000);
+   	   	    var ret = uexQQ.isQQInstalled();
+   	   	    if(ret){
+   	   	    	var json = '{"imageLocalUrl":"res://code2.png","appName":"掌上深航"}';
+				    uexQQ.shareLocalImgToQQ("101508721", json , function(error,data) {
+				    	    $('.garyline').addClass("lineColor");  
+		                    $('.garytext').addClass("textColor");
+		                    $("#shareFooter").addClass("uhide");
+		                    $('.bg_Color').addClass('uhide');
+		                    document.body.removeEventListener('touchmove',bodyScroll,false); 
+				        if(!error){
+				            uexWindow.toast(0,5,"分享成功!",2000);
+				        }else{ 
+				            uexWindow.toast(0,5,"分享失败!",2000);
+				        }
+				    });
+	   	   	}else{
+	   	   		 appcan.window.closeToast();
+	   	   		 document.body.removeEventListener('touchmove',bodyScroll,false); 
+	   	   	   	 //应用未安装弹出提示
+	   	   	  	 uexWindow.toast(0,5,"请先安装QQ!",2000);
+	   	   	}
+                //开启神策埋点事件追踪
+                var param = {
+                            event: 'platformClick',
+                            propertieDict: {
+                                userId:userId,
+                                module:'关于掌上深航',
+                                funcName:'QQ分享',
+                                buttonName:'QQ分享'                               
+                            }
+                };
+                uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+   	   }else if(clickShareId=="message"){//短信
+   	   	    appcan.window.openToast("加载中,请稍后...");
+  	    	setTimeout(function(){
+   	   	    	appcan.window.closeToast();
+   	   	    },2000);
+                uexSMS.open("","https://apps.shenzhenair.com");              
+   	   	    $('.garyline').addClass("lineColor");  
+            $('.garytext').addClass("textColor");
+            $("#shareFooter").addClass("uhide");
+            $('.bg_Color').addClass('uhide');
+            document.body.removeEventListener('touchmove',bodyScroll,false); 
+                //开启神策埋点事件追踪
+                var param = {
+                            event: 'platformClick',
+                            propertieDict: {
+                                userId:userId,
+                                module:'关于掌上深航',
+                                funcName:'短信分享',
+                                buttonName:'短信'                               
+                            }
+                };
+                uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+           }
+        });
+    });  
+    //获取版本信息
+    function getVersion(){
+	    var json = {isApp:true};
+        json = JSON.stringify(json);
+        allMasIsCrypto("apps","getVersions","GET",json,"","掌上深航",config.appId).then(function(data){
+             // 神策记录数据开始处理时间
+            uexSensorsAnalytics.trackTimerBegin(JSON.stringify(paramTrackTimerStart));
+           
+            var obj = data;
+            var description = obj.description || '掌上深航提供了OA、运行、飞行、乘务、营销、地服、机务、大数据八大领域功能，为您带来全新的移动办公体验！不论何时何地，指尖一点，使管理更高效，让工作更轻松！';
+            $("#APPversion").html(obj.appName+"-V"+obj.version);
+            $("#twoversion").html("版本"+obj.version);
+            $("#description").html(description);
+            // 数据处理结束时间参数
+            var paramTrackTimerHandleDataEnd = FunParamTrackTimerEnd("数据处理","掌上深航","","","false");
+            // 记录数据处理结束时间
+            uexSensorsAnalytics.trackTimerEnd(JSON.stringify(paramTrackTimerHandleDataEnd));
+        },function(error){
+             
+        }).catch(function(err){            
+        });
+    }
+     //滑动事件函数
+    function bodyScroll(event){
+        event.preventDefault();
+    }
+	$(document).on("tap","body",function(event){
+			 var shareName = event.target.className;
+			 if(shareName){
+			 	if(shareName.indexOf("allabout") < 0){
+				 	$('.garyline').addClass("lineColor");  
+					$('.garytext').addClass("textColor");
+					$("#shareFooter").addClass("uhide");					
+					$('.bg_Color').addClass('uhide');
+					document.body.removeEventListener('touchmove',bodyScroll,false);
+			    }
+			 }else{
+			 	    $('.garyline').addClass("lineColor");  
+					$('.garytext').addClass("textColor");
+					$("#shareFooter").addClass("uhide");					
+					$('.bg_Color').addClass('uhide');
+					document.body.removeEventListener('touchmove',bodyScroll,false);
+			 }
+	 });
+</script>
+</html>

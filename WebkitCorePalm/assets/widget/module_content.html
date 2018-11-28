@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wqb-style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzxiangqing.css">
+    <link rel="stylesheet" href="css/card/card.css">
+    <style>
+        .module_add{
+            background-image: url('css/img/addApp_icon.png');
+        }
+        .module_del{
+            background-image: url('css/img/remove_icon.png');
+        }
+        .umar-r2{
+            margin-right: 0.6em;
+        }
+        .uinn-tb{
+            padding: 0.5em 0;
+            margin: 0;
+        }
+        .ub-border-top{
+            border-top:1px solid 
+        }
+    </style>
+</head>
+<body class="um-vp bg" ontouchstart>
+ <div class="up">
+     <div class="ub ub-ver uinn">
+         <div class="ub ub-ac uinn-tb module" id="custom_oa">
+             <div class=" umw1-5 umh3 module_del ub-img umar-r2" id="custom_oa_id" ></div>
+             <h4>待办事项</h4>
+             <div></div>
+         </div>
+         <div class="ub ub-ac uinn-tb ubt bc-border module" id="custom_duty">
+             <div class=" umw1-5 umh3 module_del ub-img umar-r2 " id="custom_duty_id" ></div>
+             <h4>值班信息</h4>
+             <div></div>
+         </div>
+         <div class="ub ub-ac uinn-tb ubt bc-border module" id="custom_news">
+             <div class=" umw1-5 umh3 module_del ub-img umar-r2 " id="custom_news_id" ></div>
+             <h4>公司新闻</h4>
+             <div></div>
+         </div>
+         <div class="ub ub-ac uinn-tb ubt bc-border module" id="custom_file">
+             <div class=" umw1-5 umh3 module_del ub-img umar-r2 " id="custom_file_id" ></div>
+             <h4>行政文件</h4>
+             <div></div>
+         </div>
+     </div>
+ </div>
+
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script src="js/common.js"></script>
+<script>
+    appcan.ready(function(){
+        var delList = appcan.getLocVal('DEL-MODULE') || [];
+        
+        if(delList != ''){
+             delList = JSON.parse(delList);
+             delList = unique1(delList);
+             for(var i in delList){
+                 var d = delList[i];
+                 
+                 var delId = $('#'+d+'_id'); 
+                  
+                 delId.toggleClass("module_del module_add");
+             } 
+        }
+        appcan.button('.module','btn-act',function(){
+            
+            var self = this;
+            var id = this.id;
+            
+            var delId=$('#'+id+'_id'); 
+            var moduleId = (delId.hasClass("module_del"))? "CUSTOM-MODULE-DEL":"CUSTOM-MODULE-ADD";
+            delId.toggleClass("module_del module_add");
+            if(moduleId == 'CUSTOM-MODULE-DEL'){
+                
+                delList.push(id);
+                appcan.setLocVal('DEL-MODULE',delList);
+                var h=appcan.getLocVal('DEL-MODULE');
+                
+            }else {
+                
+                var index = delList.indexOf(id);
+                
+                delList.splice(index,1);
+                
+                appcan.setLocVal('DEL-MODULE',delList);
+            }
+            
+            appcan.window.publish(moduleId,id);
+        });
+    });
+</script>
+</body>
+</html>

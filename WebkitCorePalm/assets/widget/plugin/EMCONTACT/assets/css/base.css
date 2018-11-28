@@ -1,0 +1,11 @@
+.headColor{
+    color: white;
+    background-color: #ff3333 !important;
+}
+.head-btn {
+    min-height: 2em;
+    min-width: 4em;
+}
+.icon-diy26{
+    background-image: url('./images/22.png') !important;
+};

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="um-vp  bc-wh" ontouchstart>
+<div class="ub ub-f1 ub-ver t-c uof">
+    <div id="serviceNumberDiv" class="ub ub-f1 ubb bder-color fontSize" type="phone-number">
+        <div class="ub ub-f1 ub-ver paddLeft paddRight top-padd bot-padd">
+            <div class="ft-sz2 tgray-c" data-lan="STR_CUSTOMER_SERVICE_PHONE_NUMBER">客服电话</div>
+            <div id="serviceNumber" class="ft-sz3 top-padd">400-040-1766</div>
+        </div>
+    </div>
+    <div id="serviceEmailDiv" class="ub ub-f1 ubb bder-color fontSize">
+        <div class="ub ub-f1 ub-ver paddLeft paddRight top-padd bot-padd">
+            <div class="ft-sz2 tgray-c paddB2" data-lan="STR_CUSTOMER_SERVICE_EMAIL">服务邮箱</div>
+            <div id="serviceEmail" class="ft-sz3 top-padd">service@zymobi.com</div>
+        </div>
+    </div>
+    <div id="talentsJoiningDiv" class="ub ub-f1 ubb bder-color fontSize">
+        <div class="ub ub-f1 ub-ver paddLeft paddRight top-padd bot-padd">
+            <div class="ft-sz2 tgray-c paddB2" data-lan="STR_CUSTOMER_TALENTS_JOINING">人才加盟</div>
+            <div id="talentsJoining" class="ft-sz3 top-padd">xue.li@zymobi.com</div>
+        </div>
+    </div>
+    <div class="ub ub-f1 ubb bder-color fontSize">
+        <div class="ub ub-f1 ub-ver paddLeft paddRight top-padd bot-padd">
+            <div class="ft-sz2 tgray-c paddB2" data-lan="STR_COMPANY_ADDRESS">
+                公司地址
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd" data-lan="STR_COMPANY_ADDRESS_BEIJING">
+                北京总部：北京市朝阳区慧忠北里222号14层
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd" data-lan="STR_COMPANY_ADDRESS_SHANGHAI">
+                上海分公司：上海市长宁区天山西路567号神州智慧天地3楼C室
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd" data-lan="STR_COMPANY_ADDRESS_GUANGZHOU">
+                广州分公司：广州市天河区天河北路30号时代广场中座1108室
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd bot-padd" data-lan="STR_COMPANY_ADDRESS_WUHAN">
+                武汉分公司：武汉市江夏区光谷金融港B26栋10层
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd bot-padd" data-lan="STR_COMPANY_ADDRESS_SHENZHEN">
+                深圳办事处： 深圳市福田区泰然九路11号海松大厦A座502B
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd bot-padd" data-lan="STR_COMPANY_ADDRESS_NANJING">
+                南京办事处： 南京石鼓路98号阳光大厦B座7层
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd bot-padd" data-lan="STR_COMPANY_ADDRESS_JINAN">
+                济南办事处： 济南市玉函路鲁商广场B座420
+            </div>
+            <div class="ft-sz3 top-padd ubb bder-color bot-padd bot-padd" data-lan="STR_COMPANY_ADDRESS_CHONGQING">
+                重庆子公司： 重庆市北部新区黄山大道中段55号麒麟座D-10层
+            </div>
+            <div class="ft-sz3 top-padd  bder-color bot-padd" data-lan="STR_COMPANY_ADDRESS_GUANGXI">
+                广西子公司： 广西南宁市高新区滨河路5号中盟科技园3号楼18层
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/common.js"></script>
+</body>
+<script>
+
+    var STR_CUSTOMER_SERVICE_EMAIL = tools.getString("STR_CUSTOMER_SERVICE_EMAIL");
+    var STR_CUSTOMER_MARKET_COOPERATION = tools.getString("STR_CUSTOMER_MARKET_COOPERATION");
+    var STR_CUSTOMER_TALENTS_JOINING = tools.getString("STR_CUSTOMER_TALENTS_JOINING");
+
+    appcan.ready(function () {
+        appcan.initBounce();
+    });
+    //客服电话点击事件
+    appcan.button("#serviceNumberDiv", "btn-act", function () {
+        //调用系统拨号界面
+        var serviceNumber = $("#serviceNumber").text();
+       
+        uexCall.dial(serviceNumber);
+    });
+    //服务邮箱点击事件
+    appcan.button("#serviceEmailDiv", "btn-act", function () {
+        //调用系统拨号界面
+        var serviceEmail = $("#serviceEmail").text();
+        
+        uexEmail.open(serviceEmail, "", " ");//第三个参数是内容，测试发现iOS传一个空格会显示日期
+    });
+    //商务合作点击事件
+    appcan.button("#businessCooperationDiv", "btn-act", function () {
+        //调用系统拨号界面
+        var businessCooperation = $("#businessCooperation").text();
+        
+        uexEmail.open(businessCooperation, "", " ");//第三个参数是内容，测试发现iOS传一个空格会显示日期
+    });
+    //人才加盟点击事件
+    appcan.button("#talentsJoiningDiv", "btn-act", function () {
+        //调用系统拨号界面
+        var talentsJoining = $("#talentsJoining").text();
+        
+        uexEmail.open(talentsJoining, "", " ");//第三个参数是内容，测试发现iOS传一个空格会显示日期
+    });
+</script>
+</html>

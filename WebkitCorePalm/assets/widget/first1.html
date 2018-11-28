@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport"
+        content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="lib/swiper/css/swiper.css">
+        <link rel="stylesheet" href="lib/swiper/css/swiper.min.css">
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .swiper-container {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                background: #EEEEEE;
+            }
+
+
+        </style>
+    </head>
+    <body class="um-vp bg-wh" ontouchstart>
+       <div id="one" class="up ub-ver bg-login1 ub-img7" tabindex="0">
+
+                        <!--content开始-->
+                        <div id="content" class="ub-f1 tx-l">
+
+                        </div>
+                        <!--content结束-->
+
+        </div>
+        <div  class="swiper-container up ub-ver  ub-img7" id="swip" style="display: none">
+            <div style="background:#000; opacity:0.3;width:4.5em;height: 1.5em;display: inline-block;position: fixed;z-index: 999;right:1em;top:1em;vertical-align: middle;border-radius:0.2em" onclick="SkipWork(event)" >
+                <span style="margin-left: 0.75em;vertical-align:middle;color: #FFFFFF">跳过</span>
+                <span  style="vertical-align:middle;color: #FFFFFF;"  id="time"></span>
+            </div>
+            <!--content开始-->
+            <div class="swiper-wrapper" >
+
+            </div>
+            <!--content结束-->
+
+        </div>
+
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="lib/swiper/js/swiper.jquery.min.js"></script>
+        <script src="lib/swiper/js/swiper.jquery.js"></script>
+        <script src="lib/swiper/js/swiper.js"></script>
+        <script src="lib/swiper/js/swiper.min.js"></script>
+        <script src="js/language.js"></script>
+        <script src="js/push.js"></script>
+        <script src="js/base64.js"></script>
+        <script type="text/javascript" src="js/crypto-js.js"></script>
+        <script type="text/javascript" src="js/bluebird.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/loginSilence.js"></script>
+        <script src="js/contact.js"></script>
+
+    </body>
+    <script>
+        var isHandLogin = '';
+        var x = '';
+        var y = '';
+        var w = '';
+        var h = '';
+        var date;
+        var isGroup = false;
+        var isFirstStart = false;
+        var isFirstStart1 = false;
+		var isFirst_guide = 1;
+		var rootCheck;
+        var LoginSkipTime;
+        //是否显示
+        var  isEnabled;
+        //点击跳过监听
+        var SkipBoolean = true;
+        //定义广告页图片地址数组
+        var advertImgUrl = [];
+        //倒计时时间
+        var playTime = "";
+        //提示页图片数组
+        var tagInfoData=[];
+        //循环轮播时间 默认2000毫秒
+        var t = 2000;
+        //是否跳过标识
+        var timePage = "";
+        //倒计时显示控件Id
+        var time = document.getElementById("time");
+        //广告页不存在显示原有登录加载页面
+        var one = document.getElementById("one");
+        //广告页视图Id
+        var swip = document.getElementById("swip");        
+       function swipAdvert(){
+
+       //获取启动上报成功后的返回值
+
+        //var  ResultData=JSON.parse(appcan.getLocVal("GetWidgetReport_ResultData")); 预留
+          var ResultData = null;
+
+        if(ResultData){
+              var  ReportInfo=ResultData.roleJSON;
+
+              if (ReportInfo && (JSON.stringify(ReportInfo)) != '{}'){
+
+
+                        //原有启动页背景图隐藏
+                        one.style.display = "none";
+                        //显示提示页背景图
+                        swip.style.display = "block";
+                        //上报提示页播放时长等信息
+                        var tagData=ReportInfo.tagData;
+
+                        //提示页图片信息
+                         tagInfoData=ReportInfo.tagInfoData;
+                        //当上报回调数据存在提示页配置信息则将isEnabled设置为 1
+                         isEnabled=1;
+                        appcan.setLocVal("isEnabled",isEnabled);
+
+                        //轮播时间
+                         playTime = tagData.playTime;
+                        //遍历图片信息数组 取出base64图片 存入新数组
+                        var host = config.saasUrl;
+
+                         for (var h = 0; h < tagInfoData.length; h++) {
+                            var ImgUrl = tagInfoData[h].advertImgUrl;
+
+                            ImgUrl=ImgUrl.slice(9);
+
+                            ImgUrl = host +ImgUrl;
+
+                            ImgUrl = ImgUrl.replace(/https/,'http');
+
+                            advertImgUrl.push(ImgUrl);
+                        }
+                            if (advertImgUrl.length == 1) {
+                                //当图片为一张不滑动
+                                t = 1000000;
+                            }
+                            var swiperIndex = sessionStorage.getItem('swiperIndex') ? sessionStorage.getItem('swiperIndex') : 0,
+                                initSwiper = {
+                                //图片滑动方向
+                                direction : 'horizontal',
+                                initialSlide : swiperIndex,
+                                //轮播时间
+                                autoplay : t,
+                                loop : true,
+                            };
+                            var swiper = new Swiper('.swiper-container', initSwiper);
+                            //循环填充swiper
+                            for (var i = 0; i < advertImgUrl.length; i++) {
+                                swiper.appendSlide('<div class="swiper-slide swiper-no-swiping" onclick="onStartImgUrl()" style="background-image: url(' + advertImgUrl[i] + ');background-size:100% 100%;"></div>');
+                            }
+                    } else {
+                        one.style.display = "block";
+                        swip.style.display = "none";
+                        isEnabled=0;
+                        appcan.setLocVal("isEnabled",isEnabled);
+                    }
+
+           }else{
+
+                       one.style.display = "block";
+                        swip.style.display = "none";
+                        isEnabled=0;
+                        appcan.setLocVal("isEnabled",isEnabled);
+           }
+       }
+		if(isFirst_guide){
+             var inter = setInterval("countDown()", 1000);
+        }else {
+             one.style.display = "block";
+             swip.style.display = "none";
+             isEnabled=0;
+             appcan.setLocVal("isEnabled",isEnabled);
+       }
+
+        //进入页面广告业方法
+        function countDown() {
+            if (time) {
+                //开始倒计时
+                playTime--;
+                if (playTime >= 0) {
+                     //接收点击跳过通道消息
+                    appcan.window.subscribe("SkipPlayTime", function() {
+                        //停止倒计时
+                        clearInterval(inter);
+                    });
+                    time.innerHTML = playTime;
+                }
+                if (playTime < 0) {
+                    if (timePage != "1") {
+                        //进入页面即执行登录逻辑但不跳转到index 根据LoginSkipTime字段判断是否跳转
+                         LoginSkipTime="istrue";
+                         appcan.window.publish("LoginSkipTime",LoginSkipTime);
+                         clearInterval(inter);
+                   }else{
+                       //进入页面即执行登录逻辑但不跳转到index 根据LoginSkipTime字段判断是否跳转
+                         LoginSkipTime="istrue";
+                         appcan.window.publish("LoginSkipTime",LoginSkipTime);
+                   }
+              }
+           }
+        }
+
+        //点击跳过
+        function SkipWork(event) {
+
+            if (time) {
+                //点击跳过 停止倒计时
+                appcan.window.publish("SkipPlayTime", "");
+              //进入页面即执行登录逻辑但不跳转到index 根据LoginSkipTime字段判断是否跳转
+                 LoginSkipTime="istrue";
+                 appcan.window.publish("LoginSkipTime",LoginSkipTime);
+            }
+            //点击跳过后不再执行默认倒计时登陆
+            timePage = "1";
+            //阻止冒泡 解决点击跳过误触发广告图片事件
+            event.stopPropagation();
+            if (SkipBoolean == true) {
+                  SkipBoolean = false;
+             }
+
+        }
+
+
+        //预留点击广告图片进入详情方法
+        function onStartImgUrl() {
+
+        }
+
+        //插件加载完毕的回调
+        appcan.ready(function() {
+		     //添加面包屑记录
+             var jsonObj = {leaveBreadcrumb:'启动页面'};
+             uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+            // 神策插件记录APP启动开始时间
+            uexSensorsAnalytics.trackTimerBegin(JSON.stringify(paramTrackTimerStart));
+            rootCheck = appcan.getLocVal('rootCheck');
+            getWidgetReportResult();
+            try {
+                if(!isAndroid && !rootCheck){
+                     // 越狱检测(ios)
+                    uexJMRootCheck.isCheckRootAndDylibs(function(isSuccess){
+                        
+                        var content = "您的设备环境存在安全风险，如您可以接受并承担因信息泄露所带来的责任，可继续使用";
+                        if(isSuccess === "设备越狱"){
+                            appcan.window.confirm({
+                                title: "提示",
+                                content: content,
+                                buttons: ['退出','确定'],
+                                callback: function(err,data,dataType,opId){
+                                    if(!err){
+                                        if(data === 0){
+                                            uexWidgetOne.exit(0);
+                                            
+                                        }else if (data === 1){
+                                            appcan.setLocVal('rootCheck',1);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+                if(!isAndroid){
+                    //签名效验
+                    var json = {
+                            bundleId:"com.appcan.ma"   //测试：com.appcan.matest 正式：com.appcan.ma
+                    };
+                    uexJMRootCheck.isVerifyCodeSignature(JSON.stringify(json),function(isSuccess){
+                        
+                        var content = "您的应用被篡改过,请重新安装正版应用！";
+                        if(isSuccess === "签名不一致"){
+                            appcan.window.confirm({
+                                title: "提示",
+                                content: content,
+                                buttons: ['确定'],
+                                callback: function(err,data,dataType,opId){
+                                    if(!err){
+                                        if(data === 0){
+                                            uexWidgetOne.exit(0);
+
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+
+                //root检测（android）
+                if(isAndroid && !rootCheck){
+                    var json = {
+                        isDethCheck: true
+                    };
+                    uexJMRootCheck.CheckRootTask(JSON.stringify(json));
+
+                    uexJMRootCheck.cbCheckRootTask = function(param){
+                         
+                         var data = JSON.parse(param);
+                         var isRoot = data.isRoot;
+                         var content = "您的设备环境存在安全风险，如您可以接受并承担因信息泄露所带来的责任，可继续使用";
+                         if(isRoot){
+                            appcan.window.confirm({
+                                title: "提示",
+                                content: content,
+                                buttons: ['退出','确定'],//0 1
+                                callback: function(err,data,dataType,opId){
+                                    if(!err){
+                                        if(data === 0){
+                                            uexWidgetOne.exit(0);
+                                            
+                                        }else if (data === 1){
+                                            appcan.setLocVal('rootCheck',1);
+                                        }
+                                    }
+                                }
+                            });
+                         }
+                    }
+
+
+                }
+                 if(isFirst_guide){
+					swipAdvert();
+				 }
+				 
+
+                
+                //初始化一些配置
+                initConfigs();
+            //后台登陆进入loginSilence方法
+               appcan.device.getInfo(13, function(err, data) {
+                       var data = JSON.parse(data);
+                       var status = data.connectStatus;
+                       if (Number(status) < 0) {
+                          var TIP_NOTICE = tools.getString("TIP_NOTICE");
+                          var STR_NETWORDERROR = tools.getString("STR_NETWORDERROR");
+                          var BTN_EXIT = tools.getString("BTN_EXIT");
+                          appcan.window.alert({
+                             title : TIP_NOTICE,
+                             content : STR_NETWORDERROR,
+                             buttons : BTN_EXIT,
+                             callback : function(err, data, dataType, optId) {
+                                appcan.widgetOne.exit()
+                             }
+                          });
+                          return '';
+                        } else {
+                          var state = checkLoginState();
+                          if (state) {
+                             var tsNow = new Date().getTime();
+                             var tsOld = appcan.getLocVal("EPortal-EMM-LOGIN-TIME");
+                             var flag = '';
+                             // 打开启动页or开始登录逻辑(有session)，启动逻辑结束
+                            var startParamTrackTimerEnd = FunParamTrackTimerEnd("APP启动","启动","","","false");
+                            uexSensorsAnalytics.trackTimerEnd(JSON.stringify(startParamTrackTimerEnd));
+                             if(isFirst_guide){
+                                 if (1 && isAndroid && tsOld) {
+                                   var ts = 23 * 60 * 60 * 1000;
+                                   //间隔23小时
+                                   if (tsNow - (tsOld - 0) < ts) {
+                                      flag = 1;
+                                      loginSilence(flag);
+                                      return;
+                                    }
+                                }
+                                   loginSilence(flag); 
+                               
+                             }else {
+                                 appcan.window.open("guide_pager", "guide_pager.html", 5);
+                             }
+
+                          } else {
+                              // 打开启动页or登录页(无session)，启动逻辑结束
+                            var startParamTrackTimerEnd = FunParamTrackTimerEnd("APP启动","启动","","","false");
+                            uexSensorsAnalytics.trackTimerEnd(JSON.stringify(startParamTrackTimerEnd));
+                             if(isFirst_guide){
+                                appcan.window.open("login", "login.html", 5);
+                             }else {
+                                appcan.window.open("guide_pager", "guide_pager.html", 5);
+                             }
+                          }
+                             
+                        }
+                     });
+                     appcan.window.subscribe("RELOAD_APPLICATION", function() {
+                         reload();
+                     });
+            if (uexWindow.showStatusBar) {
+                uexWindow.showStatusBar();
+            }
+
+            //获取softToken，方便与EMM后台对接
+            uexEMM.cbGetSoftToken = function(a,b,softToken){
+                appcan.setLocVal("emmSoftToken",softToken);
+            };
+            uexEMM.getSoftToken();
+if(0){
+            //TODO 需要删除的无用方法 文档中没有这个回调方法
+            uexIM.cbDeleteAllIMCacheJson = function () {
+
+            };
+
+            /**
+             * ------------------以下为uexIM接口的调用与实现，按文档顺序----------------
+             */
+
+            /*------------------IM获取服务器URL//需要引擎和打包服务支持----------------*/
+
+            //IM 获取服务器URL回调//需要引擎和打包服务支持
+            uexIM.cbGetIMHostUrl = function (jsonObj) {
+               
+            };
+            //TODO 该方法没有被调用
+            // 调用IM获取服务器URL
+            appcan.window.subscribe("E_XMPP_GET_IM_HOST_URL", function (msg) {
+               
+                uexIM.getIMHostUrl();
+               
+            });
+
+            /*------------------IM初始化IM服务配置----------------*/
+
+            //IM 初始化IM服务配置回调
+            uexIM.cbSetServerConfig = function (jsonObj) {
+               
+            };
+            //TODO 调用方法是本页面的initIm方法
+
+            /*------------------IM 初始化缓存路径----------------*/
+
+            //IM 初始化缓存路径
+            appcan.window.subscribe("E_XMPP_SET_IM_CACHE_PATH", function (jsonStr) {
+               
+                uexIM.setIMCachePath();
+               
+            });
+            //TODO 该方法没有被调用
+
+            /*------------------IM登录----------------*/
+
+            //IM登录的回调,0为成功,非0为失败
+            uexIM.cbLogin = function (result) {
+               
+                if (parseInt(result) == 0) {
+                    if (isFirstStart) {
+                        isFirstStart = false;
+                        isFirstStart1 = true;
+                        uexIM.deleteAllRecord();
+                        uexIM.deleteAllIMCache();
+                    }
+                }
+                appcan.window.publish("E_XMPP_LOGIN_RES", result);
+            };
+            //TODO 两个地方调用 一个是js/initIndex.js的imLogin方法，另一个是离线提醒重新登录uexIM.cbloginConflictOfflineNotify用户点击重新登录后调用
+            //调用IM登录
+            appcan.window.subscribe("E_XMPP_LOGIN", function (msg) {
+                
+                appcan.window.publish("E_XMPP_LOGINING", '');
+                
+            });
+
+            /*------------------IM登出----------------*/
+
+            //IM登出的回调,0为成功,非0为失败
+            uexIM.cbLogout = function (result) {
+                
+            };
+            //调用IM登出
+            appcan.window.subscribe("E_XMPP_LOGOUT", function (msg) {
+               
+                uexIM.logout();
+                
+            });
+
+            //IM设置单聊消息已读回调
+            uexIM.cbSetMarkMsgRead = function () {
+               
+                uexIM.getUserAndGroupAllMsgUnreadCount();
+            };
+
+            //IM设置群聊聊消息已读回调
+            uexIM.cbSetMarkGroupMsgRead = function () {
+                
+                uexIM.getUserAndGroupAllMsgUnreadCount();
+            };
+
+            uexIM.onSendStatusJson = function (param) {
+                
+                if (isGroup) {
+                    appcan.window.publishForJson("E_XMPP_GETSENDSTATUS_GROUP", param);
+                } else {
+                    appcan.window.publishForJson("E_XMPP_GETSENDSTATUS", param);
+                }
+            };
+            uexIM.cbGetChatListJson = function (dataList) {
+                
+                appcan.window.publishForJson("E_XMPP_GETCHATLIST_RES", dataList);
+            };
+            uexIM.cbGetChatListWithLastMsgJson = function (list) {
+               
+                appcan.window.publishForJson("E_XMPP_GETCHAT_RES", list);
+            };
+            //获取会话消息列表
+            appcan.window.subscribe("E_XMPP_GETCHATLISTMSG", function (msg) {
+               
+                uexIM.getChatListWithLastMsg();
+            });
+            appcan.window.subscribe("E_XMPP_GETCHATLIST", function (listObj) {
+                
+                uexIM.getChatList(listObj);
+            });
+            uexIM.onReceiveMsgJson = function (param) {
+                uexIM.getUserAndGroupAllMsgUnreadCount();
+                appcan.window.publishForJson("E_XMPP_NEWMSGCOMING", param);
+            };
+            appcan.window.subscribe("E_XMPP_SENDMSGTEXT", function (text) {
+               
+                isGroup = false;
+                uexIM.sendMsgText(JSON.stringify(text));
+                
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGVOICE", function (v) {
+                
+                isGroup = false;
+                uexIM.sendMsgVoice(v);
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGPICTURE", function (p) {
+                
+                isGroup = false;
+                uexIM.sendMsgImage(p);
+                
+            });
+            //发送文件
+            appcan.window.subscribe("E_XMPP_SENDMSGFILE", function (file) {
+               
+                isGroup = false;
+                uexIM.sendMsgFile(file);
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGLOCATION", function (loc) {
+                
+                isGroup = false;
+                uexIM.sendMsgLocation(loc);
+            });
+
+            
+            appcan.window.subscribe("CREAT_GROUP_CHAT", function (data) {
+                
+                uexIM.creatChatGroupWithReturnID(JSON.stringify(data));
+            });
+            uexIM.cbCreateChatGroupJson = function (result) {
+               
+                appcan.window.publishForJson("E_XMPP_CBCREATEGROUPCHAT", result);
+            };
+            uexIM.cbJoinChatGroupJson = function (result) {
+               
+                appcan.window.publishForJson("E_XMPP_CBJOINGROUPCHAT", result);
+            };
+            uexIM.onReceiveGroupMsgJson = function (param) {
+                uexIM.getUserAndGroupAllMsgUnreadCount();
+                
+                
+                appcan.window.publishForJson("E_XMPP_ZUMSG", param);
+            };
+            uexIM.cbGetGroupChatListJson = function (param) {
+               
+                appcan.window.publishForJson("E_XMPP_CB_GETGROUPCHATLIST", param);
+            };
+            uexIM.cbGetGroupListJson = function (result) {
+               
+                appcan.window.publishForJson("CB_GET_GROUPLIST", result);
+            };
+            appcan.window.subscribe("CHAT_GROUP_LIST", function (param) {
+                
+                uexIM.getGroupList(param);
+            });
+            appcan.window.subscribe("E_XMPP_GETGROUPCHATLIST", function (grName) {
+               
+                uexIM.getGroupChatList(grName);
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGTEXTG", function (text) {
+               
+                isGroup = true;
+                uexIM.sendGroupMsgText(JSON.stringify(text));
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGVOICEG", function (v) {
+               
+                isGroup = true;
+                uexIM.sendGroupMsgVoice(v);
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGPICTUREG", function (p) {
+               
+                isGroup = true;
+                uexIM.sendGroupMsgImage(p);
+               
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGFILEG", function (p) {
+               
+                isGroup = true;
+                uexIM.sendGroupMsgFile(p);
+            });
+            appcan.window.subscribe("E_XMPP_SENDMSGLOCATIONG", function (loc) {
+                
+                isGroup = true;
+                uexIM.sendGroupMsgLocation(loc);
+            });
+            uexIM.onReceiveInvited = function (param) {
+                
+                var data = JSON.parse(param);
+                var groupId = data.groupName;
+                var param = {
+                    groupName: groupId
+                };
+                var params = JSON.stringify(param);
+                uexIM.joinChatGroup(params);
+            };
+            uexIM.cbDownloaderJson = function (result) {
+                
+                appcan.window.publishForJson("DOWN_IMG_VOICE", JSON.stringify(result));
+            };
+            //获取群组里所有成员的回调
+            uexIM.cbgetGroupMembers = function (result) {
+                
+                appcan.window.publishForJson("CB_GET_GROUP_MEMBERS", result)
+            };
+            //获取群组里所有成员
+            appcan.window.subscribe("GET_GROUP_MEMBERS", function (param) {
+               
+                uexIM.getGroupMembers(param);
+            });
+            uexIM.cbdeleteRecord = function (result) {
+                if (isFirstStart1) {
+                    isFirstStart1 = false;
+                    return;
+                }
+                
+                appcan.window.publish("CB_DEL_RECORD", result);
+            };
+            //通过groupName查询groupid
+            uexIM.cbgetGroupIdByName = function (result) {
+               
+                appcan.window.publish("CB_GET_GROUPIDBYNAME", result);
+            };
+            //屏蔽单聊和群里的回调取消屏蔽单聊群聊(是同一个)
+            uexIM.cbMessageMask = function (result) {
+                
+                appcan.window.publish("CB_MESSAGE_MASK", result);
+            };
+            //修改群名称的回调
+            uexIM.cbchangeGroupName = function (result) {
+                
+                appcan.window.publish("CB_CHANGE_GNAME", result);
+            };
+            //当前登录者屏蔽过的群列表的回调
+            uexIM.cbQueryGroupMaskList = function (result) {
+               
+                appcan.window.publish("CB_Q_GROUP_MASKLIST");
+            };
+            //退出群的回调
+            uexIM.cbLeaveChatGroupJson = function (result) {
+               
+                appcan.window.publishForJson("CB_LEAVE_CHATGROUP", result);
+            };
+            //销毁群的回调
+            uexIM.cbDeleteChatGroupJson = function (result) {
+               
+                appcan.window.publishForJson("CB_LEAVE_CHATGROUP", result);
+            };
+            //获取某一群是否被屏蔽的回调
+            uexIM.cbisGroupMessageMask = function (result) {
+               
+                appcan.window.publish("CB_ISGROUP_MESS_MASK", result);
+            };
+            //设置免打扰群里的回调
+            uexIM.cbgroupTrouble = function (result) {
+                appcan.window.publish("CB_GROUP_TROUBLE", result);
+            };
+            //获取某一群是否被免打扰的回调
+            uexIM.cbisGroupTrouble = function (result) {
+               
+                appcan.window.publish("CB_ISGROUP_TROUBLE", result);
+            };
+            //获取群中某一成员的权限
+            uexIM.cbgetGroupMemberRose = function (result) {
+                
+                appcan.window.publish("CB_GETGROUP_MEMBER_ROSE", result);
+            };
+            //剔除某人的监听状态好友收到的提示
+            uexIM.onKicked = function (result) {
+              
+                appcan.window.publish("ON_KICKED", result);
+            };
+            //剔除某人的回调
+            uexIM.cbKickFromChatGroup = function (result) {
+               
+                appcan.window.publish("cb_KickFromChatGroup", result);
+            };
+
+            //获取所有未读消息的回调
+            uexIM.cbGetUserAndGroupAllMsgUnreadCountJson = function (result) {
+               
+                if (typeof (result) != "object") {
+                    result = JSON.parse(result);
+                }
+                result = result.unreadCount;
+                appcan.window.publish("CB_ALL_UNREAD_COUNT", result);
+            };
+
+            //离线提醒
+            uexIM.cbloginConflictOfflineNotify = function (result) {
+               
+                appcan.window.publish("E_XMPP_OFFLINE", '');
+                //对话框提示 IM登录提示 重新登录 取消
+                appcan.window.alert(tools.getString("TIP_IM_NOTICE"), result, [tools.getString("TIP_IM_RELOGIN"), tools.getString("BTN_CANCEL")], function (err, data, dataType, optId) {
+                    if (Number(data) == 0) {
+                       
+                        var userId = appcan.getLocVal("userId");
+                        var emmToken = JSON.parse(appcan.getLocVal("emmToken"));
+                        var pwdId = emmToken.info.accessToken + "emoa" + emmToken.info.domainId;
+                        var loginInfo = {
+                            imId: userId.toLowerCase(),
+                            imPassword: pwdId
+                        };
+                        //调用IM登录
+                        appcan.window.publish("E_XMPP_LOGIN", loginInfo);
+                    } else {
+                        uexIM.logout();
+                    }
+                })
+            };
+}
+            appcan.window.subscribe("LOGIN-PLUGIN", function (v) {
+                login(v);
+            });
+            var backgroundTime = 0;
+            //程序挂起的监听方法
+            uexWidget.onSuspend = function () {
+                backgroundTime = new Date().getTime();
+                //发送通知关闭语音
+                appcan.window.publish("CHAT_AUDIO_COLSE","")
+            };
+            //设置唤醒页；超时重新自动登录
+            uexWidget.onResume = function () {
+               
+                if (!backgroundTime) return;
+                var now = new Date().getTime();
+                var time =  now - backgroundTime;
+                if (time > 11 * 60 * 60 * 1000) {//超时登录
+                    var state = checkLoginState();
+                    if (state) {
+                        //进入页面即执行登录逻辑但不跳转到index 根据LoginSkipTime字段判断是否跳转
+                         LoginSkipTime="istrue";
+                         appcan.window.publish("LoginSkipTime",LoginSkipTime);
+                        loginSilence(1);
+                    }
+                }
+
+                appcan.window.publish("CHANGE_NO_READ_MESSAGE_ITEM",""); // 更新首页我的消息未阅数量
+                if (isStart) {
+                    pushState = -1;
+                    uexWidget.getPushInfo(1);
+                }
+
+                var oats = appcan.getLocVal("EPortal-XOA-LOGIN-TIME");
+                if(oats){
+                    var ts2 = now - (oats - 0);
+                    var tdv = 25 * 60 * 1000;  //25分重新登录一次；
+                    if(ts2 > tdv){
+                        appcan.window.publish("EPORTAL_XOA_LOGIN", '');
+                    }
+                }
+                return;
+            };
+            //监听返回键
+            uexWindow.onKeyPressed = function (keyCode) {
+                if (keyCode == '0') {
+                    uexWidget.finishWidget('');
+                }
+            };
+            uexWindow.setReportKey('0', '1');
+            uexWidget.cbGetPushInfo = function (opId, dataType, data) {
+                var pushData = data;
+                if (isDefine(pushData)) {
+                    if (pushState == 2) {
+                        try {
+                            var STR_PUSH_NOTICE = tools.getString("STR_PUSH_NOTICE");
+                            var STR_PUSH_WORKFLOW = tools.getString("STR_PUSH_WORKFLOW");
+                            var pushType = {
+                                "09": STR_PUSH_NOTICE,
+                                "GDSP": STR_PUSH_WORKFLOW
+                            };
+                            var pushString = JSON.parse(pushData);
+                            var param1 = pushString.behavior.param[0];
+                            switch (param1.type) {
+                                case '09':
+                                    //公告
+                                case 'GDSP':
+                                    var TIP_NOTICE = tools.getString("TIP_NOTICE");
+                                    var TIP_YES = tools.getString("TIP_YES");
+                                    var TIP_NO = tools.getString("TIP_NO");
+                                    var STR_PUSH_A_NEW = tools.getString("STR_PUSH_A_NEW");
+                                    var STR_PUSH_MSG_IF_READ = tools.getString("STR_PUSH_MSG_IF_READ");
+                                    //工单
+                                    appcan.window.alert({
+                                        title: TIP_NOTICE,
+                                        content: STR_PUSH_A_NEW + pushType[param1.type] + STR_PUSH_MSG_IF_READ,
+                                        buttons: [TIP_YES, TIP_NO],
+                                        callback: function (err, data1, dataType, optId) {
+                                            if (data1 == 0) {
+                                                appcan.window.publish("APORTAL_PUSH_DATA_SHOW", pushData);
+                                            }
+                                        }
+                                    });
+
+                                    break;
+                                default: {
+                                    break;
+                                }
+                                }
+                                return;
+                            } catch (e) {
+                                
+                            }
+                        }
+                        appcan.window.publish("APORTAL_PUSH_DATA_SHOW", pushData);
+                    }
+                };
+            } catch (e) {
+                errorDetail(e);
+            }
+        });
+
+        function login(ss) {
+            uexEMM.cbLogin = function(a, b, js) {
+                appcan.window.publish("LOGIN-RESULT", js);
+            };
+            uexEMM.login(ss);
+            //emm登录
+        }
+
+    var pushState = -1;
+    function pushCallback(f) {
+        pushState = parseInt(f);
+        if (isStart)
+            uexWidget.getPushInfo(1);
+    }
+
+    var isStart = false;
+    function pushInit() {
+        uexWidget.setPushState(1);
+        uexWidget.setPushNotifyCallback('pushCallback');
+        if (pushState == 0) {
+            uexWidget.getPushInfo(1);
+        }
+        isStart = true;
+    }
+
+    function checkLoginState() {
+        var loginPass = appcan.getLocVal("loginPass");
+        if (isDefine(loginPass))
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * 初始化IM
+     *
+     * 调用地点：assets\views\login_content.js, js\loginSilence.js, plugin\login\assets\views\login_content.js
+     */
+    function initIm() {
+        try {
+            initConfig();
+            /*----初始化IM服务配置----*/
+            var param = {
+                ip: imip,
+                port: port,
+                serName: serName
+            };
+            var emmToken = JSON.parse(appcan.getLocVal("emmToken"));
+            var tenantId1 = emmToken.info.tenantId;
+            param.serName = tenantId1 + ':' + param.serName;
+            param = JSON.stringify(param);
+            uexIM.setServerConfig(param);//初始化IM服务配置,回调为uexIM.cbSetServerConfig
+           
+
+            /*----后台服务参数初始化----*/
+            var initParam = {//初始化wowImAgent,目的是直接请求服务器接口
+                imURL: imURL
+            };
+            var tenantAccount = appcan.getLocVal(storeKeys.TENTANTCOUNT);
+            initParam.tenantID = tenantAccount;
+            initParam = JSON.stringify(initParam);
+            uexIM.initimParam(initParam);//后台服务参数初始化,没有回调
+           
+            var messageMode = appcan.getLocVal("MESSAGE_REMIND_MODE");
+            if(!messageMode){
+                messageMode = '1';//默认铃声
+            }
+            /*----设置消息提醒方式----*/
+            var msgStu = {
+                type: messageMode //类型;0-静音,1-铃声,2-震动,3-铃声&震动
+            };
+            msgStu = JSON.stringify(msgStu);
+            uexIM.setMsgNotifyType(msgStu);//设置消息通知类型，没有回调
+
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+
+    function initEMM() {
+        try {
+            function getAppCanEMMHost() {
+
+                uexEMM.cbGetEMMHost = function (opId, dataType, data) {
+                    resetConfigByReportUrl(data);
+                    appcan.window.evaluatePopoverScript("login", "login_content", "EMMAddress('" + data + "')");
+                };
+                uexEMM.getEMMHost();
+            }
+
+            uexEMM.cbInitEMM = function (opId, dataType, data) {
+                uexEMM.onAppFirstStart = function () {
+                    appcan.locStorage.remove();
+                    getAppCanEMMHost();
+                    uexFileMgr.deleteFileByPath("box://icache/");
+                    uexFileMgr.deleteFileByPath("wgts://");
+                    isFirstStart = true;
+                };
+                getAppCanEMMHost();
+
+                //启动上报完成的回调
+                uexEMM.onStartReportComplete = function (opId, dataType, data) {
+                    appcan.window.publish("EMM_REPORT_COMPLETE", data);
+                    data = JSON.parse(data);
+                    if ((data.status == 'ok')) {
+
+                    } else {
+
+                    }
+                }
+            };
+            uexEMM.initEMM();
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+    /**
+     * 重新加载
+     */
+    function reload() {
+        /**
+         Android会出现设置页(set.html)没有被关闭的问题，需要单独关闭
+         推测是：引擎中关闭所有界面的方法"uexWindow.closeAboveWndByName('root');"
+         在Android中有bug，调用页面的上一个页面不会被关闭
+         所以须放在root界面
+         */
+        if (isAndroid) {
+            appcan.window.publish("CLOSE_SETTING_HTML");
+        }
+        appcan.device.getInfo(13, function (err, data) {
+            var data = JSON.parse(data);
+            var status = data.connectStatus;
+            if (Number(status) < 0) {
+                var TIP_NOTICE = tools.getString("TIP_NOTICE");
+                var STR_NETWORDERROR = tools.getString("STR_NETWORDERROR");
+                var BTN_EXIT = tools.getString("BTN_EXIT");
+                appcan.window.alert({
+                    title: TIP_NOTICE,
+                    content: STR_NETWORDERROR,
+                    buttons: BTN_EXIT,
+                    callback: function (err, data, dataType, optId) {
+                        appcan.widgetOne.exit()
+                    }
+                });
+                return ''
+            } else {
+                var state = checkLoginState();
+                if (state) {
+                    var tsNow = new Date().getTime();
+                    var tsOld = appcan.getLocVal("EPortal-EMM-LOGIN-TIME");
+                    var flag = '';
+                    if(isAndroid && tsOld){
+                        var ts = 23 * 60 * 60 * 1000; //间隔23小时
+                        if(tsNow-(tsOld-0)<ts){
+                            flag = 1;
+                            setTimeout(function(){
+                                appcan.window.open("index", "index.html", 10, '');
+                            }, 500);
+                           
+                        }
+                    }
+                    //进入页面即执行登录逻辑但不跳转到index 根据LoginSkipTime字段判断是否跳转
+                         LoginSkipTime="istrue";
+                         appcan.window.publish("LoginSkipTime",LoginSkipTime);
+                    loginSilence(flag);
+                } else{
+                    appcan.window.open("login", "login.html", 5);
+                    // 启动结束，记录APP启动结束时间
+                    var startParamTrackTimerEnd = FunParamTrackTimerEnd("APP启动","启动","","","false");
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(startParamTrackTimerEnd));
+                }
+            }
+        })
+    }
+
+    //获取启动上报返回信息接口
+    function getWidgetReportResult() {
+        uexEMM.cbGetWidgetReportResult = function (opId, dataType, data) {
+             appcan.locStorage.remove("GetWidgetReport_ResultData");
+             appcan.locStorage.setVal('GetWidgetReport_ResultData',data);
+        };
+        uexEMM.getWidgetReportResult();
+    }
+
+        /**
+         * 初始化一些配置
+         */
+        function initConfigs() {
+          
+            if (isAndroid) {
+                uexWindow.setSwipeRate(100);
+                //设置左右手势的灵敏度，这里的数值是速度，越大越不容易触发
+            }
+        }
+
+        /**
+         * 日期补0
+         */
+        function getNowFormatDate(date) {
+
+            return currentdate.toString();
+        }
+
+
+        appcan.ready(function() {
+             PUSH.init(); //初始化插件信息                    
+
+            //收到了通知，展示在通知栏
+            uexJPush.onReceiveNotification = function(data) {
+                appcan.window.publish('PUSH.onReceiveNotification', data);
+                appcan.window.publish("GET_PUBLISH_MESSAGE","");
+            };
+            // 用户点击了通知
+            uexJPush.onReceiveNotificationOpen = function(data) {
+
+                var pushSoftToken = appcan.getLocVal('emmAccessToken');
+                if (!pushSoftToken) {
+                    appcan.window.open("login", "login.html", 10);
+                    // 打开登录页 启动逻辑结束
+                    var startParamTrackTimerEnd = FunParamTrackTimerEnd("APP启动","启动","","","false");
+                    uexSensorsAnalytics.trackTimerEnd(JSON.stringify(startParamTrackTimerEnd));
+                } else {
+                    //用户推送的通知数据
+                    var PushData = JSON.parse(data);
+                    var title = PushData.title;
+                    var content = PushData.content;
+                    //标题内容之外的参数封装
+                    var extras = PushData.extras;
+                    //后续动作参数behavior
+                    var behavior = extras.behavior;
+                    // 是否格式化
+                    var format = behavior.application.param.format;
+                    //格式化内容
+                    var formatContent = behavior.application.param.formatContent;
+                    var msgId = behavior.application.param.msgId;
+                    var msgIdTime = parseInt(msgId);
+                    //查看通知全文详情缓存
+                    var noticeData = {};
+                    var date = new Date(msgIdTime);
+                    var seperator1 = "-";
+                    var seperator2 = ":";
+                    var month = date.getMonth() + 1;
+                    var strDate = date.getDate();
+                    var hoursTime = date.getHours();
+                    var minutesTime = date.getMinutes();
+                    var secondsTime = date.getSeconds();
+                    if (month >= 1 && month <= 9) {
+                        month = "0" + month;
+                    }
+                    if (strDate >= 0 && strDate <= 9) {
+                        strDate = "0" + strDate;
+                    }
+                    if (hoursTime >= 0 && hoursTime <= 9) {
+                        hoursTime = "0" + hoursTime;
+                    }
+                    if (minutesTime >= 0 && minutesTime <= 9) {
+                        minutesTime = "0" + minutesTime;
+                    }
+                    if (secondsTime >= 0 && secondsTime <= 9) {
+                        secondsTime = "0" + secondsTime;
+                    }
+                    var creatTime = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " + hoursTime + seperator2 + minutesTime + seperator2 + secondsTime;
+
+                                        
+                    //将后续动作参数缓存便于其他人调用
+                    appcan.locStorage.setVal('behavior', behavior);
+                    //通知标题 如果推送不设置，则默认的通知标题为应用的名称。
+                    noticeData.pushTitle = title;
+                    noticeData.content = content;
+                    noticeData.signature_created = creatTime;
+                    noticeData.format = format || '';
+                    noticeData.formatContent = formatContent || '';
+                    noticeData.msgId = msgId;
+                    appcan.locStorage.setVal('noticeData', noticeData);
+                    
+                    //获取通知的打开方式 定义规则
+                    var type = behavior.application.action.type;
+                    //打开页面的动画
+                    var aniId = "";
+                    //指定打开的页面名称
+                    var name = "";
+                    //指定打开的页面
+                    var Ddata = "";
+                    var Ptype = "";
+                    //打开子应用
+                    var startWgt_appId = "";
+                    //打开普通窗口(门户页面)
+                    var Mtype = "openWindow";
+                    var Ttype = "showMessage";
+                    var Ztype = "startWgt";
+                    if (type == Mtype) {
+                        //打开页面名称
+                        name = behavior.application.param.name;
+                        Ddata = behavior.application.param.data;
+                        aniId = behavior.application.param.aniId;
+                        appcan.window.open({
+                            name : name,
+                            data : Ddata,
+                            aniId : aniId
+                        });
+                        //查看通知全文详情
+                    } else if (type == Ttype) {
+
+                        appcan.window.publish('NOTIFICTION-MESSAGE-2');
+                        appcan.window.publish('NOTIFICTION-MESSAGE',noticeData);
+                        appcan.setLocVal('NOTIFICTION-MESSAGE','true');
+                        //打开子应用
+                    } else if (type == Ztype) {
+                        uexAppStoreMgr.open(server_emm);
+                        appcan.locStorage.setVal('JPush_PushData', PushData);
+                        //打开子应用的Id
+                        startWgt_appId = behavior.application.action.widget.appId;
+
+                        //获取已安装应用列表
+                        var dataJson = {
+                            "type" : "searchAppList",
+                            "key" : "",
+                            "pageSize" : "200"
+                        };
+                        uexAppStoreMgr.getAppList(JSON.stringify(dataJson));
+                        uexAppStoreMgr.cbGetAppList = function(mid, type, data) {
+                            var data = data.replace(/\r\n/g, '<br>');
+                            var data = JSON.parse(data);
+                            if (data.status == 'ok') {
+                                var list = data.info;
+                                var IsInstallAppList = [];
+                                var IsInstallAppIdList = [];
+                                for (var i = 0; i < list.length; i++) {
+                                    var obj = list[i];
+                                    if (obj.appCategory == 'AppCanWgt' && obj.state == 0) {
+
+                                        IsInstallAppList.push(obj);
+
+                                        var IsInstallAppId = obj.appId;
+
+                                        IsInstallAppIdList.push(IsInstallAppId);
+                                    }
+
+                                }
+                                for (var i = 0; i < IsInstallAppList.length; i++) {
+                                    var IsInstallObj = IsInstallAppList[i];
+                                    if (IsInstallObj.appId == startWgt_appId) {
+                                        var json = IsInstallObj;
+                                    }
+                                }
+
+                                if (startWgt_appId && IsInstallAppIdList.indexOf(startWgt_appId) != -1) {
+                                      appcan.window.publish('HOME_PAGE1',JSON.stringify(json));
+                                      appcan.setLocVal('ISINSTALL-MSG-APP',JSON.stringify(json));
+
+                                } else if (startWgt_appId) {
+                                    var widgetParam = null;
+                                    uexWidget.startWidget(startWgt_appId, '10', '', widgetParam, '250');
+                                } else {
+                                    appcan.window.confirm('提示', '应用ID不存在，请确认参数！', '好');
+                                }
+
+                            }
+
+                        }
+                    }
+
+                }
+              appcan.window.publish('PUSH.onReceiveNotificationOpen', data);
+        };        
+         //听云相关
+         var key_ios = "29fc9c9b626346a2bee72034bd974cf3";
+         var key_android = "4154fc6f8c2f429a9fbcf9d7aabe438b";
+         var userId = JSON.parse(appcan.getLocVal('EPortal-UserInfo')).userId;
+         var jsonObj = {userId:userId};
+         if(isAndroid) {
+             uexNBSAppAgent.startNBSAppAgent(key_android);
+         } else{
+              uexNBSAppAgent.startNBSAppAgent(key_ios);
+          }
+
+         uexNBSAppAgent.setOptions(JSON.stringify(jsonObj));
+
+         //神策插件自动采集
+          uexSensorsAnalytics.enableAutoTrack();
+          //ios 威胁感知相关
+          if(!android){
+              uexJMProtection.setCertificatesBundle();
+          }
+     })
+</script>
+</html>

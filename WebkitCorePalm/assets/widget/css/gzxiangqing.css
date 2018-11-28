@@ -1,0 +1,198 @@
+.bordern{
+    border:none;
+}
+
+/*huihua.html*/
+.footiconwh{
+    width:3.25em;
+    height:3.25em;
+}
+.footcamera{
+    background-image:url(img/huihuapcamera.png);
+}
+.footphoto{
+    background-image:url(img/huihuaphoto.png);
+}
+.footposi{
+    background-image:url(img/huihuaposition.png);
+}
+.iconwh{
+    width:2.75em;
+    height:2.75em;
+}
+.iconwhh{
+    width:2.75em;
+    height:2.75em;
+    border-radius:2.75em;
+}
+.hhtouxicon{
+    background-image:url(img/touxiang.png);
+}
+.hhjiantou{
+    width:0.8125em;
+    height:0.8125em;
+    top: 0.5em;
+    z-index:1;
+}
+.huihuajiantour{
+    background-image:url(img/huihuajiantou.png);
+}
+.huihuajiantour3{
+    background-image:url(img/huihuatupianjiantou.png);
+}
+.huihuajiantour2{
+    background-image:url(img/huihuajiantou1.png);
+}
+.huihuajiantoul{
+    background-image:url(img/huihuajiantou2.png);
+}
+.huihuajiantoul2{
+    background-image:url(img/huihuatupianjiantou1.png);
+}
+.yuyin2{
+    width:1.25em;
+    height:1.25em;
+    background-image:url(img/yuyin2.png);
+}
+.yuyin3{
+    width:0.4375em;
+    height:0.4375em;
+    background-image:url(img/liangd2.png);
+}
+.iconwh1{
+    height: 2.75em;
+    width: 1.4375em; 
+}
+.iconwhh1{
+    height: 2.75em;
+    width: 1.4375em;
+    border-radius:2.75em; 
+}
+.huihuaunload{
+    background-image:url(img/huihuaunload.png);
+}
+.posileft{
+    left: -0.04em;
+}
+.posileft2{
+    left: -0.14em;
+}
+.posileft3{
+    left: -0.9375em;
+}
+.posiright{
+    right: -0.14em;
+}
+.hhumaxwh{
+    max-width:7.0625em;
+    max-height:7.5em;
+    min-width:2.5em;
+    min-height:2.5em;
+}
+.hhuba{
+    border:0.125em solid #e5e5e5;
+}
+.duifvoice .huihuajiantoul{
+    background-image:url(img/huihuajiantou-dj.png);
+}
+.duifvoice .bg-wh{
+    background-color:#d7d7d7;
+}
+.myvoice .huihuajiantour2{
+    background-image:url(img/huihuajiantou-dj2.png);
+}
+.myvoice .hhc-blu{
+    background-color:#1067ae;
+}
+.hhkuinn-r{
+    padding: 0 0.5em 0 0.9375em;
+}
+.hhkuinn-l{
+    padding: 0 0.9375em 0 0.5em;
+}
+
+
+
+/* 换新的日历后的css*/
+.rczIndex5{
+    height: 4.375em;
+}
+.delRCCss{
+    height:4.375em;
+    width:4em;
+    border-bottom:1px solid #e5e5e5;
+    right: 0em;
+    background-color:#FB5A4A;
+}
+
+/*yingyongzhongxin_content.html*/
+.appIconwh{
+    width: 3.125em;
+    height: 3.125em;
+}
+.appOA{
+    background-image: url(img/appOA.png);
+}
+.appCRM{
+    background-image: url(img/appCRM.png);
+}
+.appEmail{
+    background-image: url(img/appEmail.png);
+}
+.appGongzuo{
+    background-image: url(img/appGongzuo.png);
+}
+.appuinn{
+    padding:0.25em 0.375em;
+}
+.appuinn2{
+    padding:0.125em 0.625em;
+}
+.gzuinn3{
+    padding:0.625em;
+}
+.sxt-9c{
+    color:#9C9C9C !important;
+}
+.crmxsjhb-9c{
+    border-color:#e5e5e5;
+}
+.crmkhuinn-l{
+    padding-left: 0.625em;
+}
+.gzt-gra{
+    color:#434343;
+}
+.gzxqb-gra2{
+    border-color:#e5e5e5;
+}
+.more{
+    background-image:url(img/more.png);
+}
+
+/*appManage_content.html*/
+.li-item{
+    width: 25%;
+    min-height: 4em;
+    float: left;
+}
+.li-img{    
+    min-width: 2.5em;
+    height: 2.5em;
+}
+.p-padt{
+    padding: .5em 0 0 0;
+}
+
+.img-notes{
+    width: 6em;
+    height: 7em;
+    background-image: url('./img/notes.png');
+}
+.c1-notes{
+    font-size: 1.15em;
+    color: #eb5858;
+}
+.c2-notes{
+    color: #eb5b4f;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body class="um-vp" ontouchstart>
+<div id="page_0" class="up ub ub-ver loginbackground" tabindex="0">
+
+    <!--header结束--><!--content开始-->
+    <div id="content" class="ub-f1 tx-l">
+
+    </div>
+    <!--content结束-->
+    <div class="ub1 ub-ac ub-pc AppCanStyle uhide">
+        <div class="uhide">Powered by AppCan</div>
+    </div>
+</div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script src="js/common.js"></script>
+</body>
+<script>
+    appcan.ready(function () {
+        if (uexWindow.setStatusBarTitleColor) uexWindow.setStatusBarTitleColor(1);
+        appcan.setLocVal('ifLoginAgain', 'false');
+        try {
+            var flag = zy_parse();
+            flag = flag.flag;
+            var $content = $('#content');
+            appcan.window.openPopover("login_content", '0', "login_content.html", '', 0, 0, $content.offset().width, $content.offset().height, parseInt($content.css("font-size")), 0, 0);
+
+        } catch (e) {
+            errorDetail(e);
+            appcan.frame.open("content", "login_content.html", 0, 0);
+        }
+        window.onorientationchange = window.onresize = function () {
+            appcan.frame.resize("content", 0, 0);
+        };
+        appcan.window.subscribe("loginSucc", function () {
+            if (uexWindow.setStatusBarTitleColor) uexWindow.setStatusBarTitleColor(0);
+            appcan.window.close(0);
+        });
+        try {
+            uexWindow.setRightSwipeEnable(0);
+        } catch (e) {
+        }
+        uexWindow.onKeyPressed = function (keyCode) {
+            if (keyCode == '0') {
+                uexWidget.finishWidget('');
+            }
+        };
+        uexWindow.setReportKey('0', '1');
+    });
+    appcan.button(".nav-btn", "ani-act", function () {
+        appcan.window.close(-1);
+    });
+
+    /**
+     * 根据Native语言改变语言
+     */
+    function changeLanguage() {
+        try {
+            //获得系统语言
+            uexAppLanguage.cbGetLanguage = function (opId, dataType, data) {
+               
+                var lan = 'zh_cn';
+                switch (data) {
+                    case 0:
+                        lan = 'zh_cn';
+                        break;
+                    case 1:
+                        lan = 'zh_cn';
+                        break;
+                    case 2:
+                        lan = 'en_us';
+                        break;
+                }
+                //切换语言(前端)
+                tools.setLan(lan);
+            };
+            uexAppLanguage.getLanguage();
+        } catch (e) {
+            errorDetail(e);
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><widget appId="SZPortal" channelCode="0000" height="480" pid="" sreensize="4.5" version="01.00.0006" viewmode="application" widgetId="" width="320"> 
+  <name>掌上深航(新)</name>  
+  <!--沉浸式状态栏-->  
+  <!--<statusbar color="#0025a1fc"/>-->  
+  <description/>  
+  <author email=""/>  
+  <icon src="icon.png"/>  
+  <license href=""/>  
+  <content encoding="utf-8" src="first1.html"/>  
+  <!--<content encoding="utf-8" src="root.html"/>-->  
+  <updateurl/>  
+  <showmyspace>false</showmyspace>  
+  <obfuscation>false</obfuscation>  
+  <bgcolor>#fefefe</bgcolor>  
+  <orientation>1</orientation>  
+  <partobfuscation>false</partobfuscation>  
+  <AutoStartReport>true</AutoStartReport>  
+  <webapp>false</webapp>  
+  <!--log服务器配置-->  
+  <logserverip/>  
+  <!--百度地图key配置-->  
+  <!--EMM配置-->  
+  <EMMConfig AutoStartReport="true" IsExitApp="false"/>  
+  <!--听云key配置-->  
+  <NbsAgentKey platform="iOS">29fc9c9b626346a2bee72034bd974cf3</NbsAgentKey>  
+  <NbsAgentKey platform="Android">4154fc6f8c2f429a9fbcf9d7aabe438b</NbsAgentKey>  
+  <!--神策数据统计配置-->  
+  <SaServerUrl platform="Android">http://47.95.172.102:8106/sa?project=zsshproduction</SaServerUrl>  
+  <SaConfigureUrl platform="Android">http://47.95.172.102:8106/config/?project=zsshproduction</SaConfigureUrl>  
+  <SaDebugMode platform="Android">0</SaDebugMode>  
+  <SensorsAnalyticsURL platform="iOS">http://47.95.172.102:8106/sa?project=zsshproduction</SensorsAnalyticsURL>  
+  <SensorsAnalyticsType platform="iOS">0</SensorsAnalyticsType>  
+  <!--威胁感知配置-->  
+  <JMProtectionBaseURL platform="iOS">http://112.95.163.34:18080/mtss/</JMProtectionBaseURL>  
+  <JMProtectionAppKey platform="iOS">7744b7f5e696437ca4ef7a48bd8b80d7</JMProtectionAppKey>  
+  <JMProtectionWxgzAppKey platform="Android">7f10ad1b55f44c0588608c55c710783c</JMProtectionWxgzAppKey>  
+  <JMProtectionWxgzServerUrl platform="Android">http://112.95.163.34:18080/mtss/</JMProtectionWxgzServerUrl>  
+  <!--QQ插件配置-->  
+  <config desc="uexQQ" type="KEY"> 
+    <param name="$UEXQQ_APPID$" platform="Android" value="tencent101508721"/> 
+  </config>  
+  <config desc="uexQQ" type="URLSCHEME"> 
+    <urlScheme name="uexQQ" schemes="['QQ060ce671','tencent101508721']"/> 
+  </config>  
+  <!--iOS10权限-->  
+  <!--推送配置 - 根据Apple的要求,在iOS10系统上使用推送功能需要进行配置-->  
+  <debug>true</debug>  
+  <error/>  
+  <removeloading/>  
+  <!-- 微信插件配置  -->  
+  <!--百度地图KEY配置-->  
+  <!--极光推送KEY配置-->  
+  <config desc="whiteList" type="AUTHORITY"> 
+    <permission info="urlSchemeWhiteList" platform="iOS"> 
+      <string>fms</string>  
+      <string>APPZHFOQA</string>  
+      <string>wechat</string>  
+      <string>weixin</string>  
+      <string>emba</string>  
+      <!--QQ插件白名单配置-->  
+      <string>mqzoneopensdk</string>  
+      <string>mqzoneopensdkapi</string>  
+      <string>mqzoneopensdkapi19</string>  
+      <string>mqzoneopensdkapiV2</string>  
+      <string>mqqOpensdkSSoLogin</string>  
+      <string>mqqopensdkapiV2</string>  
+      <string>mqqopensdkapiV3</string>  
+      <string>wtloginmqq2</string>  
+      <string>mqqapi</string>  
+      <string>mqqwpa</string>  
+      <string>mqzone</string>  
+      <string>mqq</string> 
+    </permission> 
+  </config>  
+  <config desc="privacyConfig" type="AUTHORITY"> 
+    <permission info="privacy" platform="iOS" type="camera"> 
+      <string>掌上深航使用摄像头的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="microphone"> 
+      <string>掌上深航使用话筒的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="photoLibrary"> 
+      <string>掌上深航访问相册的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="contact"> 
+      <string>App访问通讯录的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="location"> 
+      <string>掌上深航总是使用gps定位的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="locationWhenInUse"> 
+      <string>掌上深航使用中时进行gps定位的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="locationAlways"> 
+      <string>掌上深航定位权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="motion"> 
+      <string>掌上深航使用传感器的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="bluetooth"> 
+      <string>掌上深航使用蓝牙的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="calendar"> 
+      <string>掌上深航访问日历的权限</string> 
+    </permission>  
+    <permission info="privacy" platform="iOS" type="reminder"> 
+      <string>掌上深航访问备忘录的权限</string> 
+    </permission> 
+  </config>  
+  <!-- 微信插件配置  -->  
+  <config desc="uexWeiXin" type="URLSCHEME"> 
+    <urlScheme name="uexWeiXin" schemes="['wxe0530f337c7107bf']"/> 
+  </config>  
+  <config desc="uexBaiduMap" type="KEY"> 
+    <param name="$uexBaiduMap_APIKey$" platform="ios" value="86oE8mRVv6EZnksuvNV6RkuWk94uVNuH"/>  
+    <param name="$uexBaiduMap_APIKey$" platform="android" value="pXRkKhCONgvBXDTUqBfPOHYPW4N2ugWe"/> 
+  </config>  
+  <!--极光推送KEY-->  
+  <config desc="uexJPush" type="KEY"> 
+    <param name="$UEXJPUSH_PACKAGE$" platform="Android" value="org.zywx.wbpalmstar.widgetone.uexSZPortal"/>  
+    <param name="$UEXJPUSH_APPKEY$" platform="Android" value="7d2a5fee085a5aeabec706e5"/>  
+    <!--小米推送通道配置-->  
+    <param name="$UEXMIXIAOMI_APPID$" platform="Android" value="MI-2882303761517843561"/>  
+    <param name="$UEXMIXIAOMI_APPKEY$" platform="Android" value="MI-5871784334561"/>  
+    <!--华为推送通道配置-->  
+    <param name="$UEXHUAWEIAPPID$" platform="Android" value="appid=100363851"/> 
+  </config>  
+  <config desc="uexJPush" type="KEY"> 
+    <param file="uexGroupfolder/PushConfig.plist" name="$UEXJPUSH_APP_KEY$" platform="iOS" value="7d2a5fee085a5aeabec706e5"/>  
+    <param file="uexGroupfolder/PushConfig.plist" name="$UEXJPUSH_PUSH_CHANNEL$" platform="iOS" value="Push"/>  
+    <param file="uexGroupfolder/PushConfig.plist" name="$UEXJPUSH_APS_ENVIRONMENT$" platform="iOS" value="1"/> 
+  </config>  
+  <config desc="" type="ENTITLEMENTS"> 
+    <entitlement type="apns" value=""/> 
+  </config> 
+<fullscreen>false</fullscreen></widget>

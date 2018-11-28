@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/yuefen-style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .margin-right {
+            margin-right: 0.4em;
+        }
+    </style>
+</head>
+<body class="um-vp bgd-color" ontouchstart>
+<div class="ub ub-ver utlv_22 utlv_21">
+    <div class="ub  bg-wh ubt ubb bder-color jj_marg7 ub-ver">
+        <div class="uhide ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1" id="anquanzx">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_CNANGE_PWD">修改密码</div>
+                <div class="ub ub-img tagimgR tagwh3  "></div>
+            </div>
+        </div>
+        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1" id="cache">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_EMPTY_CACHE">清空缓存</div>
+                <div class="shezhi_width1 ub">
+                </div>
+            </div>
+        </div>
+        <div class="uhide ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1" id="appver">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_VERSION_INFO">版本信息</div>
+                <div class="ub">
+                    <div class="ub-ac ub-pe color2 margin-right" id="appversion">V0.3</div>
+                </div>
+                <div class="ub ub-img tagimgR tagwh3"></div>
+            </div>
+        </div>
+        <div class="ub ub-f1 high ub-ac ubb  bder-color lef-padd2 rig-padd1 uhide" id="yijianfankui">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_FEEDBACK">意见反馈</div>
+                <div class="ub ub-img tagimgR tagwh3"></div>
+            </div>
+        </div>
+        <!--TODO 暂时屏蔽多语言切换功能-->
+        <div class="ub ub-f1 high ub-ac ubb bder-color lef-padd2 rig-padd1 uhide" id="changeLanguage">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_CHANGE_LANGUAGE">语言设置</div>
+                <div class="ub">
+                    <div class="ub-ac ub-pe color2 margin-right" id="currentLanguage">当前语言</div>
+                </div>
+                <div class="ub ub-img tagimgR tagwh3  "></div>
+            </div>
+        </div>
+       
+        <div class="ub ub-f1 high ub-ac ubb bder-color lef-padd2 rig-padd1 select" id="alertMode">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_MESSAGE_ALERT_MODE">消息提醒方式</div>
+                <div class="ub">
+                    <div class="ub-ac ub-pe color2 margin-right" id="currentRemind">　</div>
+                    <select id="selectMode">
+                        <option value="0" data-lan="STR_MESSAGE_SILENT">静音</option>
+                        <option value="1" data-lan="STR_MESSAGE_SOUND" selected>铃声</option>
+                        <option value="2" data-lan="STR_MESSAGE_VIBRATE">震动</option>
+                        <option value="3" data-lan="STR_MESSAGE_SOUND_VIBRATE">铃声&震动</option>
+                    </select>
+                </div>
+                <div class="ub ub-img tagimgR tagwh3  "></div>
+            </div>
+        </div>
+        <div class="uhide ub-f1 high ub-ac lef-padd2 rig-padd1" id="guanyuwm">
+            <div class="ub  ub-f1 ub-ac">
+                <div class="ub  ub-f1 text-c" data-lan="STR_ABOUT_US">关于我们</div>
+                <div class="ub ub-img tagimgR tagwh3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ub ub-f1">
+        <div class="ub ub-f1 paddLeft paddRight">
+            <div class="ub paddTB3 fontSize5 textColor15"></div>
+        </div>
+    </div>
+
+    <div class="ub ub-f1 bg-wh high ub-ac ubb ubt bder-color lef-padd2 rig-padd1" id="tuichu">
+        <div class="ub  ub-f1 ub-ac">
+            <div class="ub ub-f1 ub-pc" style="color:#EA4F13" data-lan="STR_EXIT_ACCOUNT">退出账号</div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/appcan.listview.js"></script>
+<script src="../js/common.js"></script>
+</body>
+<script>
+
+    var LAN_ZH_CN = tools.getString("LAN_ZH_CN");
+    var LAN_EN_US = tools.getString("LAN_EN_US");
+
+    appcan.ready(function () {
+        
+        /*初始化显示消息提醒方式*/
+        var messageMode = appcan.getLocVal("MESSAGE_REMIND_MODE");
+        var ee = $("#selectMode")[0];
+        if(messageMode){
+            $("#selectMode").val(messageMode);
+            $("#currentRemind").html(ee.selectedOptions[0].text)
+        }else{
+            $("#currentRemind").html(ee.selectedOptions[0].text)
+            
+        }
+        //显示当前语言
+        $("#currentLanguage").text(getCurrentLanguage());
+
+        uexWidgetOne.cbCleanCache = cbCleanCache;
+        uexWidgetOne.cbGetCurrentWidgetInfo = function (opId, dataType, data) {
+            var obj = eval('(' + data + ')');
+            var version = obj.version;
+            var s = version.split(".");
+            var s1 = s[2].substr(0,2);
+            version =  parseInt(s[0]) +'.'+ parseInt(s[1])+'.'+parseInt(s1);
+            $("#appversion").html(version);
+        };
+        uexWidgetOne.getCurrentWidgetInfo();
+        uexEMM.cbLogout = function (data) {
+            
+            appcan.window.open("login", "../login.html", 10);
+            //避免进入登陆页过慢，而快速关闭了当前页;
+            setTimeout(function(){
+                 appcan.window.publish("indexClose", "");
+            },200);
+           
+        }
+    });
+    function cbCleanCache(opId, dataType, data) {
+        var tipMsg = '';
+        if (data == 0) {
+            tipMsg = tools.getString("STR_CLEAR_SUCCESS");
+        } else {
+            tipMsg = tools.getString("STR_CLEAR_FAILURE");
+        }
+        appcan.window.openToast(tipMsg, 1500, 5);
+    }
+
+
+    appcan.button("#anquanzx", "btn-act1", function () {
+        appcan.window.open("pswModify", "pswModify.html", 10);
+    });
+    appcan.button("#guanyuwm", "btn-act1", function () {
+        appcan.window.open("about", "about.html", 10);
+    });
+    appcan.button("#yijianfankui", "btn-act1", function () {
+        appcan.window.open("feedBack", "feedBack.html", 10);
+    });
+    appcan.button("#appver", "btn-act1", function () {
+        appcan.window.open("version", "version.html", 10);
+    });
+    var lock = 0;
+    appcan.button("#cache", "btn-act1", function () {
+        var STR_NOTICE = tools.getString("STR_NOTICE"),
+                STR_IF_EMPTY_CACHE = tools.getString("STR_IF_EMPTY_CACHE"),
+                BTN_OK = tools.getString("BTN_OK"),
+                BTN_CANCEL = tools.getString("BTN_CANCEL");
+        if (!lock) {
+            lock = 1;
+            appcan.window.alert({
+                title: STR_NOTICE,
+                content: STR_IF_EMPTY_CACHE,
+                buttons: [BTN_OK, BTN_CANCEL],
+                callback: function (err, data, dataType, optId) {
+                    if (data == 0) {              
+                    } else {
+                        lock = 0;
+                    }
+                }
+            });
+        }
+    });
+    appcan.button("#changeLanguage", "btn-act1", function () {
+        appcan.window.open("changeLanguage", "changeLanguage.html", 10);
+    });
+    var flag = 0;
+    appcan.button("#tuichu", "ani-act", function () {
+        var STR_NOTICE = tools.getString("STR_NOTICE"),
+                STR_IF_EXIT_ACCOUNT = tools.getString("STR_IF_EXIT_ACCOUNT"),
+                BTN_OK = tools.getString("BTN_OK"),
+                BTN_CANCEL = tools.getString("BTN_CANCEL");
+        if (!flag) {
+            flag = 1;
+            appcan.window.alert({
+                title: STR_NOTICE,
+                content: STR_IF_EXIT_ACCOUNT,
+                buttons: [BTN_OK, BTN_CANCEL],
+                callback: function (err, data, dataType, optId) {
+                    if (data == 0) {
+                        var username = appcan.getLocVal("loginName");
+                        var userId = appcan.getLocVal("userId");
+                        uexWidget.delPushInfo(userId, username);
+                        
+                        var appAdd = appcan.getLocVal("CACHE_APPS_LIST_ADD") || '';
+                        var isFirst_guide = appcan.getLocVal("GUIDEPAGER_FIRST") || '';
+						var rootCheck = appcan.getLocVal("rootCheck") || '';
+						var indexList = appcan.getLocVal('CUSTOM-INDEX') || '';//置顶后位置缓存
+                        var delList = appcan.getLocVal('DEL-MODULE') || '';
+                        appcan.locStorage.remove();
+                        appcan.setLocVal("CACHE_APPS_LIST_ADD", appAdd); //不清除记录已经添加应用的缓存
+                        appcan.setLocVal("GUIDEPAGER_FIRST",isFirst_guide);   //不清除记录引导页已展示缓存
+						appcan.setLocVal("rootCheck",rootCheck); //不清除记录首次检测越狱设备
+						appcan.setLocVal('CUSTOM-INDEX',indexList);//不清除置顶后的位置变化数据
+                        appcan.setLocVal('DEL-MODULE',delList); //不清除删除后元素ID数据
+                        uexEMM.logout();
+                        uexXmlHttpMgr.clearCookie(); //清除cookie，解决ios上重新登录mas的sid不更新问题
+                    } else {
+                        flag = 0;
+                    }
+                }
+            });
+        }
+    });
+
+    /**
+     * 得到当前语言
+     */
+    function getCurrentLanguage() {
+        var curLanSimple = tools.getLan();
+        
+        var curLan = LAN_ZH_CN;
+        switch (curLanSimple) {
+            case 'zh_cn':
+                curLan = LAN_ZH_CN;
+                break;
+            case 'en_us':
+                curLan = LAN_EN_US;
+                break;
+            default:
+                curLan = LAN_ZH_CN;
+                break;
+        }
+       
+        return curLan;
+    }
+    //消息提醒音
+    appcan.select(".select", function(ele, value) {
+        appcan.setLocVal("MESSAGE_REMIND_MODE",value);
+        /*----设置消息提醒方式----*/
+        var msgStu = {
+            type: value //类型;0-静音,1-铃声,2-震动,3-铃声&震动
+        };
+        msgStu = JSON.stringify(msgStu);
+        uexIM.setMsgNotifyType(msgStu);//设置消息通知类型，没有回调
+    });
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body class="um-vp bc-wh" ontouchstart>
+        <div class="ub ub-f1 ub-ver t-c" id="list">
+        </div>
+        <div class="uinn ub ub-f1 tx-c ulev ub-ac ub-pc kong uhide" id="norecord">
+            <div class="ub ub-ver ub-ac ub-pc">
+                <div class="Nodata ub-img Nodatastyle Nodatamargin"></div>
+        <div class="Nodatafont zt-color10" data-lan="STR_NODATA">
+                    暂无数据
+                </div>
+            </div>
+        </div>
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+<script src="../js/language.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/global.js"></script>
+        <script src="../assets/services/pointRecord.js"></script>
+        <script src="../assets/models/pointRecord.js"></script>
+        <script src="../assets/views/pointRecord_content.js"></script>
+    </body>
+    <script>
+        var pageNo = 1;
+        appcan.ready(function() {
+            appcan.frame.setBounce([0, 1], null, null, function(type) {
+                pointRecondListViewInstance.load(type);
+            })
+            uexWindow.topBounceViewRefresh();
+        })
+        
+    </script>
+</html>

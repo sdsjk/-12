@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wqb-style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/yuefen-style.css">
+    <link rel="stylesheet" href="css/gzxiangqing.css">
+    <link rel="stylesheet" href="css/card/card.css">
+    <link rel="stylesheet" href="css/zd-style.css">
+    <link rel="lib/swiper/css/swiper.css">
+    <style>
+        .ut-s2 {
+            text-overflow: clip;
+            overflow: hidden;
+            white-space: nowrap !important;
+            outline: 0 !important
+        }
+        .font-075em{
+            font-size: .75em;
+        }
+        .t_width{
+            width:75%;
+        }
+
+        .catch_icon{
+            background-image: url('css/img/catch_icon.png');
+        }
+        .catch_font{
+            color:#F54038;
+            margin-top: 0.5em;
+        }
+        .catch{
+
+        }
+		.appMore{
+            background-image: url('css/img/more_icon.png');
+        }
+        .check{
+            height:2.5em;
+            line-height:2.5em;
+            padding:0 0.5em;
+            border-bottom:2px solid #ff0000;
+            color:#FC363B;
+        }
+        .disabled { pointer-events: none; }
+        .uinn_5{
+            padding:0.75em 0.5em 0.5em 0.5em;
+        }
+        .uinn_0{
+            padding:0.5em 0.5em 0em 0.5em;
+        }
+        .uinn_more{
+            padding:0.5em 0 0 0;
+        }
+        #noReadMessage {
+            display: inline-block;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FC0D1B;
+            position: absolute;
+            right: 1.45em;
+            top:0.975em;
+            width: 1.875em;
+            height: 1.875em;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 0.55em;
+        }
+        .leftPhone{
+            display: inline-block;
+            /*width: 30%;*/
+        }
+        .rightNumber{
+            display: inline-block;
+            /*width: 70%;*/
+        }
+		.uinn_cus{
+			padding:0 0.5em 0.5em 0.5em;
+		}
+		.emailNum{
+		    display: inline-block;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FC0D1B;
+            position: absolute;
+            right: 1.45em;
+            top:0.975em;
+            width: 1.875em;
+            height: 1.875em;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 0.55em;
+		}
+    </style>
+</head>
+<body class="um-vp bg_1" ontouchstart>
+  <div class="ub ub-ver" id="page_1">
+      <!--置顶应用-->
+      <div class="ub bg_2 umar-b">
+         <ul class="ub " style="width: 75%" id="zhidingList">
+
+         </ul>
+         <script id="zdList" type="text/template">
+
+                 <li class="" id="<%=data.customId%>" style="width: 33.3%">
+                     <div class="ub ub-ver uinn5 ub-f1 ub-pc ub-ac">
+                         <div class="umw4 umh6 ub-img umar-b" data-original="<%=data.shortImg1%>" style="background-image: url('<%=data.shortImg1%>');position:relative;">
+                             <span class="emailNum uhide" id="<%=data.emailNumId%>"></span>
+                         </div>
+                         <p class=" ulev-1 tx-c ut-s2 ub-fh" ><%=data.name%></p>
+                     </div>
+                 </li>
+
+         </script>
+         <div  style="width: 25%;min-height: 4em;" class="ub-f1" id="msgBut">
+             <div class="ub ub-ver uinn5 ub-f1 ub-pc ub-ac">
+                  <div class="umw4 umh6 ub-img umar-b" style="background-image: url('css/img/message_icon.png');position:relative;">
+                    <span id="noReadMessage" class="uhide"></span>
+                  </div>
+                  <p class="ub-f1 ulev-1 tx-c ut-s2 ub-fh">我的消息</p>
+              </div>
+         </div>
+
+      </div>
+      <!--自定义应用-->
+      <div class="umar-b bg_2">
+          <ul class="ub-fh " id="customAppList">
+
+          </ul>
+          <script id="tmplCustom" type="text/template">
+
+                <li class="li-item ub-f1 yincang " id="<%=data.appId%>">
+                   <div class="uinn5 ub ub-ver ub-f1 ub-ac ub-pc ">
+                     <div class="ub-img4 li-img lazy" data-original="<%=data.iconLoc%>" style="background-image: url('<%=data.iconLoc%>')"></div>
+                     <p class="ub-f1 ulev-1 p-padt ut-s2 tx-c name ub-fh"><%=data.name%></p>
+                  </div>
+                </li>
+
+          </script>
+      </div>
+      <!--自定义信息栏-->
+      <div class="ub ub-ver" id="custom">
+            <!--待办列表-->
+            <div class=" bg_2  customBlock" style="margin-bottom: 0.4em" id="custom_oa">
+                    <div class="ub ub-pj uinn_12" style="border-bottom:2px solid #E8E8E8;padding-bottom:0;height:2.5em;">
+                        <div class="ub  ub-ac">
+                            <div class="umw2 umh2 ub-img" style="background-image: url('css/img/oa_icon.png')"></div>
+                            <div class=" ub umh2 uinn_12 check" id="oa_daiban" style="height:2.5em;line-height:2.5em;padding:0 0.5em;">
+                                <h4>待办事项</h4>
+                                <span id="count"></span>
+                            </div>
+                            <div class="ub umh2 uinn_12 " id="oa_yiban" style="height:2.5em;line-height:2.5em;padding:0 0.5em;">
+                                <h4>已办事项</h4>
+                                <span  id="count_2"></span>
+                            </div>
+                        </div>
+                        <div class="uinn_8  ub-ac ub-pe customBtn" >
+                            <div class="umw2 umh2 ub-img ub-img6 " style="background-image: url('css/img/tou_icon_2.png')"></div>
+                        </div>
+                    </div>
+                    <div id ='oatodo' class="uinn_cus" style="min-height: 3em;">                        
+                        <div id="dbList" class="">
+                            <ul id="todoList">
+                        </ul>
+                        <script id="tmplTodo" type="text/template">
+                             <li class="ub ub-ac ubb bc-border" id="<%=data.listId%>">
+                                    <div class="ub-f1 uinn_9 ulev-30">
+                                    <p class="line-h5 ut-s t_width"><%=data.title%></p>
+                                </div>
+                                <p class="sc-text font-075em tx-r"><%=data.time%></p>
+                             </li>
+                        </script>
+                        </div>
+                        <div id="ybList" class="uhide">
+                            <ul  id="havetodoList">
+                        </ul>
+                        <script id="tmplHaveTodo" type="text/template">
+                                 <li class="ub ub-ac ubb bc-border "  id="<%=data.listId%>">    
+                                    <div class="ub-f1 uinn_9 ulev-30">
+                                    <p class="line-h5 ut-s t_width"><%=data.title%></p>
+                                </div>
+                                <p class="sc-text font-075em tx-r" style="margin-left: 0.1em;"><%=data.time%></p>
+                             </li>
+                        </script>
+                            
+                            <!-- <div class="ub-img4 img-notes"></div> -->
+                            <!-- <div class="ub-img4 img-notes"></div> -->
+
+                        </div>
+                    </div>
+            </div>
+            <!--值班信息-->
+            <div class="bg_2 uinn customBlock" style="margin-bottom: 0.4em" id="custom_duty">
+                <div class="ub ub-pj" style="border-bottom:2px solid #E8E8E8;padding-bottom:0;height:2.5em;">
+                     <div class="ub  ub-ac">
+                          <div class="umw2 umh2 ub-img" style="background-image: url('css/img/zb_icon.png')"></div>
+                          <h4 class="check">值班信息</h4>
+                     </div>
+                     <div class="uinn_8  ub-ac customBtn" >
+                          <div class="umw2 umh2 ub-img ub-img6 " style="background-image: url('css/img/tou_icon_2.png')"></div>
+                     </div>
+                </div>
+                <div id ="DUTY">
+                    <div class="ub uinn_cus " id="dutyBtn">
+                        <div class="ub ub-ver ub_f4 uinn5 umar-t">
+                            <div class=" uinn" style="background-color: #FA603F;color:#FFFFFF;">
+                                <p class="ulev_0 tx-c" id="week"></p>
+                            </div>
+                            <div class="ub ub-ver uba_1 uba_t uinn" style="height:5.0625em;">
+                                <div class="tx-c uinn_10" style="font-size: 2.5em;color:#FA603F;font:Helvetica;" id="d_num"></div>
+                                <p class="uinn uc-a1 ulev_0 tx-c" style="background-color: #4FC4F6;color:#FFFFFF">当前值班</p>
+                            </div>
+                        </div>
+                        <div class="ub  ub_f6 ub-ac" style="margin-left: 0.45em" >
+                            <!--ub  margin-bottom: 1.5em;-->
+                            <div class="ub ub-ver ub-ac ub-f1" style="padding: 0.75em 0;">
+                                <p class="zbwh uc_a tx-c zb_font" style="background-color: #548FFF;margin-top:.3em">领导</p>
+                                <p class="zbwh uc_a tx-c zb_font" style="background-color: #FFC114;margin-top:2.2em">正班</p>
+                                <p class="zbwh uc_a tx-c zb_font" id="dbm" style="background-color: #F16337;margin-top:2.2em">部门</p>
+                            </div>
+                            <ul class="ub ub-ver ub-f3 "  id="dutyList">
+
+
+                            </ul>
+                            <script id="tmpDuty" type="text/template">
+                                  <li class="ub umh5 ub-pj ub-ac uinn_11" >
+                                       <h4 class=" ub-f1 uinn tx-c" style="width: 35%;font-family: PingFangSC-Regular, sans-serif;font-size:0.9375em;"><%=data.dutyEmpname%></h4>
+                                       <div class="ub ub-ver ub-f1 ub-pc  " style="color:#6D6D6D;width: 65%;font:Adobe 黑体 Std;font-size:0.75em;">
+                                           <p>联系电话:<%=data.dutyOtel%></p>
+                                            <div style="display:flex;display:-webkit-flex;align-items:center;">
+                                                <div class="leftPhone">手机:</div>
+                                                <div class="rightNumber">
+                                                    <% 
+                                                        if (typeof data.dutyMobile === "object") { %> 
+                                                            <% for(var i = 0; i < data.dutyMobile.length; i++){ %>
+                                                                <span><%= data.dutyMobile[i] %><br></span>
+                                                            <% } %>
+                                                        <% }
+                                                        else { %> <%= data.dutyMobile %> <% }
+                                                    %>
+                                                </div>
+                                             </div>
+                                       </div>
+                                  </li>
+                            </script>
+
+                        </div>
+                    </div>
+                    <div>
+                        <p id="duty_more" class="ub ub-pe umar-r lookMore">查看详情></p>
+                    </div>
+                    <div class="uinn2 uhide" id="dutyNotes">
+                        <p class="tx-c" style="font-size:0.875em;">暂无数据！</p>
+                    </div>
+                </div>
+            </div>
+			<!--行政文件列表-->
+            <div class="bg_2 uinn_cus customBlock" style="margin-bottom: 0.4em" id="custom_file">
+                <div class="ub ub-pj" style="border-bottom:2px solid #E8E8E8;padding-bottom:0;height:2.5em;">
+                     <div class="ub ub-ac">
+                          <div class="umw2 umh2 ub-img" style="background-image: url('css/img/xz_icon.png')"></div>
+                          <h4 class="check">行政文件</h4>
+                     </div>
+                     <div class="uinn_8 ub-ac customBtn" >
+                          <div class="umw2 umh2 ub-img ub-img6 " style="background-image: url('css/img/tou_icon_2.png')"></div>
+                     </div>
+                </div>
+                <div id="FILE">
+                    <ul class="uinn_cus" id="filesList">
+
+                    </ul>
+                    <script id="tmplFiles" type="text/template">
+                         <li class="ub ub-ac ubb bc-border " id="<%=data.listId%>">
+                            <p></p>
+                            <div class="ub-f1 uinn_9 ulev-30">
+                                <p class="line-h5 ut-s t_width"><%=data.title%></p>
+                            </div>
+                            <p class="sc-text font-075em tx-r"><%=data.time%></p>
+                        </li>
+                    </script>
+                    <div>
+                        <p id="file_more" class="ub ub-pe umar-r lookMore">查看更多></p>
+                    </div>
+                </div>
+            </div>
+            <!--公司新闻列表-->
+            <div class="bg_2 uinn_cus customBlock" style="margin-bottom: 0.4em" id="custom_news">
+                <div class="ub ub-pj" style="border-bottom:2px solid #E8E8E8;padding-bottom:0;height:2.5em;">
+                     <div class="ub  ub-ac">
+                          <div class="umw2 umh2 ub-img" style="background-image: url('css/img/gs_icon.png')"></div>
+                          <h4 class="check">公司新闻</h4>
+                     </div>
+                     <div class="uinn_8  ub-ac customBtn" >
+                          <div class="umw2 umh2 ub-img ub-img6 " style="background-image: url('css/img/tou_icon_2.png')"></div>
+                     </div>
+                </div>
+                <div id = "NEWS">
+                    <ul class="uinn_cus" id="newsList">
+
+                    </ul>
+                    <script id="tmplNews" type="text/template">
+                         <li class="ub ub-ac ubb bc-border" id="<%=data.listId%>">
+                            <div class="ub-f1 uinn_9 ulev-30">
+                                <p class="line-h5 ut-s t_width"><%=data.title%></p>
+                            </div>
+                            <p class="sc-text font-075em tx-r"><%=data.time%></p>
+                        </li>
+                    </script>
+                    <div>
+                        <p id="news_more" class="ub ub-pe umar-r lookMore">查看更多></p>
+                    </div>
+                </div>
+            </div>
+
+       </div>
+  </div>
+  <div class="up ub ub-ac ub-pc uhide" style="background: rgba(40,40,40,.7)" id="maskLayer">
+       <div class="ub ub-ver  uinn_14 bg_2 uc-a NotificationMessage uhide" style="width: 60%" id="NotificationMessage">
+          <div class="umw3 umh5 ub-img message_icon" style="background-image: url('css/img/tz_icon.png')"></div>
+          <div class="ub-f1" id="messageContent">
+                  <div >
+                      <h2>通知</h2>
+                      <p class="uinn_9 ubb bc-border ulev-4 creatTime" style="color:#6D6D6D"></p>
+                  </div>
+                  <div class="umar-t ub ub-ver ub-f1 content_msg ulev-30" >                      
+                  </div>
+          </div>
+          <div class="umw3 umh5 ub-img colse_icon" style="background-image: url('css/img/colse.png')" id="colse"></div>
+       </div>
+  </div>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+    <script type="text/javascript" src="js/crypto-js.js"></script>
+    <script type="text/javascript" src="./js/bluebird.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/appcan.tab1.js"></script>
+<script src="js/index_content.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/greatAppList.js"></script>
+    <script type="text/javascript" src="./js/dateUtil.js"></script>
+</body>
+<script>
+    
+    var publishObjectId,publishMsgId,userId,publishObjectIdArr = [];
+    appcan.ready(function () {
+        var userId = appcan.getLocVal('userId');
+        //添加面包屑记录
+        var jsonObj = {leaveBreadcrumb:'掌上深航页面'};
+        uexNBSAppAgent.leaveBreadcrumb(JSON.stringify(jsonObj));
+        var pageLoadParam = {
+            event:"pageLoadRequestDuration"
+        };
+        // 神策插件记录页面加载开始时间
+        uexSensorsAnalytics.trackTimerBegin(JSON.stringify(pageLoadParam));
+        var fileType = "companyDocPublish"; //公司文件
+        var newsType = "companyDev";  //新闻动态
+        var todoFunctionName = 'moa/oa2TaskList_v11';
+        var havetodoFunctionName = 'moa/finishList_v11';
+        var indexList = appcan.getLocVal('CUSTOM-INDEX') ||[];//置顶后位置缓存
+        var delList = appcan.getLocVal('DEL-MODULE') || []; // 删除后缓存删除节点ID
+
+        var custom = $('#custom');
+        appcan.locStorage.remove("OA-MORE-HAVE"); //清除判断是否打开待办或已办的缓存
+        appcan.locStorage.remove('submitAppCenterList'); //清除我的应用缓存
+        var isShowMessage = appcan.getLocVal('NOTIFICTION-MESSAGE'); //是否展示消息缓存
+
+         //根据组织ID判断是否显示已办
+
+
+        //打开通知消息
+        if(isShowMessage == 'true'){
+             openMessage();
+             appcan.locStorage.remove("NOTIFICTION-MESSAGE");
+         }
+         appcan.window.subscribe('NOTIFICTION-MESSAGE',function(){
+             openMessage();
+             appcan.locStorage.remove("NOTIFICTION-MESSAGE");
+         });
+
+
+        //接收模块被删除后的通道消息
+        appcan.window.subscribe('CUSTOM-MODULE-DEL',function(id){
+            $('#'+id).addClass('uhide');
+        });
+        //接受添加模块的通道消息
+        appcan.window.subscribe('CUSTOM-MODULE-ADD',function(id){
+            $('#'+id).removeClass('uhide');
+        });
+
+        //获取置顶应用和自定义应用数据
+         greatAppList();
+
+        if(delList != ''){
+            delList = JSON.parse(delList);
+            delList = unique1(delList);
+            var customList = $('#custom').children('div');
+            for(var i in delList){
+                var d = delList[i];
+                $('#'+d).addClass('uhide');
+
+
+            }
+        }
+        if(indexList!= ''){
+            indexList = JSON.parse(indexList);
+            var customList = $('#custom').children('div');
+            for(var i in indexList){
+                var n = indexList[i];
+                var thisNode = customList[n];
+                 custom.append(thisNode);
+            }
+
+        }else {
+            var customList = $('#custom').children('div');
+             
+            for(var i=0;i<customList.length;i++){
+                indexList.push(customList.index(customList[i]));
+            }
+
+        }
+
+            var loginInfo = appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+            if(loginInfo) {
+                var flag = checkLoginStatus(loginInfo);
+
+                if(!flag) {
+                    getTodoList(havetodoFunctionName);
+                    getTodoList(todoFunctionName);
+                    getNewsList(newsType);
+                    getNewsList(fileType);
+                }
+            }else{
+				xmasOALogin();
+			}
+        //我的邮箱角标数字        
+        appcan.window.subscribe('APP-EMAIL-NUM',function(){
+            emailNum();
+        });
+        //获取值班信息数据
+         dutyList();
+        //自动下拉刷新效果
+
+
+        //接受桌面更改后我的应用数据
+        appcan.window.subscribe("MY-APP-LIST",function(data){
+            var list = JSON.parse(data);
+			if(list.length>7){
+				list = list.splice(0,7);
+			}
+            customShow(list);
+        });
+        //xmasOA登录事件
+        appcan.window.subscribe("EPortal-XOA-LOGIN-RET", function(data){
+            if(todoListObj.RET) return;
+            todoListObj.RET = 1;
+            var flag = checkLoginStatus(data);
+
+            if(!flag && isAndroid) {
+
+                getTodoList(todoFunctionName);
+                getTodoList(havetodoFunctionName);
+                getNewsList(newsType);
+                getNewsList(fileType);
+            }
+        });
+        //TODO请求异常时，再次调用
+        appcan.window.subscribe('TODO-ERROR-REFRESH',function(data){
+            var loginInfo = appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+            var f = checkLoginStatus(loginInfo);
+            if(!f){
+                getTodoList(data,1);
+            }
+        });
+        //NEW\FILE请求异常时，再次调用
+        appcan.window.subscribe('NWE-FILE-REFRESH',function(data){
+            var loginInfo = appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+            var f = checkLoginStatus(loginInfo);
+            if(!f){
+                getNewsList(data,1);
+            }
+        });
+        appcan.window.subscribe("EPORTAL_XOA_LOGIN", function(data){
+            todoListObj.RET = 0;
+            xmasOALogin();
+        });
+
+        appcan.window.subscribe("EPortal-XOATodo-Refresh", function(data){
+            var flag = checkLoginStatus();
+
+            if(!flag) {
+
+                getTodoList(todoFunctionName);
+
+                getNewsList(newsType);
+                getNewsList(fileType);
+            }
+        });
+
+
+        //关闭消息弹框
+           appcan.button('#colse','btn-act',function(){
+               $('#maskLayer').addClass('uhide');
+               $('#NotificationMessage').addClass('uhide');
+               appcan.locStorage.remove("NOTIFICTION-MESSAGE");
+               appcan.window.publish('MASKLAYER-COLSE');
+               if(isAndroid){
+                   document.querySelector("html").style.overflow = "auto";
+                   document.body.style.overflow = "auto";
+               }
+               document.body.removeEventListener('touchmove',bodyScroll,false);
+               // 更改我的消息未阅消息状态               
+               if(publishObjectId){
+                   transformStatus(publishObjectId);
+               };            
+           });
+        //打开消息列表
+        appcan.button('#msgBut','btn-act',function(){
+            
+		    //开启神策埋点事件追踪
+		   try{ 
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'我的消息',
+                            funcName:'消息列表查看',
+                            buttonName:'我的消息'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+           }catch(e){
+               
+           }
+            appcan.window.open("MyMessage", "personCenter/MyMessage.html", 10, '');
+        });
+        //待办、已办的点击事件
+        appcan.button('#oa_daiban','btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'待办模块',
+                            funcName:'查看待办列表',
+                            buttonName:'待办事项'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+
+            $('#ybList').addClass('uhide');
+            $('#dbList').removeClass('uhide');
+            $('#oa_daiban').addClass('check');
+            $('#oa_yiban').removeClass('check');
+            appcan.locStorage.remove("OA-MORE-HAVE");
+        })
+        appcan.button('#oa_yiban','btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'已办模块',
+                            funcName:'查看已办列表',
+                            buttonName:'已办事项'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            $('#oa_daiban').removeClass('check');
+            $('#oa_yiban').addClass('check');
+            $('#dbList').addClass('uhide');
+            $('#ybList').removeClass('uhide');
+            
+        })
+        
+        //打开新闻动态应用，进入 公司新闻列表
+        appcan.button('#news_more','btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'公司新闻',
+                            funcName:'查看公司新闻列表',
+                            buttonName:'查看更多'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            appcan.setLocVal('EPORTAL_NEWS',JSON.stringify({type:newsType,url:''}));
+            localStorage.setItem('EPORTAL_NEWS',JSON.stringify({type:newsType,url:''}));       
+            appcan.window.publish('EPORTAL_NEWS_START');
+        });
+        //打开公司文件应用，进入行政文件列表
+        appcan.button('#file_more','btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'行政文件',
+                            funcName:'查看行政文件列表',
+                            buttonName:'查看更多'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            appcan.setLocVal('EPORTAL_NEWS',JSON.stringify({type:fileType,url:''}));
+            localStorage.setItem('EPORTAL_NEWS',JSON.stringify({type:fileType,url:''})); 
+            appcan.window.publish('EPORTAL_FILES_START');
+        });
+        //打开值班信息应用
+        appcan.button('#duty_more', 'btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'值班信息模块',
+                            funcName:'查看值班信息详情',
+                            buttonName:'查看详情'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            appcan.window.publish('EPORTA_DUTY_START');
+        });
+        //自定义按钮操作,customBtn
+        appcan.button('.customBtn', 'btn-act',function(){
+            //开启神策埋点事件追踪
+             var param = {
+                        event: 'platformClick',
+                        propertieDict: {
+                            userId:userId,
+                            module:'自定义模块',
+                            funcName:'操作自定义模块',
+                            buttonName:'自定义模块'                               
+                        }
+              };
+              uexSensorsAnalytics.trackWithProperties(JSON.stringify(param));
+            var self = this;
+            var customBtnFat=$(self).parent().parent();
+            var id = customBtnFat.attr('id');
+            var index = customList.index(customBtnFat);
+            var customThis = customList[index];
+            uexWindow.cbActionSheet = function (a, b, data){
+                //0:置顶 1：刷新 2：删除
+
+
+                switch(parseInt(data)){
+                    case 0:
+                        custom.prepend(customThis);
+
+                        var index2 = indexList.indexOf(index);
+                        indexList.splice(index2,1);
+                        indexList.unshift(index);
+                        appcan.setLocVal('CUSTOM-INDEX',indexList);
+                        break;
+                    case 1:
+                        if(id == "custom_oa"){
+						    var oaDaiban = $('#oa_daiban');
+							var oaYiban = $('#oa_yiban');
+							if(oaDaiban.is('.check') || oaYiban.is('.uhide')){
+							     getTodoList(todoFunctionName);
+							}else {
+							     getTodoList(havetodoFunctionName);
+							}
+
+
+                        }else if(id == "custom_duty"){
+
+                            dutyList();
+                        }else if(id == "custom_news"){
+                            getNewsList(newsType);
+
+                        }else if(id == "custom_file"){
+                            getNewsList(fileType);
+                        }
+                        break;
+                    case 2:
+                        $('#'+id).addClass('uhide');
+
+                        delList.push(id);
+                        appcan.setLocVal('DEL-MODULE',delList);
+
+                        break;
+                }
+            }
+            uexWindow.actionSheet('菜单','取消','置顶,刷新,删除');
+        });
+        //  获取未阅消息条数展示于首页
+        initMessageList();
+        // 已阅后更改首页展示消息数量
+        appcan.window.subscribe("CHANGE_NO_READ_MESSAGE_ITEM",function(msg){
+            initMessageList();
+        });
+        // 在应用首页接收到推送时更新展示未阅消息数量
+        appcan.window.subscribe("GET_PUBLISH_MESSAGE",function(msg){
+            initMessageList();
+        });
+        // 神策插件记录页面加载结束时间
+        var pageLoadParamTrackTimerEnd = FunParamTrackTimerEnd("页面加载","掌上深航","","pageLoadRequestDuration","false");// 页面加载结束参数
+        uexSensorsAnalytics.trackTimerEnd(JSON.stringify(pageLoadParamTrackTimerEnd));
+    });
+    /**
+       *懒加载图片
+    */
+    function lazyLoadImage(url, dom, sus) {
+            if (window.lazyICache) {
+                 window.lazyICache.run({url: url, success: (sus ? sus : ''), dom: dom});
+            }
+     }
+
+    function bubbleSort(arr2) {
+        var len = arr2.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1 - i; j++) {
+                if (arr2[j].time<arr2[j+1].time
+                    || (arr2[j].time==arr2[j+1].time && arr2[j].title<arr2[j+1].title)) {        //相邻元素两两对比
+                    var temp = arr2[j+1];        //元素交换
+                    arr2[j+1] = arr2[j];
+                    arr2[j] = temp;
+                }
+            }
+        }
+        return arr2;
+    }
+
+    //检查账号是否过期失效
+    function checkLoginStatus(str){
+        var loginInfo = str || appcan.getLocVal("EPortal-XOA-LOGIN-RET");
+       
+        var ret = 0;
+        if(loginInfo) {
+            var obj = JSON.parse(loginInfo);
+            if(obj.result!='yes' || loginInfo.indexOf('OA密码过期')>=0){
+                ret = 1;
+                $('#todoList').html('');
+                var eTodoNote = $('#todoNote');
+                eTodoNote.removeClass('ubb');
+                eTodoNote.html('');
+                var eNotes = $('#notes');
+                eNotes.html('<p class="tx-c" style="font-weight:bold">'+obj.message+'</p>');
+                eNotes.removeClass('uhide');
+            }
+        }
+        return ret;
+    }
+    //滑动事件函数
+    function bodyScroll(event){
+        event.preventDefault();
+    }
+    //打开全文消息弹框
+    function openMessage(){
+
+            var data = JSON.parse(appcan.getLocVal('noticeData'));
+
+            $('#maskLayer').removeClass('uhide');
+            $('#NotificationMessage').removeClass('uhide');
+            if(isAndroid){
+               document.querySelector("html").style.overflow = "hidden";
+               document.body.style.overflow = "hidden";
+            }
+            document.body.addEventListener('touchmove',bodyScroll,false);
+            var creatTime = data.signature_created;
+
+            var format = data.format;
+            // 我的消息未阅消息唯一标识
+            publishMsgId = data.msgId;
+            if(format == 'true'){
+                var content = data.formatContent;
+            }else{
+                var content = data.content;
+            }
+            $('.creatTime').html(creatTime);
+            $('.content_msg').html(content);
+           initMessageList();
+    }
+    // 展示我的消息未阅条数
+    function initMessageList(){
+        publishObjectIdArr = [];
+        var time = new Date();
+        var hh = time.getHours(); //获取当前小时数(0-23)
+        var mm = time.getMinutes(); //获取当前分钟数(0-59)
+        var ss = time.getSeconds(); //获取当前秒数(0-59)
+        var smsm = time.getMilliseconds(); //获取当前毫秒数(0-999)
+        var nowT = setXDate(time, 0, 0, 0);
+        var threeT = setXDate(time, 0, 0, -3);
+        var lastTime = threeT + ' '+ hh+ ':' + mm + ':'+ ss + ':' + smsm;
+        // 用户信息   
+        var user = appcan.getLocVal("EPortal-UserInfo");
+        // 用户信息转为json对象
+        var userdata = JSON.parse(user);
+        // 用户ID
+        userId = userdata.userId;
+        var readList = [],noReadList = [],showMessageItem;
+        var biz = {
+            pageSize : 10000,
+            pageNum :1,
+            userId:userId,
+            updatedAt:lastTime
+        };
+        allMasIsCrypto("messageCenter","qry","GET",JSON.stringify(biz),userId,"掌上深航",config.appId).then(function(data){
+            var successData = data.data;
+            if(data.status == '0'&& data.message == 'ok' && successData.count == 0) {
+                
+            }else if(data.status !== '0'&& data.message !== 'ok'){
+                
+            }else if(data.status == '0'&& data.message == 'ok' && successData.count != 0){
+                var res = successData.results;
+                
+                if (res && res.length > 0) {
+                    var dataObjList = [];
+                    var objData = {};
+                    for (var i = 0; i <res.length; i++) {
+                        // 通知标题
+                        var title = res[i].title;
+                        //创建时间
+                        var createdAt = res[i].createdAt.split('T')[0];
+                        // 通知时间
+                        var tTime = new Date(res[i].createdAt);
+                        var yyear = tTime.getFullYear();
+                        var mmonth = tTime.getMonth()+1 < 10 ? '0'+(tTime.getMonth()+1) : tTime.getMonth()+1;
+                        var dday = tTime.getDate() < 10 ? '0'+tTime.getDate() : tTime.getDate();
+                        var hhour = tTime.getHours() < 10 ? '0'+tTime.getHours() : tTime.getHours();
+                        var mmin = tTime.getMinutes() < 10 ? '0'+tTime.getMinutes() : tTime.getMinutes();
+                        var ssec = tTime.getSeconds() < 10 ? '0'+tTime.getSeconds() : tTime.getSeconds();
+                        var sTime = yyear + '-' + mmonth+'-' + dday + ' ' + hhour+':' + mmin + ':' + ssec;
+                        // 创建时间 精确到秒
+                        createdAt = sTime;
+                        // 最后通知时间
+                        var detailCreated = sTime;
+                        // 通知Id
+                        var objectId = res[i].objectId;
+                        // 内容
+                        var content = res[i].content;
+                        var pushObj = res[i].pushObj;
+                        if(pushObj){
+                            //是否格式化
+                            var format = res[i].pushObj.behavior.application.param.format || '';                                
+                            //格式化内容
+                            var formatContent = res[i].pushObj.behavior.application.param.formatContent || '';                               
+                        }
+                        /*
+                            区分已阅未阅数据
+                            read为true表示已阅，为false表示未阅
+                        */
+                        var read = res[i].read;
+                        
+                        var myMessageMsgId = res[i].pushObj.behavior.application.param.msgId;
+                        
+                        if(publishMsgId && myMessageMsgId === publishMsgId){
+                            
+                            publishObjectId = objectId;
+                            publishObjectIdArr.push(publishObjectId);
+                        }
+                        // 对象数据
+                        objData = {
+                            title : title,
+                            createdAt : createdAt,
+                            objectId : objectId,
+                            content: content,
+                            detailCreated: detailCreated,
+                            format:format,
+                            formatContent:formatContent,
+                            read:read
+                        };
+                        dataObjList.push(objData);
+                        if(read){
+                            readList.push(objData);
+                        }else {
+                            noReadList.push(objData);
+                        }
+                    }
+                    
+                    showMessageItem = noReadList.length > 99 ?  "99+" : noReadList.length;
+                    $("#noReadMessage").html(showMessageItem);
+                    if(noReadList.length > 0){
+                        $("#noReadMessage").removeClass("uhide");
+                    }else {
+                        $("#noReadMessage").addClass("uhide");
+                    }
+                }else{
+                    // 数据为空时
+                    $("#noReadMessage").addClass("uhide");  
+                }
+            }
+        },function(err){
+            
+            $("#noReadMessage").addClass("uhide");
+        }).catch(function(e){
+            
+        });
+    }
+
+    // 未阅消息转变状态
+    function transformStatus(objectId){
+        // 点击已阅消息时，不做未阅已阅处理
+        if(!objectId){
+            return;
+        };
+        var biz = {
+            readUserId:userId,
+            objectId:objectId
+        };
+        allMasIsCrypto("messageCenter","read","GET",JSON.stringify(biz),userId,"掌上深航",config.appId).then(function(data){
+            
+            if(data.status == 0 && data.message == "ok"){
+                
+                appcan.window.publish("CHANGE_NO_READ_MESSAGE_ITEM","");
+            }else {
+                
+            };
+        },function(e){
+            
+        }).catch(function(err){
+            
+        });
+    }
+</script>
+</html>

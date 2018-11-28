@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-base.css">
+    <link rel="stylesheet" href="css/ui-color.css">
+    <link rel="stylesheet" href="css/appcan.icon.css">
+    <link rel="stylesheet" href="css/appcan.control.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #fff;
+        }
+        input,textarea{
+            color:#7d7d7d;
+        }
+        .icon-clear{
+            background-image: url(css/img/clear.png);
+        }
+        .uinn2{
+            padding: 0.5em 1.5em;
+        }
+    </style>
+</head>
+<body class="um-vp" ontouchstart>
+<div class="up ub ub-ver ub-img7 bg-login1">
+
+    <div id="content" class="ub-f1 tx-l">
+        <div class="ub ub-ac ub-pc paddingdefault">
+            <div class="ub ub-ac ub-pc loginiconStyle">
+            </div>
+        </div>
+        <form id="login">
+            <div class="uhide" id="loginform">
+                <div class="uinn2">
+                    <div class="ub uinn67 loginColor">
+                        <div class=" ub-ac  ub uinn6">
+                            <div class=" ub-img user login-icon ub">
+                            </div>
+                        </div>
+                        <div class=" uinput ub ub-f1  uinnh2 ">
+                            <input placeholder="请输入帐号" data-lan="STR_PLACEHOLDER_ENTER_ACCOUNT" type="text"
+                                   id="username" onInput="onInput('clearUid', this.value);" onchange="onChange('clearUid', this.value);"
+                                   class="ub-f1 inputSize" autocapitalize="off" style="text-transform:uppercase;">
+                        </div>
+                        <div class=" ub-ac uinn uhide" id="clearUid">
+                            <div class=" ub-img login-icon icon-clear"></div>
+                        </div>
+                    </div>
+                    <div class="ub uinn67 loginColor" style="margin-top: 1em;">
+                        <div class=" ub-ac  ub uinn6">
+                            <div class=" ub-img psw login-icon ub"></div>
+                        </div>
+                        <div class=" uinput ub ub-f1  uinnh2 ">
+                            <input placeholder="请输入密码" data-lan="STR_PLACEHOLDER_ENTER_PWD" type="password"
+                                   oninput="onInput('clearPwd', this.value);" onchange="onChange('clearPwd', this.value);"
+                                   id="password" class="ub-f1 inputSize">
+                        </div>
+                        <div class=" ub-ac uinn uhide" id="clearPwd">
+                            <div class=" ub-img login-icon icon-clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ub uinn2 uinn67 ub-ac pswCheck uhide">
+                    <div class="ub ub-ac ub-pc renwuzx_width1 check1 uhide">
+                        <div class="ub gzcheckbox1 ub-img utra sx-icon2"></div>
+                    </div>
+                    <div class="ub ub-ac ub-pc renwuzx_width1 check2">
+                        <div class="ub gzcheckbox2 ub-img utra sx-icon2"></div>
+                    </div>
+
+                    <div class="ub t-c fs6" style="padding-left:0.75em;" data-lan="STR_LOGIN_REMEMBER_PWD">记住密码</div>
+                </div>
+
+                <input id="domainName" type="hidden"/>
+                <div class="uinn2 uinn67" style="margin-top: .75em">
+                    <div class="btnlogin ub ub-ac  ub-pc  btn-login1 btncorner" data-lan="STR_LOGIN_IN" id="btn">
+                        登录
+                    </div>
+                </div>
+                <div class="uinn2 uhide">
+                    <div class="btnlogin ub ub-ac  ub-pc  btn-login1 btncorner " id="closebtn">
+                        关闭
+                    </div>
+                </div>
+                <div class="uinn2 uhide">
+                    <div class="ub-pe ub btn-t ulev9 uhide" data-lan="STR_LOGIN_CHANGE_COMPANY" id="change">
+                        更改企业
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="uinvisible"></button>
+        </form>
+        <form id="tenantForm">
+            <button type="submit" class="uinvisible"></button>
+            <div class="uhide" id="tenantform">
+                <div class="ubt ubb login-border loginColor">
+                    <div class="ub  login-border ubb uinn67 uhide" id="emmaddress">
+                        <div class=" ub-ac  ub uinn6">
+                            <div class=" ub-img psw login-icon ub"></div>
+                        </div>
+                        <div class=" uinput ub ub-f1  uinnh2 ">
+                            <input placeholder="EMM address" type="text" id="address" class="ub-f1 inputSize">
+                        </div>
+                    </div>
+                    <div class="ub  uinn67">
+                        <div class=" ub-ac  ub uinn6">
+                            <div class=" ub-img psw login-icon ub"></div>
+                        </div>
+                        <div class=" uinput ub ub-f1  uinnh2 ">
+                            <input placeholder="请输入企业标识" data-lan="STR_PLACEHOLDER_ENTER_COMPANY_LOGO" type="text"
+                                   value="ydyy" id="tenant" class="ub-f1 inputSize">
+                        </div>
+                    </div>
+                </div>
+                <div class="umhh"></div>
+                <div class="uinn2">
+                    <div class="btnlogin ub ub-ac ub-pc btn-login1 btncorner " data-lan="BTN_NEXT" id="next">
+                        下一步
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="uinn2 uhide">
+        <div class="btnlogin ub ub-ac ub-pc btn-login1 btncorner " id="bootstrapDemo">
+            bootstrapDemo
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="js/appcan.js"></script>
+<script src="js/appcan.control.js"></script>
+<script src="js/language.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script type="text/javascript" src="js/bluebird.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/global.js"></script>
+<script src="assets/services/login.js"></script>
+<script src="assets/models/login.js"></script>
+<script src="assets/views/login_content.js"></script>
+<script src="js/md5.js"></script>
+</body>
+<script>
+
+    appcan.button("#closebtn", "btn-act", function () {
+        appcan.window.publish("loginSucc", "");
+    });
+
+    appcan.button("#bootstrapDemo", "btn-act", function () {
+        appcan.window.open("index", "newTechnology/index.html", 10);
+    });
+    appcan.ready(function () {
+    })
+    
+    appcan.button("#clearUid", "", function () {
+        $('#username').val('');
+        $('#clearUid').addClass('uhide').removeClass('ub');
+    });
+    appcan.button("#clearPwd", "", function () {
+        $('#password').val('');
+        $('#clearPwd').addClass('uhide').removeClass('ub');
+    });
+    function onInput(id, val){
+        var $ele = $('#'+id);
+        if(val){
+            $ele.addClass('ub').removeClass('uhide');
+        }else{
+            $ele.addClass('uhide').removeClass('ub');
+        }
+    }
+    function onChange(id, val){
+    }
+</script>
+</html>

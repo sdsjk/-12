@@ -1,0 +1,10 @@
+.entBg{
+    background-image: url("images/entbg.png")
+}
+.entSta{
+    background-image: url("images/entSta.png")
+}
+.entStaSize {
+    height: 1em;
+    width: 1.5em;
+}

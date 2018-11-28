@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/plugin_uexemm_new_app_rly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/plugin_uexemm_new_app_dailog_tile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/plugin_uexemm_new_app_dailog_tile_icon"
+                android:layout_width="@dimen/plugin_uexemm_new_app_dialog_app_icon_width"
+                android:layout_height="@dimen/plugin_uexemm_new_app_dialog_app_icon_width"
+                android:background="@drawable/plugin_uexemm_icon_bg"/>
+
+            <TextView
+                android:id="@+id/plugin_uexemm_new_app_dailog_tile_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/plugin_uexemm_new_app_dailog_tile_icon"
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:text="@string/plugin_uexemm_prompt_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/plugin_uexemm_new_app_dialog_app_name_text_size"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/plugin_uexemm_new_app_progress_rly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plugin_uexemm_new_app_dailog_tile"
+            android:layout_centerHorizontal="true"
+            android:gravity="center">
+
+            <org.zywx.wbpalmstar.plugin.uexemm.dialog.progressbar.StraightProgressBar
+                android:id="@+id/plugin_emm_new_app_straight_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dip"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:gravity="center"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/plugin_uexemm_update_alert_progressbar_style"
+                android:visibility="gone"/>
+
+            <org.zywx.wbpalmstar.plugin.uexemm.dialog.progressbar.CircleProgressBar
+                xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/plugin_emm_new_app_circle_progressbar"
+                android:layout_width="@dimen/plugin_emm_round_progress_size"
+                android:layout_height="@dimen/plugin_emm_round_progress_size"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/plugin_emm_round_progress_bg_color"
+                android:visibility="gone"
+                android_custom:plugin_emm_round_bg_color="@color/plugin_emm_round_progress_bg_color"
+                android_custom:plugin_emm_round_progress_color="@color/plugin_emm_circle_progress_round_color"
+                android_custom:plugin_emm_round_width="@dimen/plugin_emm_circle_progress_round_width"
+                android_custom:plugin_emm_style="STROKE"
+                android_custom:plugin_emm_text_color="@color/plugin_emm_circle_progress_text_color"
+                android_custom:plugin_emm_text_size="@dimen/plugin_emm_round_progress_text_size"/>
+
+            <org.zywx.wbpalmstar.plugin.uexemm.dialog.progressbar.CircleGradualProgressBar
+                xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/plugin_emm_new_app_circle_shadow_progressbar"
+                android:layout_width="@dimen/plugin_emm_round_gradual_progress_size"
+                android:layout_height="@dimen/plugin_emm_round_gradual_progress_size"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexemm_round_graduel_progress_bg_shape"
+                android:visibility="gone"
+                android_custom:plugin_emm_round_bg_color="@color/plugin_emm_round_gradual_progress_circle_bg_color"
+                android_custom:plugin_emm_round_progress_color="@color/plugin_emm_round_gradual_progress_annulus_color"
+                android_custom:plugin_emm_round_width="@dimen/plugin_emm_circle_progress_round_width"
+                android_custom:plugin_emm_style="STROKE"
+                android_custom:plugin_emm_text_color="@color/plugin_emm_round_gradual_progress_text_color"
+                android_custom:plugin_emm_text_size="@dimen/plugin_emm_round_gradual_progress_text_size"/>
+
+            <org.zywx.wbpalmstar.plugin.uexemm.dialog.progressbar.RollProgressBar
+                xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/plugin_emm_new_app_roll_progressbar"
+                android:layout_width="@dimen/plugin_emm_round_progress_size"
+                android:layout_height="@dimen/plugin_emm_round_progress_size"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexemm_round_progress_bg_shape"
+                android:visibility="gone"
+                android_custom:plugin_emm_round_bg_color="@color/plugin_emm_roll_progress_round_bg_color"
+                android_custom:plugin_emm_round_progress_color="@color/plugin_emm_circle_progress_round_color"
+                android_custom:plugin_emm_round_width="@dimen/plugin_emm_circle_progress_round_width"
+                android_custom:plugin_emm_style="STROKE"
+                android_custom:plugin_emm_text_color="@color/plugin_emm_circle_progress_text_color"
+                android_custom:plugin_emm_text_size="@dimen/plugin_emm_round_progress_text_size"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/plugin_uexemm_new_app_dialog_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plugin_uexemm_new_app_progress_rly"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:text="@string/plugin_uexemm_new_app_default_prompt"
+            android:textColor="@color/black"
+            />
+
+        <RelativeLayout
+            android:id="@+id/plugin_uexemm_new_app_dailog_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plugin_uexemm_new_app_dialog_msg"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/plugin_uexemm_new_app_dailog_left_btn"
+                android:layout_width="@dimen/plugin_uexemm_dialog_control_btn_width"
+                android:layout_height="@dimen/plugin_uexemm_dialog_control_btn_height"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/plugin_uexemm_new_app_left_btn_bg"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/plugin_uexemm_new_app_dailog_right_btn"
+                android:layout_width="@dimen/plugin_uexemm_dialog_control_btn_width"
+                android:layout_height="@dimen/plugin_uexemm_dialog_control_btn_height"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/plugin_uexemm_new_app_right_btn_bg"
+                android:textColor="@color/white"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/plugin_uexemm_new_app_dailog_center_btn"
+                android:layout_width="@dimen/plugin_uexemm_dialog_control_btn_width"
+                android:layout_height="@dimen/plugin_uexemm_dialog_control_btn_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/plugin_uexemm_new_app_left_btn_bg"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../mui/css/mui.css">
+    <link rel="stylesheet" href="../css/ui-box.css">
+    <link rel="stylesheet" href="../css/ui-base.css">
+    <link rel="stylesheet" href="../css/ui-color.css">
+    <link rel="stylesheet" href="../css/appcan.icon.css">
+    <link rel="stylesheet" href="../css/appcan.control.css">
+    <link rel="stylesheet" href="../assets/css/myEnt.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+</head>
+<body class="bc-head">
+
+<!--导航栏-->
+<header id="nav-bar" class="mui-bar mui-bar-nav bc-head">
+    <!--返回键-->
+    <a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left bc-text-head"></a>
+    <!--标题-->
+    <h1 id="title" class="mui-title bc-text-head fontSize1" data-lan="STR_MY_ENTERPRISE">我的企业</h1>
+    <!--右边-->
+    <button id="submit" class="mui-btn mui-btn-link mui-pull-right fontSize"></button>
+</header>
+
+<!--下拉刷新容器-->
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div class="mui-scroll">
+        <!--数据列表-->
+        <ul class="mui-table-view mui-table-view-chevron bc-bg">
+
+            <div class="ub ub-ver  up" id="myEnt">
+                <div class="entBg ub-img ub-fh ub ub-ver ub-pc ub-ac">
+                    <div class="ub-f1"></div>
+                    <div id="fullName" class="bc-text-head fontSize9375" data-bind="text:fullName"></div>
+                    <div class="ub-f1"></div>
+                    <div class="ub baseColor3 ulev-2">
+                        <div data-lan="STR_ENTERPRISE_IDENTIFICATION">企业标识：</div>
+                        <div id="shortName" data-bind="text:shortName"></div>
+                    </div>
+                    <div class="ub-f1"></div>
+                </div>
+                <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+                    <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_STATUS">企业状态</span></div>
+                    <div class="uinn3 ub-f1 ub-pe ub"></div>
+                    <div class="ub ub-ac bg-wh" data-bind="html:setStatus"></div>
+                </div>
+                <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+                    <div class="uinn3"><span class="fontSize9375 " data-lan="STR_OFFICIAL_WEBSITE_ADDRESS">官网地址</span>
+                    </div>
+                    <div class="uinn3 ub-f1  ub-pe ub">
+                        <div class="fontSize9375 " id="corpUrl" data-bind="text:corpUrl"></div>
+                    </div>
+                </div>
+                <div class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+                    <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_ADDRESS">企业地址</span></div>
+                    <div class="uinn3 ub-f1  ub-pe ub">
+                        <div class="fontSize9375 " id="address" data-bind="text:address"></div>
+                    </div>
+                </div>
+                <div class="ub ubb baseBottom baseColor ub-ac uinn3">
+                </div>
+                <div id="enterprisePhoneNumberDiv" class="ub ubb baseBottom baseColor ub-ac uinn5 bg-wh">
+                    <div class="uinn3"><span class="fontSize9375 " data-lan="STR_ENTERPRISE_TELEPHONE">企业电话</span></div>
+                    <div class="uinn3 ub-f1 ub-pe ub">
+                        <div class="fontSize9375 " id="telNum" data-bind="text:telNum"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ul>
+    </div>
+</div>
+<!--引用的js-->
+<script src="../js/appcan.js"></script>
+<script src="../js/appcan.control.js"></script>
+<script src="../js/backbone.epoxy.min.js"></script>
+<script src="../js/language.js"></script>
+<script src="../mui/js/mui.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/global.js"></script>
+<script src="../assets/services/myEnt.js"></script>
+<script src="../assets/models/myEnt.js"></script>
+<script src="../assets/views/myEnt_content.js"></script>
+</body>
+<script type="text/javascript">
+
+    appcan.ready(function () {
+
+        
+
+        //返回按钮
+        appcan.button("#back", "btn-act", function () {
+            appcan.window.close(-1);
+        });
+
+        //企业电话点击事件
+        appcan.button("#enterprisePhoneNumberDiv", "btn-act", function () {
+            //调用系统拨号界面
+            var telNum = $("#telNum").text();
+           
+            var onlyNumber = new RegExp("[\d-]+");
+            var regExpResult = onlyNumber.test(telNum);
+           
+            if (regExpResult) {
+                uexCall.dial(telNum);
+            }
+        });
+
+        var w = $('.entBg').offset().width;
+        var h = w * 200 / 640;
+        $('.entBg').css('height', h);
+
+        //主动调用下拉刷新
+        pulldownRefresh();
+
+    });
+
+    //初始化下拉刷新
+    initPullRefresh(
+            //下拉刷新的回调
+            function () {
+                myEntViewInstance.load();
+            }
+    );
+
+</script>
+</html>
